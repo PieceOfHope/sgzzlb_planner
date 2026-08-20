@@ -1,0 +1,836 @@
+{
+  "source": "sgzzlb.xlsx / 임무표",
+  "note": "왼쪽(B~J열) 표는 1~9장이 세로로 이어지고, 10장만 별도로 오른쪽(V~AD열)에 같은 스키마로 배치되어 있어 별도 파싱 후 합쳤음.",
+  "chapters": [
+    {
+      "chapter": 1,
+      "quests": [
+        {
+          "name": "시즌 규칙 보기",
+          "reputation": 25,
+          "cost": {
+            "w": 3000,
+            "i": 3000,
+            "s": 3000,
+            "f": 3000
+          }
+        },
+        {
+          "name": "창고 건설",
+          "reputation": 25,
+          "cost": {
+            "w": 800,
+            "i": 800,
+            "s": 800
+          }
+        },
+        {
+          "name": "1장 완료",
+          "reputation": 50,
+          "cost": {
+            "gold": 20
+          }
+        }
+      ],
+      "subtotal": {
+        "reputation": 100,
+        "cost": {
+          "w": 3800,
+          "i": 3800,
+          "s": 3800,
+          "f": 3000,
+          "gold": 20
+        }
+      }
+    },
+    {
+      "chapter": 2,
+      "quests": [
+        {
+          "name": "군왕전 Lv.2",
+          "reputation": 25,
+          "cost": {
+            "w": 3000,
+            "i": 3000,
+            "s": 8000
+          }
+        },
+        {
+          "name": "3토 1개",
+          "reputation": 25,
+          "cost": {
+            "w": 5000,
+            "i": 5000,
+            "s": 5000
+          }
+        },
+        {
+          "name": "농장 건설",
+          "reputation": 25,
+          "cost": {
+            "w": 400,
+            "i": 400,
+            "s": 400
+          }
+        },
+        {
+          "name": "채석장 건설",
+          "reputation": 25,
+          "cost": {
+            "w": 600,
+            "i": 600
+          }
+        },
+        {
+          "name": "2장 완료",
+          "reputation": 50,
+          "cost": {
+            "gold": 30
+          }
+        }
+      ],
+      "subtotal": {
+        "reputation": 150,
+        "cost": {
+          "w": 9000,
+          "i": 9000,
+          "s": 13400,
+          "gold": 30
+        }
+      }
+    },
+    {
+      "chapter": 3,
+      "quests": [
+        {
+          "name": "군왕전 Lv.3",
+          "reputation": 25,
+          "cost": {
+            "w": 5000,
+            "i": 5000,
+            "s": 12000
+          }
+        },
+        {
+          "name": "벌목장 건설",
+          "reputation": 25,
+          "cost": {
+            "i": 600,
+            "s": 600
+          }
+        },
+        {
+          "name": "제철소 건설",
+          "reputation": 25,
+          "cost": {
+            "w": 600,
+            "s": 600
+          }
+        },
+        {
+          "name": "예비병 100명",
+          "reputation": 10,
+          "cost": {
+            "w": 2000,
+            "i": 2000,
+            "f": 4000
+          }
+        },
+        {
+          "name": "3토 3개",
+          "reputation": 25,
+          "cost": {
+            "w": 5000,
+            "i": 5000,
+            "s": 5000,
+            "f": 5000
+          }
+        },
+        {
+          "name": "3장 완료",
+          "reputation": 50,
+          "cost": {
+            "gold": 40
+          }
+        }
+      ],
+      "subtotal": {
+        "reputation": 160,
+        "cost": {
+          "w": 12600,
+          "i": 12600,
+          "s": 18200,
+          "f": 9000,
+          "gold": 40
+        }
+      }
+    },
+    {
+      "chapter": 4,
+      "quests": [
+        {
+          "name": "창고 Lv.3",
+          "reputation": 25,
+          "cost": {
+            "w": 2000,
+            "i": 2000,
+            "s": 2000,
+            "f": 2000
+          }
+        },
+        {
+          "name": "장수 Lv.8",
+          "reputation": 25,
+          "cost": {
+            "w": 3000,
+            "i": 3000,
+            "s": 9000
+          }
+        },
+        {
+          "name": "벌목장 Lv.3",
+          "reputation": 25,
+          "cost": {
+            "i": 3000,
+            "s": 3000
+          }
+        },
+        {
+          "name": "제철소 Lv.3",
+          "reputation": 25,
+          "cost": {
+            "w": 3000,
+            "s": 3000
+          }
+        },
+        {
+          "name": "농장 Lv.3",
+          "reputation": 25,
+          "cost": {
+            "w": 2000,
+            "i": 2000,
+            "s": 2000
+          }
+        },
+        {
+          "name": "채석장 Lv.3",
+          "reputation": 25,
+          "cost": {
+            "w": 3000,
+            "i": 3000
+          }
+        },
+        {
+          "name": "3토 5개",
+          "reputation": 25,
+          "cost": {
+            "w": 2000,
+            "i": 2000,
+            "s": 2000,
+            "f": 2000
+          }
+        },
+        {
+          "name": "세력치 300",
+          "reputation": 50,
+          "cost": {
+            "copper": 20000
+          }
+        },
+        {
+          "name": "주정관 임명",
+          "reputation": 10,
+          "cost": {
+            "copper": 20000
+          }
+        },
+        {
+          "name": "4장 완료",
+          "reputation": 50,
+          "cost": {
+            "gold": 50
+          }
+        }
+      ],
+      "subtotal": {
+        "reputation": 285,
+        "cost": {
+          "w": 15000,
+          "i": 15000,
+          "s": 21000,
+          "f": 4000,
+          "copper": 40000,
+          "gold": 50
+        }
+      }
+    },
+    {
+      "chapter": 5,
+      "quests": [
+        {
+          "name": "전법 5렙",
+          "reputation": 10,
+          "cost": {
+            "copper": 20000
+          }
+        },
+        {
+          "name": "속도 1",
+          "reputation": 25,
+          "cost": {
+            "w": 3000,
+            "i": 1500,
+            "s": 3000
+          }
+        },
+        {
+          "name": "무력 1",
+          "reputation": 25,
+          "cost": {
+            "w": 1500,
+            "i": 3000,
+            "s": 3000
+          }
+        },
+        {
+          "name": "방어 1",
+          "reputation": 25,
+          "cost": {
+            "w": 1500,
+            "i": 3000,
+            "s": 3000
+          }
+        },
+        {
+          "name": "모략 1",
+          "reputation": 25,
+          "cost": {
+            "w": 3000,
+            "i": 1500,
+            "s": 3000
+          }
+        },
+        {
+          "name": "5장 완료",
+          "reputation": 50,
+          "cost": {
+            "gold": 60
+          }
+        }
+      ],
+      "subtotal": {
+        "reputation": 160,
+        "cost": {
+          "w": 9000,
+          "i": 9000,
+          "s": 12000,
+          "copper": 20000,
+          "gold": 60
+        }
+      }
+    },
+    {
+      "chapter": 6,
+      "quests": [
+        {
+          "name": "2열병대",
+          "reputation": 25,
+          "cost": {
+            "w": 20000,
+            "i": 20000,
+            "s": 28000
+          }
+        },
+        {
+          "name": "4토 1개",
+          "reputation": 25,
+          "cost": {
+            "w": 5000,
+            "i": 5000,
+            "s": 5000,
+            "f": 5000
+          }
+        },
+        {
+          "name": "군왕전 4",
+          "reputation": 50,
+          "cost": {
+            "w": 10000,
+            "i": 10000,
+            "s": 25000
+          }
+        },
+        {
+          "name": "민가 1",
+          "reputation": 25,
+          "cost": {
+            "w": 1000,
+            "i": 1000,
+            "s": 1000
+          }
+        },
+        {
+          "name": "민가 3",
+          "reputation": 25,
+          "cost": {
+            "w": 3000,
+            "i": 3000,
+            "s": 3000
+          }
+        },
+        {
+          "name": "3토 10개",
+          "reputation": 25,
+          "cost": {
+            "w": 8000,
+            "i": 8000,
+            "s": 8000,
+            "f": 8000
+          }
+        },
+        {
+          "name": "정찰",
+          "reputation": 25,
+          "cost": {
+            "w": 2000,
+            "i": 2000,
+            "s": 2000,
+            "f": 2000
+          }
+        },
+        {
+          "name": "둔전",
+          "reputation": 25,
+          "cost": {
+            "w": 3000,
+            "i": 3000,
+            "s": 3000,
+            "f": 3000
+          }
+        },
+        {
+          "name": "4토 3개",
+          "reputation": 25,
+          "cost": {
+            "w": 5000,
+            "i": 5000,
+            "s": 5000
+          }
+        },
+        {
+          "name": "영지 포기",
+          "reputation": 10,
+          "cost": {
+            "copper": 20000
+          }
+        },
+        {
+          "name": "6장 완료",
+          "reputation": 50,
+          "cost": {
+            "gold": 70
+          }
+        }
+      ],
+      "subtotal": {
+        "reputation": 285,
+        "cost": {
+          "w": 37000,
+          "i": 37000,
+          "s": 52000,
+          "f": 18000,
+          "copper": 20000,
+          "gold": 70
+        }
+      }
+    },
+    {
+      "chapter": 7,
+      "quests": [
+        {
+          "name": "숙소 3",
+          "reputation": 10,
+          "cost": {
+            "w": 5000,
+            "i": 5000,
+            "s": 7500
+          }
+        },
+        {
+          "name": "장수 10렙",
+          "reputation": 25,
+          "cost": {
+            "copper": 30000
+          }
+        },
+        {
+          "name": "4토 5개",
+          "reputation": 25,
+          "cost": {
+            "w": 3000,
+            "i": 3000,
+            "s": 3000,
+            "f": 3000
+          }
+        },
+        {
+          "name": "4토 10개",
+          "reputation": 25,
+          "cost": {
+            "w": 6000,
+            "i": 6000,
+            "s": 6000,
+            "f": 6000
+          }
+        },
+        {
+          "name": "세력치 800",
+          "reputation": 50,
+          "cost": {
+            "copper": 30000
+          }
+        },
+        {
+          "name": "시련",
+          "reputation": 0,
+          "cost": {
+            "copper": 20000
+          }
+        },
+        {
+          "name": "7장 완료",
+          "reputation": 50,
+          "cost": {
+            "gold": 80
+          }
+        }
+      ],
+      "subtotal": {
+        "reputation": 185,
+        "cost": {
+          "w": 14000,
+          "i": 14000,
+          "s": 16500,
+          "f": 9000,
+          "copper": 80000,
+          "gold": 80
+        }
+      }
+    },
+    {
+      "chapter": 8,
+      "quests": [
+        {
+          "name": "군왕전 5",
+          "reputation": 25,
+          "cost": {
+            "w": 15000,
+            "i": 15000,
+            "s": 30000
+          }
+        },
+        {
+          "name": "창고 5",
+          "reputation": 25,
+          "cost": {
+            "w": 3000,
+            "i": 3000,
+            "s": 5000
+          }
+        },
+        {
+          "name": "벌목장 5",
+          "reputation": 25,
+          "cost": {
+            "i": 6000,
+            "s": 6000
+          }
+        },
+        {
+          "name": "제철소 5",
+          "reputation": 25,
+          "cost": {
+            "w": 6000,
+            "s": 6000
+          }
+        },
+        {
+          "name": "농장 5",
+          "reputation": 25,
+          "cost": {
+            "w": 4000,
+            "i": 4000,
+            "s": 4000
+          }
+        },
+        {
+          "name": "채석장 5",
+          "reputation": 25,
+          "cost": {
+            "w": 6000,
+            "i": 6000
+          }
+        },
+        {
+          "name": "자원 생산량",
+          "reputation": 25,
+          "cost": {
+            "w": 5000,
+            "i": 5000,
+            "s": 5000,
+            "f": 5000
+          }
+        },
+        {
+          "name": "민가 5",
+          "reputation": 25,
+          "cost": {
+            "w": 3000,
+            "i": 3000,
+            "s": 3000
+          }
+        },
+        {
+          "name": "병력 3000",
+          "reputation": 50,
+          "cost": {
+            "w": 10000,
+            "i": 10000,
+            "f": 30000
+          }
+        },
+        {
+          "name": "8장 완료",
+          "reputation": 50,
+          "cost": {
+            "gold": 90
+          }
+        }
+      ],
+      "subtotal": {
+        "reputation": 300,
+        "cost": {
+          "w": 52000,
+          "i": 52000,
+          "s": 59000,
+          "f": 35000,
+          "gold": 90
+        }
+      }
+    },
+    {
+      "chapter": 9,
+      "quests": [
+        {
+          "name": "속도 3",
+          "reputation": 25,
+          "cost": {
+            "w": 6000,
+            "i": 6000,
+            "s": 6000
+          }
+        },
+        {
+          "name": "방어 3",
+          "reputation": 25,
+          "cost": {
+            "w": 6000,
+            "i": 6000,
+            "s": 6000
+          }
+        },
+        {
+          "name": "무력 3",
+          "reputation": 25,
+          "cost": {
+            "w": 6000,
+            "i": 6000,
+            "s": 6000
+          }
+        },
+        {
+          "name": "모략 3",
+          "reputation": 25,
+          "cost": {
+            "w": 6000,
+            "i": 6000,
+            "s": 6000
+          }
+        },
+        {
+          "name": "징병소 2",
+          "reputation": 25,
+          "cost": {
+            "w": 7000,
+            "i": 7000,
+            "s": 7000,
+            "f": 7000
+          }
+        },
+        {
+          "name": "4토 15개",
+          "reputation": 25,
+          "cost": {
+            "w": 6000,
+            "i": 6000,
+            "s": 8000
+          }
+        },
+        {
+          "name": "세력치 1000",
+          "reputation": 100,
+          "cost": {
+            "copper": 30000
+          }
+        },
+        {
+          "name": "9장 완료",
+          "reputation": 100,
+          "cost": {
+            "gold": 100
+          }
+        }
+      ],
+      "subtotal": {
+        "reputation": 350,
+        "cost": {
+          "w": 37000,
+          "i": 37000,
+          "s": 39000,
+          "f": 7000,
+          "copper": 30000,
+          "gold": 100
+        }
+      }
+    },
+    {
+      "chapter": 10,
+      "quests": [
+        {
+          "name": "군왕전 6",
+          "reputation": 25,
+          "cost": {
+            "copper": 50000
+          }
+        },
+        {
+          "name": "생산량",
+          "reputation": 25,
+          "cost": {
+            "w": 10000,
+            "i": 10000,
+            "s": 10000,
+            "f": 10000,
+            "copper": 10000
+          }
+        },
+        {
+          "name": "영지 소탕",
+          "reputation": 25,
+          "cost": {
+            "copper": 20000
+          }
+        },
+        {
+          "name": "5토 1개",
+          "reputation": 25,
+          "cost": {
+            "w": 3000,
+            "i": 3000,
+            "s": 3000,
+            "f": 3000
+          }
+        },
+        {
+          "name": "병력 5000",
+          "reputation": 25,
+          "cost": {
+            "w": 20000,
+            "i": 20000,
+            "f": 60000
+          }
+        },
+        {
+          "name": "민가 7",
+          "reputation": 25,
+          "cost": {
+            "w": 6000,
+            "i": 6000,
+            "s": 6000
+          }
+        },
+        {
+          "name": "벌목장 7",
+          "reputation": 25,
+          "cost": {
+            "i": 6000,
+            "s": 6000
+          }
+        },
+        {
+          "name": "제철소 7",
+          "reputation": 25,
+          "cost": {
+            "w": 6000,
+            "s": 6000
+          }
+        },
+        {
+          "name": "농장 7",
+          "reputation": 25,
+          "cost": {
+            "w": 4000,
+            "i": 4000,
+            "s": 4000
+          }
+        },
+        {
+          "name": "채석장 7",
+          "reputation": 25,
+          "cost": {
+            "w": 6000,
+            "i": 6000
+          }
+        },
+        {
+          "name": "징병소 3",
+          "reputation": 25,
+          "cost": {
+            "w": 10000,
+            "i": 10000,
+            "s": 10000,
+            "f": 10000
+          }
+        },
+        {
+          "name": "10장 완료",
+          "reputation": 100,
+          "cost": {
+            "gold": 100
+          }
+        }
+      ],
+      "subtotal": {
+        "reputation": 375,
+        "cost": {
+          "w": 65000,
+          "i": 65000,
+          "s": 45000,
+          "f": 83000,
+          "copper": 80000,
+          "gold": 100
+        }
+      }
+    }
+  ],
+  "annotations": [
+    {
+      "cell": "L2",
+      "text": "2열병대 신규 임무!, 4군왕/2열병대 사이에서 고민할 필요 없음!"
+    },
+    {
+      "cell": "V2",
+      "text": "7군왕 창고폭발! 석재 다 모으면 4.5만!"
+    }
+  ]
+}
