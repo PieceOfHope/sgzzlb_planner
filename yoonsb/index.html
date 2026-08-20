@@ -312,25 +312,69 @@ function renderSecs(){
 function updateNext(){ renderTodo(); } // 간단히 전체 갱신 (다음 할 일 카드 반영)
 
 /* ═══════════ 관리자 ═══════════ */
+let admQ = "", admBand = "all", admSec = "all", admSort = "pct-desc", admStats = false;
+
 function renderAdmin(){
   window.scrollTo(0,0);
   $("#app").innerHTML = `
-  <div class="hdr"><div class="wrap" style="max-width:860px;display:flex;justify-content:space-between;align-items:center">
+  <div class="hdr"><div class="wrap" style="max-width:860px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
     <div><div class="gold" style="font-size:12px;font-weight:700;letter-spacing:3px">관리자 대시보드</div>
       <div style="font-weight:700;font-size:18px">맹원 진행 현황</div></div>
-    <div style="display:flex;gap:8px">
+    <div style="display:flex;gap:7px;flex-wrap:wrap">
+      <button class="mini" id="btn-csv" style="color:var(--gold);border-color:var(--goldD)">CSV 추출</button>
       <button class="mini" id="btn-export" style="color:var(--gold);border-color:var(--goldD)">JSON 백업</button>
       <button class="mini" id="btn-reload" style="color:var(--gold);border-color:var(--goldD)">새로고침</button>
       <button class="mini" id="btn-out2">나가기</button>
     </div>
   </div></div>
   <div class="wrap fade" style="max-width:860px;padding-top:16px;padding-bottom:60px">
-    <div id="adm-stats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:16px"></div>
-    <div id="adm-list"><div class="card" style="padding:28px;text-align:center" class="muted">불러오는 중...</div></div>
+    <div id="adm-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px"></div>
+
+    <div class="card" style="padding:13px 14px;margin-bottom:14px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <input id="adm-q" placeholder="닉네임 검색 (포함 단어)" style="flex:1;min-width:170px;padding:9px 12px;font-size:14px">
+        <select id="adm-sec" style="background:var(--card2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:9px 10px;font-size:13px;font-family:inherit">
+          <option value="all">현재 챕터: 전체</option>
+          ${SECTIONS.map(s=>`<option value="${s.id}">${esc(s.tag)} 진행 중</option>`).join("")}
+          <option value="fin">전체 완료</option>
+        </select>
+        <select id="adm-sort" style="background:var(--card2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:9px 10px;font-size:13px;font-family:inherit">
+          <option value="pct-desc">진행률 높은순</option>
+          <option value="pct-asc">진행률 낮은순</option>
+          <option value="name">닉네임순</option>
+          <option value="recent">최근 활동순</option>
+          <option value="idle">오래 쉰 순</option>
+        </select>
+      </div>
+      <div id="adm-bands" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+        <span class="muted" id="adm-count" style="font-size:12.5px"></span>
+        <button class="mini" id="btn-stats" style="color:var(--gold);border-color:var(--goldD)">📊 통계 상세</button>
+      </div>
+    </div>
+
+    <div id="adm-detail-stats"></div>
+    <div id="adm-list"><div class="card muted" style="padding:28px;text-align:center">불러오는 중...</div></div>
   </div>`;
+
   $("#btn-out2").onclick = ()=>renderLogin();
   $("#btn-reload").onclick = loadAdmin;
   $("#btn-export").onclick = exportJSON;
+  $("#btn-csv").onclick = exportCSV;
+  $("#btn-stats").onclick = ()=>{ admStats=!admStats; drawAdmin(); };
+  $("#adm-q").oninput = e=>{ admQ = e.target.value.trim().toLowerCase(); drawAdmin(); };
+  $("#adm-sec").onchange = e=>{ admSec = e.target.value; drawAdmin(); };
+  $("#adm-sort").onchange = e=>{ admSort = e.target.value; drawAdmin(); };
+  drawBands();
+}
+
+const BANDS = [
+  ["all","전체"], ["zero","미시작 0%"], ["low","1~49%"], ["mid","50~99%"], ["done","완료 100%"], ["idle","7일+ 미활동"]
+];
+function drawBands(){
+  $("#adm-bands").innerHTML = BANDS.map(([v,l])=>
+    `<button class="pill ${admBand===v?"now":""}" data-band="${v}" style="cursor:pointer">${l}</button>`).join("");
+  document.querySelectorAll("[data-band]").forEach(b=>b.onclick = ()=>{ admBand=b.dataset.band; drawBands(); drawAdmin(); });
 }
 
 async function loadAdmin(){
@@ -345,58 +389,108 @@ async function loadAdmin(){
   }
 }
 
+/* 유저 행 데이터 계산 */
+function admRows(){
+  return Object.keys(adminUsers).map(k=>{
+    const u = adminUsers[k];
+    const c = (adminProg[k] && adminProg[k].c) || {};
+    const done = Object.keys(c).length;
+    const pct = Math.round(done/TOTAL*100);
+    const next = ALL.find(i=>!c[i.id]);
+    const nSec = next ? SECTIONS.find(s=>s.items.some(i=>i.id===next.id)) : null;
+    const ts = (adminProg[k] && adminProg[k].ts) || u.ts || 0;
+    return {k, u, c, done, pct, next, nSec, ts};
+  });
+}
+const DAY = 86400000;
+function ago(ts){
+  if(!ts) return "기록 없음";
+  const d = Math.floor((Date.now()-ts)/DAY);
+  if(d<=0) return "오늘"; if(d===1) return "어제"; return d+"일 전";
+}
+
+function admFiltered(){
+  let rows = admRows();
+  if(admQ) rows = rows.filter(r=>r.u.nick.toLowerCase().includes(admQ));
+  if(admBand==="zero") rows = rows.filter(r=>r.done===0);
+  else if(admBand==="low") rows = rows.filter(r=>r.pct>=1 && r.pct<=49);
+  else if(admBand==="mid") rows = rows.filter(r=>r.pct>=50 && r.pct<=99);
+  else if(admBand==="done") rows = rows.filter(r=>r.pct===100);
+  else if(admBand==="idle") rows = rows.filter(r=>Date.now()-r.ts > 7*DAY);
+  if(admSec==="fin") rows = rows.filter(r=>!r.next);
+  else if(admSec!=="all") rows = rows.filter(r=>r.nSec && r.nSec.id===admSec);
+  const by = {
+    "pct-desc": (a,b)=>b.done-a.done || a.u.nick.localeCompare(b.u.nick,"ko"),
+    "pct-asc":  (a,b)=>a.done-b.done || a.u.nick.localeCompare(b.u.nick,"ko"),
+    "name":     (a,b)=>a.u.nick.localeCompare(b.u.nick,"ko"),
+    "recent":   (a,b)=>b.ts-a.ts,
+    "idle":     (a,b)=>a.ts-b.ts,
+  };
+  return rows.sort(by[admSort] || by["pct-desc"]);
+}
+
 function drawAdmin(){
-  const keys = Object.keys(adminUsers);
-  const prog = k => (adminProg[k] && adminProg[k].c) || {};
-  const doneOf = k => Object.keys(prog(k)).length;
-  keys.sort((a,b)=>doneOf(b)-doneOf(a));
-  const avg = keys.length ? Math.round(keys.reduce((s,k)=>s+doneOf(k),0)/keys.length/TOTAL*100) : 0;
-  const fin = keys.filter(k=>doneOf(k)===TOTAL).length;
+  const all = admRows();
+  const rows = admFiltered();
 
+  /* 요약 카드 */
+  const avg = all.length ? Math.round(all.reduce((s,r)=>s+r.done,0)/all.length/TOTAL*100) : 0;
+  const fin = all.filter(r=>r.pct===100).length;
+  const idle = all.filter(r=>Date.now()-r.ts > 7*DAY).length;
   $("#adm-stats").innerHTML = [
-    ["등록 맹원", keys.length+"명"], ["평균 진행률", avg+"%"], ["전체 완료", fin+"명"]
-  ].map(([k,v])=>`<div class="card" style="padding:16px;text-align:center">
-    <div class="gold" style="font-size:23px;font-weight:700">${v}</div>
-    <div class="muted" style="font-size:12px;margin-top:3px">${k}</div></div>`).join("");
+    ["등록 맹원", all.length+"명"], ["평균 진행률", avg+"%"],
+    ["전체 완료", fin+"명"], ["7일+ 미활동", idle+"명"]
+  ].map(([k,v])=>`<div class="card" style="padding:14px 8px;text-align:center">
+    <div class="gold" style="font-size:21px;font-weight:700">${v}</div>
+    <div class="muted" style="font-size:11.5px;margin-top:3px">${k}</div></div>`).join("");
 
-  if(!keys.length){
+  $("#adm-count").textContent = `${rows.length}명 표시 중 (전체 ${all.length}명)`;
+
+  /* 통계 상세 */
+  $("#adm-detail-stats").innerHTML = admStats ? statsHTML(all) : "";
+
+  /* 리스트 */
+  if(!all.length){
     $("#adm-list").innerHTML = `<div class="card muted" style="padding:32px;text-align:center">
       아직 등록된 맹원이 없습니다. 링크를 공유하고 각자 닉네임으로 시작하게 해주세요.</div>`;
     return;
   }
+  if(!rows.length){
+    $("#adm-list").innerHTML = `<div class="card muted" style="padding:32px;text-align:center">
+      조건에 맞는 맹원이 없습니다. 검색어나 필터를 확인해 주세요.</div>`;
+    return;
+  }
 
-  $("#adm-list").innerHTML = keys.map(k=>{
-    const u = adminUsers[k], c = prog(k), d = Object.keys(c).length, p = Math.round(d/TOTAL*100);
-    const next = ALL.find(i=>!c[i.id]);
-    const nSec = next && SECTIONS.find(s=>s.items.some(i=>i.id===next.id));
-    const open = adminDetail===k;
+  $("#adm-list").innerHTML = rows.map(r=>{
+    const open = adminDetail===r.k;
     return `
     <div class="card" style="margin-bottom:11px;overflow:hidden;${open?"border-color:var(--goldD)":""}">
-      <button style="width:100%;text-align:left;padding:14px 16px" data-user="${esc(k)}">
+      <button style="width:100%;text-align:left;padding:14px 16px" data-user="${esc(r.k)}">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:10px">
           <div style="display:flex;gap:8px;align-items:baseline;min-width:0">
-            <b style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(u.nick)}</b>
-            <span class="muted" style="font-size:12px;flex:none">#${esc(u.acct)}</span></div>
+            <b style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.u.nick)}</b>
+            <span class="muted" style="font-size:12px;flex:none">#${esc(r.u.acct)}</span></div>
           <div style="display:flex;gap:10px;align-items:center;flex:none">
-            ${next?`<span class="muted" style="font-size:12px">현재: <b class="gold">${esc(nSec.tag)}</b></span>`
-                  :`<b class="gold" style="font-size:12px">전체 완료 🎉</b>`}
-            <b class="gold" style="width:40px;text-align:right;font-size:14px">${p}%</b></div>
+            <span class="muted" style="font-size:11.5px">${ago(r.ts)}</span>
+            ${r.next?`<span class="muted" style="font-size:12px">현재: <b class="gold">${esc(r.nSec.tag)}</b></span>`
+                    :`<b class="gold" style="font-size:12px">전체 완료 🎉</b>`}
+            <b class="gold" style="width:40px;text-align:right;font-size:14px">${r.pct}%</b></div>
         </div>
-        <div class="bar" style="height:6px"><i style="width:${p}%"></i></div>
+        <div class="bar" style="height:6px"><i style="width:${r.pct}%"></i></div>
       </button>
       ${open?`
       <div style="border-top:1px solid var(--line);padding:14px 16px">
         ${SECTIONS.map(sec=>{
-          const sd = sec.items.filter(i=>c[i.id]).length;
+          const sd = sec.items.filter(i=>r.c[i.id]).length;
           return `<div style="display:flex;gap:10px;align-items:center;margin-bottom:6px;font-size:13px">
             <b class="gold" style="width:72px;flex:none;font-size:12px">${esc(sec.tag)}</b>
             <div class="bar" style="flex:1;height:5px"><i style="width:${sd/sec.items.length*100}%"></i></div>
             <span class="muted" style="width:40px;text-align:right;font-size:12px">${sd}/${sec.items.length}</span></div>`;
         }).join("")}
         <div style="display:flex;flex-wrap:wrap;gap:5px;margin:12px 0">
-          ${ALL.map(i=>`<span class="dot ${c[i.id]?"on":""}" title="${esc(i.name)} ${esc(i.lv)}"></span>`).join("")}
+          ${ALL.map(i=>`<span class="dot ${r.c[i.id]?"on":""}" title="${esc(i.name)} ${esc(i.lv)}"></span>`).join("")}
         </div>
-        <button class="mini" data-del="${esc(k)}" style="color:#F0A0A8;border-color:var(--crimson)">이 맹원 기록 삭제</button>
+        <button class="mini" data-del="${esc(r.k)}" style="color:#F0A0A8;border-color:var(--crimson)">이 맹원 기록 삭제</button>
       </div>`:""}
     </div>`;
   }).join("");
@@ -415,12 +509,85 @@ function drawAdmin(){
   });
 }
 
+/* ── 통계 상세 패널 ── */
+function statsHTML(all){
+  if(!all.length) return "";
+  /* 진행률 분포 (10% 구간) */
+  const buckets = Array(11).fill(0); // 0~9,10~19,...,90~99,100
+  all.forEach(r=>{ buckets[r.pct===100 ? 10 : Math.floor(r.pct/10)]++; });
+  const maxB = Math.max(...buckets, 1);
+  const bLabel = i => i===10 ? "100%" : (i*10)+"~"+(i*10+9)+"%";
+
+  /* 챕터별 평균 완료율 */
+  const secAvg = SECTIONS.map(sec=>{
+    const s = all.reduce((sum,r)=>sum + sec.items.filter(i=>r.c[i.id]).length/sec.items.length, 0);
+    return {tag:sec.tag, pct:Math.round(s/all.length*100)};
+  });
+
+  /* 가장 많이 막혀있는 단계 (현재 '다음 할 일' 빈도 Top 5) */
+  const stuck = {};
+  all.forEach(r=>{ if(r.next) stuck[r.next.id] = (stuck[r.next.id]||0)+1; });
+  const stuckTop = Object.entries(stuck).sort((a,b)=>b[1]-a[1]).slice(0,5)
+    .map(([id,n])=>{ const it = ALL.find(i=>i.id===id);
+      const sc = SECTIONS.find(s=>s.items.some(i=>i.id===id));
+      return {label:`${sc.tag} · ${it.name} ${it.lv}`, n}; });
+  const maxS = stuckTop.length ? stuckTop[0].n : 1;
+
+  const row = (label, pct, right) => `
+    <div style="display:flex;gap:10px;align-items:center;margin-bottom:6px;font-size:12.5px">
+      <span style="width:130px;flex:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(label)}</span>
+      <div class="bar" style="flex:1;height:7px"><i style="width:${pct}%"></i></div>
+      <b class="gold" style="width:46px;text-align:right;font-size:12px">${right}</b>
+    </div>`;
+
+  return `
+  <div class="card fade" style="padding:16px;margin-bottom:14px">
+    <div style="display:grid;grid-template-columns:1fr;gap:18px">
+      <div>
+        <b class="gold" style="font-size:14px">진행률 분포</b>
+        <div style="margin-top:9px">
+          ${buckets.map((n,i)=>row(bLabel(i), n/maxB*100, n+"명")).join("")}
+        </div>
+      </div>
+      <div>
+        <b class="gold" style="font-size:14px">챕터별 평균 완료율</b>
+        <div style="margin-top:9px">
+          ${secAvg.map(s=>row(s.tag, s.pct, s.pct+"%")).join("")}
+        </div>
+      </div>
+      ${stuckTop.length?`
+      <div>
+        <b class="gold" style="font-size:14px">지금 가장 많이 막혀 있는 단계 TOP ${stuckTop.length}</b>
+        <div style="margin-top:9px">
+          ${stuckTop.map(s=>row(s.label, s.n/maxS*100, s.n+"명")).join("")}
+        </div>
+      </div>`:""}
+    </div>
+  </div>`;
+}
+
+/* ── 내보내기 ── */
 function exportJSON(){
   const blob = new Blob([JSON.stringify({exportedAt:new Date().toISOString(), users:adminUsers, prog:adminProg}, null, 2)],
     {type:"application/json"});
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = "테크트리_백업_" + new Date().toISOString().slice(0,10) + ".json";
+  a.click();
+}
+function exportCSV(){
+  const rows = admFiltered(); // 현재 검색/필터가 그대로 적용된 목록을 추출
+  const head = ["닉네임","계정번호","진행률(%)","완료단계","전체단계","현재챕터","다음할일","마지막체크"];
+  const lines = rows.map(r=>[
+    r.u.nick, r.u.acct, r.pct, r.done, TOTAL,
+    r.next ? r.nSec.tag : "전체완료",
+    r.next ? `${r.next.name} ${r.next.lv}` : "-",
+    r.ts ? new Date(r.ts).toLocaleString("ko-KR") : "-"
+  ].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(","));
+  const csv = "\uFEFF" + head.join(",") + "\n" + lines.join("\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([csv], {type:"text/csv;charset=utf-8"}));
+  a.download = "테크트리_현황_" + new Date().toISOString().slice(0,10) + ".csv";
   a.click();
 }
 
