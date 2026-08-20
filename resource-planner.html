@@ -1,0 +1,3483 @@
+<title>천하 개척 자원 계산기</title>
+
+<script id="gd" type="application/json">{"buildings":{"군왕전":{"type":1,"levels":{"1":{"w":0,"i":0,"s":0,"g":0,"p":0,"e":{"unlock_army_num":1,"set_city_durability":6000}},"2":{"w":27000,"i":27000,"s":36000,"g":0,"p":25,"e":{"unlock_army_num":1,"set_city_durability":6000}},"3":{"w":45000,"i":45000,"s":60000,"g":0,"p":50,"e":{"unlock_army_num":1,"set_city_durability":6000}},"4":{"w":75000,"i":75000,"s":100000,"g":0,"p":100,"e":{"unlock_army_num":1,"set_city_durability":6000}},"5":{"w":120000,"i":120000,"s":160000,"g":5,"p":210,"e":{"unlock_army_num":1,"set_city_durability":7000}},"6":{"w":180000,"i":180000,"s":240000,"g":5,"p":360,"e":{"unlock_army_num":2,"set_city_durability":8000}},"7":{"w":270000,"i":270000,"s":360000,"g":5,"p":500,"e":{"unlock_army_num":2,"set_city_durability":9000}},"8":{"w":450000,"i":450000,"s":600000,"g":10,"p":700,"e":{"unlock_army_num":3,"set_city_durability":10000}},"9":{"w":660000,"i":660000,"s":880000,"g":10,"p":900,"e":{"unlock_army_num":4,"set_city_durability":11000}},"10":{"w":900000,"i":900000,"s":1200000,"g":10,"p":1200,"e":{"unlock_army_num":5,"set_city_durability":12000}}}},"민가":{"type":2,"levels":{"1":{"w":300,"i":300,"s":400,"g":0,"p":5,"e":{"add_copper_production":300}},"2":{"w":3900,"i":3900,"s":5200,"g":0,"p":10,"e":{"add_copper_production":600}},"3":{"w":5100,"i":5100,"s":6800,"g":0,"p":15,"e":{"add_copper_production":900}},"4":{"w":6300,"i":6300,"s":8400,"g":0,"p":20,"e":{"add_copper_production":1200}},"5":{"w":7500,"i":7500,"s":10000,"g":0,"p":25,"e":{"add_copper_production":1500}},"6":{"w":10200,"i":10200,"s":13600,"g":0,"p":30,"e":{"add_copper_production":1800}},"7":{"w":12000,"i":12000,"s":16000,"g":0,"p":35,"e":{"add_copper_production":2100}},"8":{"w":13800,"i":13800,"s":18400,"g":0,"p":40,"e":{"add_copper_production":2400}},"9":{"w":15600,"i":15600,"s":20800,"g":5,"p":45,"e":{"add_copper_production":2700}},"10":{"w":17400,"i":17400,"s":23200,"g":5,"p":50,"e":{"add_copper_production":3000}},"11":{"w":19200,"i":19200,"s":25600,"g":5,"p":55,"e":{"add_copper_production":3300}},"12":{"w":21900,"i":21900,"s":29200,"g":5,"p":60,"e":{"add_copper_production":3600}},"13":{"w":24600,"i":24600,"s":32800,"g":5,"p":66,"e":{"add_copper_production":3900}},"14":{"w":27300,"i":27300,"s":36400,"g":5,"p":72,"e":{"add_copper_production":4200}},"15":{"w":30000,"i":30000,"s":40000,"g":5,"p":80,"e":{"add_copper_production":4500}},"16":{"w":33000,"i":33000,"s":44000,"g":5,"p":90,"e":{"add_copper_production":4800}},"17":{"w":36000,"i":36000,"s":48000,"g":5,"p":100,"e":{"add_copper_production":5100}},"18":{"w":39000,"i":39000,"s":52000,"g":5,"p":110,"e":{"add_copper_production":5400}},"19":{"w":42000,"i":42000,"s":56000,"g":5,"p":122,"e":{"add_copper_production":5700}},"20":{"w":45000,"i":45000,"s":60000,"g":10,"p":134,"e":{"add_copper_production":6000,"copper_revenue":0}},"21":{"w":50400,"i":50400,"s":67200,"g":10,"p":148,"e":{"add_copper_production":6300,"copper_revenue":0}},"22":{"w":55800,"i":55800,"s":74400,"g":10,"p":162,"e":{"add_copper_production":6600,"copper_revenue":0}},"23":{"w":61200,"i":61200,"s":81600,"g":10,"p":176,"e":{"add_copper_production":6900,"copper_revenue":0}},"24":{"w":66600,"i":66600,"s":88800,"g":10,"p":192,"e":{"add_copper_production":7200,"copper_revenue":0}},"25":{"w":72000,"i":72000,"s":96000,"g":10,"p":210,"e":{"add_copper_production":7500,"copper_revenue":0}}}},"창고":{"type":4,"levels":{"1":{"w":3000,"i":3000,"s":4000,"g":0,"p":20,"e":{"warehouse_capacity":1500000}},"2":{"w":6000,"i":6000,"s":8000,"g":0,"p":40,"e":{"warehouse_capacity":2000000}},"3":{"w":12000,"i":12000,"s":16000,"g":0,"p":60,"e":{"warehouse_capacity":2500000}},"4":{"w":18000,"i":18000,"s":24000,"g":0,"p":80,"e":{"warehouse_capacity":3000000}},"5":{"w":30000,"i":30000,"s":40000,"g":0,"p":100,"e":{"warehouse_capacity":3500000}},"6":{"w":45000,"i":45000,"s":60000,"g":5,"p":120,"e":{"warehouse_capacity":4000000}},"7":{"w":60000,"i":60000,"s":80000,"g":5,"p":140,"e":{"warehouse_capacity":4500000}},"8":{"w":90000,"i":90000,"s":120000,"g":5,"p":160,"e":{"warehouse_capacity":5000000}},"9":{"w":120000,"i":120000,"s":160000,"g":10,"p":180,"e":{"warehouse_capacity":5500000}},"10":{"w":150000,"i":150000,"s":200000,"g":10,"p":200,"e":{"warehouse_capacity":6000000}}}},"징병소":{"type":3,"levels":{"1":{"w":7500,"i":7500,"s":10000,"g":0,"p":20,"e":{"max_redif":30000,"redif_recovery_rate_add":1200,"fast_conscript_rate":4}},"2":{"w":12000,"i":12000,"s":16000,"g":0,"p":40,"e":{"max_redif":40000,"redif_recovery_rate_add":1400,"fast_conscript_rate":4}},"3":{"w":18000,"i":18000,"s":24000,"g":0,"p":60,"e":{"max_redif":50000,"redif_recovery_rate_add":1600,"fast_conscript_rate":4}},"4":{"w":60000,"i":60000,"s":80000,"g":0,"p":80,"e":{"max_redif":60000,"redif_recovery_rate_add":1800,"fast_conscript_rate":4}},"5":{"w":90000,"i":90000,"s":120000,"g":0,"p":150,"e":{"max_redif":70000,"redif_recovery_rate_add":2000,"fast_conscript_rate":4}},"6":{"w":135000,"i":135000,"s":180000,"g":5,"p":200,"e":{"max_redif":80000,"redif_recovery_rate_add":2200,"fast_conscript_rate":4}},"7":{"w":195000,"i":195000,"s":260000,"g":5,"p":280,"e":{"max_redif":90000,"redif_recovery_rate_add":2400,"fast_conscript_rate":4}},"8":{"w":270000,"i":270000,"s":360000,"g":5,"p":360,"e":{"max_redif":100000,"redif_recovery_rate_add":2600,"fast_conscript_rate":4}},"9":{"w":360000,"i":360000,"s":480000,"g":10,"p":480,"e":{"max_redif":110000,"redif_recovery_rate_add":2800,"fast_conscript_rate":4}},"10":{"w":480000,"i":480000,"s":640000,"g":10,"p":600,"e":{"max_redif":120000,"redif_recovery_rate_add":3000,"fast_conscript_rate":4}}}},"방앗간":{"type":5,"levels":{"1":{"w":300,"i":300,"s":400,"g":0,"p":5,"e":{"add_food_production":200}},"2":{"w":3900,"i":3900,"s":5200,"g":0,"p":10,"e":{"add_food_production":400}},"3":{"w":5100,"i":5100,"s":6800,"g":0,"p":15,"e":{"add_food_production":600}},"4":{"w":6300,"i":6300,"s":8400,"g":0,"p":20,"e":{"add_food_production":800}},"5":{"w":7500,"i":7500,"s":10000,"g":0,"p":25,"e":{"add_food_production":1000}},"6":{"w":10200,"i":10200,"s":13600,"g":0,"p":30,"e":{"add_food_production":1400}},"7":{"w":12900,"i":12900,"s":17200,"g":0,"p":35,"e":{"add_food_production":1800}},"8":{"w":15600,"i":15600,"s":20800,"g":0,"p":40,"e":{"add_food_production":2200}},"9":{"w":18300,"i":18300,"s":24400,"g":5,"p":45,"e":{"add_food_production":2600}},"10":{"w":21000,"i":21000,"s":28000,"g":5,"p":50,"e":{"add_food_production":3000}},"11":{"w":24900,"i":24900,"s":33200,"g":5,"p":55,"e":{"add_food_production":3600}},"12":{"w":28800,"i":28800,"s":38400,"g":5,"p":60,"e":{"add_food_production":4200}},"13":{"w":32700,"i":32700,"s":43600,"g":5,"p":66,"e":{"add_food_production":4800}},"14":{"w":36600,"i":36600,"s":48800,"g":5,"p":72,"e":{"add_food_production":5400}},"15":{"w":40500,"i":40500,"s":54000,"g":5,"p":80,"e":{"add_food_production":6000}},"16":{"w":45300,"i":45300,"s":60400,"g":5,"p":90,"e":{"add_food_production":6800}},"17":{"w":50100,"i":50100,"s":66800,"g":5,"p":100,"e":{"add_food_production":7600}},"18":{"w":54900,"i":54900,"s":73200,"g":5,"p":110,"e":{"add_food_production":8400}},"19":{"w":59700,"i":59700,"s":79600,"g":5,"p":122,"e":{"add_food_production":9200}},"20":{"w":64500,"i":64500,"s":86000,"g":10,"p":134,"e":{"add_food_production":10000,"garrison_food_revenue":0}},"21":{"w":69900,"i":69900,"s":93200,"g":10,"p":148,"e":{"add_food_production":11000,"garrison_food_revenue":0}},"22":{"w":75300,"i":75300,"s":100400,"g":10,"p":162,"e":{"add_food_production":12000,"garrison_food_revenue":0}},"23":{"w":80700,"i":80700,"s":107600,"g":10,"p":176,"e":{"add_food_production":13000,"garrison_food_revenue":0}},"24":{"w":86100,"i":86100,"s":114800,"g":10,"p":192,"e":{"add_food_production":14000,"garrison_food_revenue":0}},"25":{"w":91500,"i":91500,"s":122000,"g":10,"p":210,"e":{"add_food_production":15000,"garrison_food_revenue":0}}}},"석공소":{"type":6,"levels":{"1":{"w":500,"i":500,"s":0,"g":0,"p":5,"e":{"add_stone_production":200}},"2":{"w":6500,"i":6500,"s":0,"g":0,"p":10,"e":{"add_stone_production":400}},"3":{"w":8500,"i":8500,"s":0,"g":0,"p":15,"e":{"add_stone_production":600}},"4":{"w":10500,"i":10500,"s":0,"g":0,"p":20,"e":{"add_stone_production":800}},"5":{"w":12500,"i":12500,"s":0,"g":0,"p":25,"e":{"add_stone_production":1000}},"6":{"w":17000,"i":17000,"s":0,"g":0,"p":30,"e":{"add_stone_production":1400}},"7":{"w":21500,"i":21500,"s":0,"g":0,"p":35,"e":{"add_stone_production":1800}},"8":{"w":26000,"i":26000,"s":0,"g":0,"p":40,"e":{"add_stone_production":2200}},"9":{"w":30500,"i":30500,"s":0,"g":5,"p":45,"e":{"add_stone_production":2600}},"10":{"w":35000,"i":35000,"s":0,"g":5,"p":50,"e":{"add_stone_production":3000}},"11":{"w":41500,"i":41500,"s":0,"g":5,"p":55,"e":{"add_stone_production":3600}},"12":{"w":48000,"i":48000,"s":0,"g":5,"p":60,"e":{"add_stone_production":4200}},"13":{"w":54500,"i":54500,"s":0,"g":5,"p":66,"e":{"add_stone_production":4800}},"14":{"w":61000,"i":61000,"s":0,"g":5,"p":72,"e":{"add_stone_production":5400}},"15":{"w":67500,"i":67500,"s":0,"g":5,"p":80,"e":{"add_stone_production":6000}},"16":{"w":75500,"i":75500,"s":0,"g":5,"p":90,"e":{"add_stone_production":6800}},"17":{"w":83500,"i":83500,"s":0,"g":5,"p":100,"e":{"add_stone_production":7600}},"18":{"w":91500,"i":91500,"s":0,"g":5,"p":110,"e":{"add_stone_production":8400}},"19":{"w":99500,"i":99500,"s":0,"g":5,"p":122,"e":{"add_stone_production":9200}},"20":{"w":107500,"i":107500,"s":0,"g":10,"p":134,"e":{"add_stone_production":10000,"garrison_stone_revenue":0}},"21":{"w":116500,"i":116500,"s":0,"g":10,"p":148,"e":{"add_stone_production":11000,"garrison_stone_revenue":0}},"22":{"w":125500,"i":125500,"s":0,"g":10,"p":162,"e":{"add_stone_production":12000,"garrison_stone_revenue":0}},"23":{"w":134500,"i":134500,"s":0,"g":10,"p":176,"e":{"add_stone_production":13000,"garrison_stone_revenue":0}},"24":{"w":143500,"i":143500,"s":0,"g":10,"p":192,"e":{"add_stone_production":14000,"garrison_stone_revenue":0}},"25":{"w":152500,"i":152500,"s":0,"g":10,"p":210,"e":{"add_stone_production":15000,"garrison_stone_revenue":0}}}},"목공소":{"type":7,"levels":{"1":{"w":0,"i":500,"s":500,"g":0,"p":5,"e":{"add_wood_production":200}},"2":{"w":0,"i":6500,"s":6500,"g":0,"p":10,"e":{"add_wood_production":400}},"3":{"w":0,"i":8500,"s":8500,"g":0,"p":15,"e":{"add_wood_production":600}},"4":{"w":0,"i":10500,"s":10500,"g":0,"p":20,"e":{"add_wood_production":800}},"5":{"w":0,"i":12500,"s":12500,"g":0,"p":25,"e":{"add_wood_production":1000}},"6":{"w":0,"i":17000,"s":17000,"g":0,"p":30,"e":{"add_wood_production":1400}},"7":{"w":0,"i":21500,"s":21500,"g":0,"p":35,"e":{"add_wood_production":1800}},"8":{"w":0,"i":26000,"s":26000,"g":0,"p":40,"e":{"add_wood_production":2200}},"9":{"w":0,"i":30500,"s":30500,"g":5,"p":45,"e":{"add_wood_production":2600}},"10":{"w":0,"i":35000,"s":35000,"g":5,"p":50,"e":{"add_wood_production":3000}},"11":{"w":0,"i":41500,"s":41500,"g":5,"p":55,"e":{"add_wood_production":3600}},"12":{"w":0,"i":48000,"s":48000,"g":5,"p":60,"e":{"add_wood_production":4200}},"13":{"w":0,"i":54500,"s":54500,"g":5,"p":66,"e":{"add_wood_production":4800}},"14":{"w":0,"i":61000,"s":61000,"g":5,"p":72,"e":{"add_wood_production":5400}},"15":{"w":0,"i":67500,"s":67500,"g":5,"p":80,"e":{"add_wood_production":6000}},"16":{"w":0,"i":75500,"s":75500,"g":5,"p":90,"e":{"add_wood_production":6800}},"17":{"w":0,"i":83500,"s":83500,"g":5,"p":100,"e":{"add_wood_production":7600}},"18":{"w":0,"i":91500,"s":91500,"g":5,"p":110,"e":{"add_wood_production":8400}},"19":{"w":0,"i":99500,"s":99500,"g":5,"p":122,"e":{"add_wood_production":9200}},"20":{"w":0,"i":107500,"s":107500,"g":10,"p":134,"e":{"add_wood_production":10000,"garrison_wood_revenue":0}},"21":{"w":0,"i":116500,"s":116500,"g":10,"p":148,"e":{"add_wood_production":11000,"garrison_wood_revenue":0}},"22":{"w":0,"i":125500,"s":125500,"g":10,"p":162,"e":{"add_wood_production":12000,"garrison_wood_revenue":0}},"23":{"w":0,"i":134500,"s":134500,"g":10,"p":176,"e":{"add_wood_production":13000,"garrison_wood_revenue":0}},"24":{"w":0,"i":143500,"s":143500,"g":10,"p":192,"e":{"add_wood_production":14000,"garrison_wood_revenue":0}},"25":{"w":0,"i":152500,"s":152500,"g":10,"p":210,"e":{"add_wood_production":15000,"garrison_wood_revenue":0}}}},"제련소":{"type":8,"levels":{"1":{"w":500,"i":0,"s":500,"g":0,"p":5,"e":{"add_iron_production":200}},"2":{"w":6500,"i":0,"s":6500,"g":0,"p":10,"e":{"add_iron_production":400}},"3":{"w":8500,"i":0,"s":8500,"g":0,"p":15,"e":{"add_iron_production":600}},"4":{"w":10500,"i":0,"s":10500,"g":0,"p":20,"e":{"add_iron_production":800}},"5":{"w":12500,"i":0,"s":12500,"g":0,"p":25,"e":{"add_iron_production":1000}},"6":{"w":17000,"i":0,"s":17000,"g":0,"p":30,"e":{"add_iron_production":1400}},"7":{"w":21500,"i":0,"s":21500,"g":0,"p":35,"e":{"add_iron_production":1800}},"8":{"w":26000,"i":0,"s":26000,"g":0,"p":40,"e":{"add_iron_production":2200}},"9":{"w":30500,"i":0,"s":30500,"g":5,"p":45,"e":{"add_iron_production":2600}},"10":{"w":35000,"i":0,"s":35000,"g":5,"p":50,"e":{"add_iron_production":3000}},"11":{"w":41500,"i":0,"s":41500,"g":5,"p":55,"e":{"add_iron_production":3600}},"12":{"w":48000,"i":0,"s":48000,"g":5,"p":60,"e":{"add_iron_production":4200}},"13":{"w":54500,"i":0,"s":54500,"g":5,"p":66,"e":{"add_iron_production":4800}},"14":{"w":61000,"i":0,"s":61000,"g":5,"p":72,"e":{"add_iron_production":5400}},"15":{"w":67500,"i":0,"s":67500,"g":5,"p":80,"e":{"add_iron_production":6000}},"16":{"w":75500,"i":0,"s":75500,"g":5,"p":90,"e":{"add_iron_production":6800}},"17":{"w":83500,"i":0,"s":83500,"g":5,"p":100,"e":{"add_iron_production":7600}},"18":{"w":91500,"i":0,"s":91500,"g":5,"p":110,"e":{"add_iron_production":8400}},"19":{"w":99500,"i":0,"s":99500,"g":5,"p":122,"e":{"add_iron_production":9200}},"20":{"w":107500,"i":0,"s":107500,"g":10,"p":134,"e":{"add_iron_production":10000,"garrison_iron_revenue":0}},"21":{"w":116500,"i":0,"s":116500,"g":10,"p":148,"e":{"add_iron_production":11000,"garrison_iron_revenue":0}},"22":{"w":125500,"i":0,"s":125500,"g":10,"p":162,"e":{"add_iron_production":12000,"garrison_iron_revenue":0}},"23":{"w":134500,"i":0,"s":134500,"g":10,"p":176,"e":{"add_iron_production":13000,"garrison_iron_revenue":0}},"24":{"w":143500,"i":0,"s":143500,"g":10,"p":192,"e":{"add_iron_production":14000,"garrison_iron_revenue":0}},"25":{"w":152500,"i":0,"s":152500,"g":10,"p":210,"e":{"add_iron_production":15000,"garrison_iron_revenue":0}}}},"시장":{"type":9,"levels":{"1":{"w":8000,"i":8000,"s":10000,"g":5,"p":100,"e":{"set_trade_discount":0}}}},"연구소":{"type":10,"levels":{"1":{"w":16000,"i":16000,"s":20000,"g":0,"p":100,"e":{}}}},"훈련소":{"type":11,"levels":{"1":{"w":16000,"i":16000,"s":20000,"g":0,"p":100,"e":{}}}},"병영":{"type":12,"levels":{"1":{"w":12000,"i":12000,"s":15000,"g":0,"p":15,"e":{"add_troop_max":100}},"2":{"w":19200,"i":19200,"s":24000,"g":0,"p":19,"e":{"add_troop_max":200}},"3":{"w":28800,"i":28800,"s":36000,"g":0,"p":25,"e":{"add_troop_max":300}},"4":{"w":38400,"i":38400,"s":48000,"g":0,"p":31,"e":{"add_troop_max":400}},"5":{"w":48000,"i":48000,"s":60000,"g":0,"p":38,"e":{"add_troop_max":500}},"6":{"w":57600,"i":57600,"s":72000,"g":0,"p":50,"e":{"add_troop_max":700}},"7":{"w":72000,"i":72000,"s":90000,"g":0,"p":63,"e":{"add_troop_max":900}},"8":{"w":86400,"i":86400,"s":108000,"g":0,"p":75,"e":{"add_troop_max":1100}},"9":{"w":102400,"i":102400,"s":128000,"g":5,"p":88,"e":{"add_troop_max":1300}},"10":{"w":120000,"i":120000,"s":150000,"g":5,"p":100,"e":{"add_troop_max":1500}},"11":{"w":139200,"i":139200,"s":174000,"g":5,"p":125,"e":{"add_troop_max":1700}},"12":{"w":160000,"i":160000,"s":200000,"g":5,"p":150,"e":{"add_troop_max":1900}},"13":{"w":182400,"i":182400,"s":228000,"g":5,"p":175,"e":{"add_troop_max":2100}},"14":{"w":206400,"i":206400,"s":258000,"g":5,"p":200,"e":{"add_troop_max":2300}},"15":{"w":232000,"i":232000,"s":290000,"g":5,"p":225,"e":{"add_troop_max":2500}},"16":{"w":256000,"i":256000,"s":320000,"g":5,"p":250,"e":{"add_troop_max":2700}},"17":{"w":284800,"i":284800,"s":356000,"g":5,"p":300,"e":{"add_troop_max":2900}},"18":{"w":313600,"i":313600,"s":392000,"g":5,"p":350,"e":{"add_troop_max":3100}},"19":{"w":342400,"i":342400,"s":428000,"g":5,"p":400,"e":{"add_troop_max":3300}},"20":{"w":384000,"i":384000,"s":480000,"g":10,"p":450,"e":{"add_troop_max":3500}},"21":{"w":448000,"i":448000,"s":560000,"g":10,"p":525,"e":{"add_troop_max":3800}},"22":{"w":512000,"i":512000,"s":640000,"g":10,"p":600,"e":{"add_troop_max":4100}},"23":{"w":576000,"i":576000,"s":720000,"g":10,"p":675,"e":{"add_troop_max":4400}},"24":{"w":640000,"i":640000,"s":800000,"g":10,"p":750,"e":{"add_troop_max":4700}},"25":{"w":704000,"i":704000,"s":880000,"g":10,"p":825,"e":{"add_troop_max":5000}}}},"탐방대":{"type":26,"levels":{"1":{"w":1,"i":1,"s":1,"g":5,"p":0,"e":{}}}},"말 시장":{"type":13,"levels":{"1":{"w":8000,"i":8000,"s":10000,"g":0,"p":50,"e":{}}}},"대장간":{"type":14,"levels":{"1":{"w":8000,"i":8000,"s":10000,"g":0,"p":50,"e":{}}}},"직업 건물":{"type":27,"levels":{"1":{"w":1,"i":1,"s":1,"g":5,"p":0,"e":{}}}},"연병장":{"type":15,"levels":{"1":{"w":16000,"i":16000,"s":20000,"g":0,"p":100,"e":{}}}},"관성대":{"type":28,"levels":{"1":{"w":1,"i":1,"s":1,"g":0,"p":0,"e":{}}}},"근위영":{"type":29,"levels":{"1":{"w":1,"i":1,"s":1,"g":0,"p":0,"e":{}}}},"선거":{"type":30,"levels":{"1":{"w":1,"i":1,"s":1,"g":0,"p":0,"e":{}}}}}}</script>
+
+<style>
+  :root {
+    --paper: #FBF8F4;
+    --card: #FFFFFF;
+    --sunk: #F4EFE6;
+    --line: #E5DDD1;
+    --line-2: #D2C7B6;
+    --ink: #241F1A;
+    --ink-2: #5D5449;
+    --ink-3: #8B8275;
+    --accent: #B03A26;
+    --accent-ink: #8E2E1E;
+    --accent-soft: #F6E4DE;
+    --wood: #009B69;
+    --iron: #2784D5;
+    --stone: #C06400;
+    --shadow: 0 1px 2px rgba(36, 31, 26, .05), 0 10px 28px -16px rgba(36, 31, 26, .28);
+    --serif: "Nanum Myeongjo", "Batang", "AppleMyungjo", Georgia, serif;
+    --sans: "Pretendard", "Malgun Gothic", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono: "Cascadia Mono", "Consolas", ui-monospace, "SFMono-Regular", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #16191E;
+      --card: #1E222A;
+      --sunk: #232832;
+      --line: #2F3540;
+      --line-2: #414957;
+      --ink: #EAE5DC;
+      --ink-2: #A9A196;
+      --ink-3: #7B7466;
+      --accent: #E27055;
+      --accent-ink: #F0917B;
+      --accent-soft: #3B2620;
+      --wood: #00AE7B;
+      --iron: #3E96EA;
+      --stone: #D4771A;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px -18px rgba(0, 0, 0, .8);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #16191E;
+    --card: #1E222A;
+    --sunk: #232832;
+    --line: #2F3540;
+    --line-2: #414957;
+    --ink: #EAE5DC;
+    --ink-2: #A9A196;
+    --ink-3: #7B7466;
+    --accent: #E27055;
+    --accent-ink: #F0917B;
+    --accent-soft: #3B2620;
+    --wood: #00AE7B;
+    --iron: #3E96EA;
+    --stone: #D4771A;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px -18px rgba(0, 0, 0, .8);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 40px 24px 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 22px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .eyebrow {
+    font-size: 11.5px;
+    letter-spacing: .16em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .masthead h1 {
+    font-family: var(--serif);
+    font-size: clamp(30px, 4.4vw, 42px);
+    line-height: 1.15;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+  }
+
+  .masthead p { margin: 0; max-width: 66ch; color: var(--ink-2); font-size: 14px; }
+
+  .seal {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    align-self: flex-start;
+    padding: 3px 10px;
+    border: 1px solid var(--accent);
+    color: var(--accent-ink);
+    border-radius: 2px;
+    font-size: 11.5px;
+    letter-spacing: .06em;
+    font-weight: 600;
+  }
+
+  /* ---------- layout ---------- */
+  .layout {
+    display: grid;
+    grid-template-columns: 328px minmax(0, 1fr);
+    gap: 26px;
+    align-items: start;
+  }
+
+  @media (max-width: 1000px) {
+    .layout { grid-template-columns: minmax(0, 1fr); }
+    .console { position: static !important; max-height: none !important; }
+  }
+
+  .console {
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+
+  .results { display: flex; flex-direction: column; gap: 26px; min-width: 0; }
+
+  /* ---------- cards ---------- */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    box-shadow: var(--shadow);
+    padding: 18px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  h2.sec {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  h2.sec .q {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink-3);
+  }
+
+  h3.grp {
+    font-size: 11.5px;
+    letter-spacing: .14em;
+    font-weight: 700;
+    color: var(--ink-3);
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .hint { font-size: 12.5px; color: var(--ink-3); margin: 0; line-height: 1.55; }
+  .hint b { color: var(--ink-2); }
+
+  /* ---------- form ---------- */
+  .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+  .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+
+  .field { display: flex; flex-direction: column; gap: 4px; }
+
+  .field > label {
+    font-size: 11.5px;
+    color: var(--ink-2);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .swatch { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+
+  input[type="number"] {
+    width: 100%;
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 13.5px;
+    padding: 7px 8px;
+    border: 1px solid var(--line-2);
+    border-radius: 2px;
+    background: var(--card);
+    color: var(--ink);
+  }
+
+  input[type="number"]:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  input[type="number"] { -moz-appearance: textfield; }
+
+  button {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 6px 11px;
+    border-radius: 2px;
+    border: 1px solid var(--line-2);
+    background: var(--card);
+    color: var(--ink);
+    cursor: pointer;
+    transition: background .12s ease, border-color .12s ease;
+  }
+
+  button:hover { background: var(--sunk); border-color: var(--ink-3); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button.primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+  button.ghost { border-style: dashed; color: var(--ink-2); }
+
+  .btnrow { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .readout {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 12.5px;
+    color: var(--ink-3);
+    padding: 3px 0;
+    border-bottom: 1px dotted var(--line-2);
+  }
+
+  .readout b {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    font-size: 13px;
+  }
+
+  /* ---------- tables ---------- */
+  .tablewrap { overflow-x: auto; margin: 0 -2px; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+
+  th {
+    text-align: right;
+    font-size: 11px;
+    letter-spacing: .07em;
+    color: var(--ink-3);
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0 8px 7px;
+    border-bottom: 1px solid var(--line-2);
+    white-space: nowrap;
+  }
+
+  th:first-child, td:first-child { text-align: left; padding-left: 2px; }
+
+  td {
+    text-align: right;
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  td:first-child { font-family: var(--sans); font-weight: 600; }
+
+  .roster table { min-width: 520px; }
+  .roster td.lvl { padding: 3px 4px; width: 62px; }
+  .roster input[type="number"] { padding: 4px 4px; text-align: center; font-size: 13px; }
+  .roster tr.manual-row td.lvl { width: 90px; }
+  .roster tr.manual-row input[type="number"] { text-align: right; padding: 4px 6px; }
+  .roster input.tgt { background: var(--sunk); font-weight: 700; }
+  .roster tr.active input.tgt { border-color: var(--accent); color: var(--accent-ink); background: var(--accent-soft); }
+  .roster tr.active td { background: color-mix(in srgb, var(--accent-soft) 40%, transparent); }
+  .roster td.bname { cursor: help; }
+  .roster td.bname span { border-bottom: 1px dotted var(--line-2); }
+  .roster tr:hover td.bname span { border-bottom-color: var(--accent); color: var(--accent-ink); }
+  .roster td.zero { color: var(--ink-3); }
+  .roster tr.locked td:first-child { color: var(--ink-3); }
+
+  tr.best td { background: var(--accent-soft); }
+
+  td.pos { color: var(--wood); font-weight: 700; }
+  td.neg { color: var(--ink-3); }
+
+  .tag {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin-left: 7px;
+    background: var(--accent);
+    color: #fff;
+    vertical-align: 1px;
+  }
+
+  /* ---------- verdict ---------- */
+  .verdict {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 3px;
+    box-shadow: var(--shadow);
+    padding: 20px 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px 40px;
+    align-items: flex-end;
+  }
+
+  .hero { display: flex; flex-direction: column; gap: 2px; }
+
+  .hero .lab {
+    font-size: 11.5px;
+    letter-spacing: .12em;
+    color: var(--ink-3);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .hero .val {
+    font-family: var(--serif);
+    font-size: clamp(26px, 3.6vw, 38px);
+    font-weight: 700;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hero .sub {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- bars ---------- */
+  .bars { display: flex; flex-direction: column; gap: 12px; }
+  .bar-row { display: grid; grid-template-columns: 66px minmax(0, 1fr) 128px; gap: 12px; align-items: center; }
+  .bar-row .rname { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+
+  .track {
+    position: relative;
+    height: 18px;
+    background: var(--sunk);
+    border-radius: 2px;
+    display: flex;
+    gap: 2px;
+    overflow: hidden;
+  }
+
+  .fill { height: 100%; border-radius: 0 4px 4px 0; min-width: 2px; transition: width .25s ease; }
+  .fill.saved { opacity: .28; }
+
+  .bar-row .rval {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 12.5px;
+    text-align: right;
+    color: var(--ink-2);
+  }
+
+  .bar-row .rval b { color: var(--ink); font-weight: 700; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--ink-2); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+
+  /* ---------- boxes ---------- */
+  .boxgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; }
+  .boxgrid .cell { display: flex; flex-direction: column; gap: 4px; }
+
+  .boxgrid .rl {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-2);
+    text-align: center;
+  }
+
+  .boxgrid input { padding: 6px 4px; text-align: center; font-size: 13px; }
+
+  .uses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    padding: 10px 12px;
+    background: var(--sunk);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+  }
+
+  .check {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: var(--ink-2);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .check input { accent-color: var(--accent); flex: none; margin: 0; }
+  .check input:checked + span { color: var(--ink); font-weight: 600; }
+
+  .swap-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 2px;
+    background: var(--sunk);
+    border-left: 3px solid var(--accent);
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+
+  .swap-row .amt {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    margin-left: auto;
+  }
+
+  .alloc { display: flex; flex-direction: column; gap: 8px; }
+
+  .alloc-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 2px;
+    background: var(--sunk);
+    border-left: 3px solid var(--line-2);
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+
+  .alloc-row .amt { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 700; margin-left: auto; }
+  .alloc-row .note { font-size: 12px; color: var(--ink-3); width: 100%; }
+
+  .callout {
+    background: var(--sunk);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  .callout b { color: var(--ink); }
+  .warn { border-left: 3px solid var(--accent); background: var(--accent-soft); color: var(--accent-ink); }
+  .warn b { color: var(--accent-ink); }
+
+  ul.rules { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--ink-2); }
+  ul.rules b { color: var(--ink); }
+
+  .empty {
+    font-size: 12.5px;
+    color: var(--ink-3);
+    padding: 16px 10px;
+    text-align: center;
+    border: 1px dashed var(--line-2);
+    border-radius: 2px;
+  }
+
+  details.spec { border-top: 1px solid var(--line); padding-top: 12px; }
+  details.spec summary { cursor: pointer; font-size: 12.5px; font-weight: 600; color: var(--ink-2); }
+  details.spec summary:hover { color: var(--accent-ink); }
+  details.spec[open] summary { margin-bottom: 12px; }
+
+  footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: 12px; color: var(--ink-3); line-height: 1.7; }
+  footer b { color: var(--ink-2); }
+
+  #tip {
+    position: fixed;
+    z-index: 40;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .1s ease;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    line-height: 1.5;
+    padding: 6px 9px;
+    border-radius: 2px;
+    white-space: pre;
+  }
+
+  /* ---------- tabs ---------- */
+  .tab-bar {
+    display: flex;
+    gap: 8px;
+    border-bottom: 2px solid var(--line);
+    margin-bottom: 8px;
+  }
+
+  .tab-btn {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 22px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    color: var(--ink-3);
+    cursor: pointer;
+    margin-bottom: -2px;
+    transition: color .15s ease, border-color .15s ease;
+  }
+
+  .tab-btn:hover {
+    color: var(--ink);
+  }
+
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .tab-view {
+    display: none;
+  }
+
+  .tab-view.active {
+    display: block;
+  }
+
+  .prod-layout {
+    display: grid;
+    grid-template-columns: 328px minmax(0, 1fr);
+    gap: 26px;
+    align-items: start;
+  }
+
+  /* ---------- land table ---------- */
+  .land-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .land-table th, .land-table td {
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .land-table tr.summary-header th {
+    background: var(--sunk);
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    padding: 8px 10px;
+  }
+
+  .land-table tr.total-row td {
+    background: var(--sunk);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .land-table input[type="number"] {
+    width: 60px;
+    padding: 4px;
+    text-align: center;
+    font-size: 13px;
+    font-family: var(--mono);
+    border: 1px solid var(--line-2);
+    border-radius: 2px;
+    background: var(--card);
+    color: var(--ink);
+  }
+
+  /* ---------- compact prod top grid ---------- */
+  .prod-top-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+    align-items: start;
+  }
+
+  @media (max-width: 1100px) {
+    .prod-top-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  .compact-card {
+    padding: 12px 14px;
+  }
+
+  .compact-table {
+    font-size: 12px;
+  }
+
+  .compact-table th, .compact-table td {
+    padding: 3px 5px;
+    font-size: 11.5px;
+  }
+
+  .compact-table tr.summary-header th {
+    font-size: 14.5px;
+    padding: 4px 6px;
+  }
+
+  .compact-table tr.total-row td {
+    font-size: 12px;
+    padding: 3px 5px;
+  }
+
+  .compact-table input[type="number"] {
+    width: 44px;
+    padding: 2px 3px;
+    font-size: 11.5px;
+  }
+
+  .pair-inputs {
+    display: flex;
+    gap: 4px;
+  }
+
+  .pair-inputs input[type="number"] {
+    width: 44px;
+    padding: 2px 4px;
+    font-size: 11.5px;
+    text-align: center;
+  }
+
+  /* ---------- summary strip ---------- */
+  .summary-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    background: var(--sunk);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 5px 8px;
+    margin: 4px 0 10px 0;
+    font-size: 11.5px;
+    align-items: center;
+  }
+
+  .strip-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+    color: var(--ink-2);
+  }
+
+  .strip-item b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+  }
+
+  @media (max-width: 1000px) {
+    .prod-layout { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <span class="eyebrow">개척 시뮬레이터 · A107 성내 건물 런타임</span>
+    <h1>천하 개척 자원 계산기</h1>
+    <p>목표 건물의 <b>자원 및 소요시간</b>을 시뮬레이션하거나, 영지/건물/버프 기반의 <b>시간당 생산량</b>을 정밀 계산할 수 있습니다.</p>
+    <span class="seal">건설 소요시간 원시값 0 — 병목은 오직 자원 축적</span>
+  </header>
+
+  <nav class="tab-bar" role="tablist">
+    <button type="button" class="tab-btn active" data-tab="target" role="tab" aria-selected="true">목표 자원 계산</button>
+    <button type="button" class="tab-btn" data-tab="production" role="tab" aria-selected="false">생산량 계산</button>
+    <button type="button" class="tab-btn" data-tab="roi" role="tab" aria-selected="false">📈 건물 레벨업 ROI 추천</button>
+    <button type="button" class="tab-btn" data-tab="building-opt" role="tab" aria-selected="false">🏰 주요 건물 최적화</button>
+  </nav>
+
+  <!-- ================= TAB 1: 목표 자원 계산 ================= -->
+  <div id="tab-target" class="tab-view active" role="tabpanel">
+    <div class="layout">
+
+    <!-- ================= CONSOLE ================= -->
+    <aside class="console">
+
+      <section class="card">
+        <h3 class="grp">보유 자원</h3>
+        <div class="grid3">
+          <div class="field">
+            <label><i class="swatch" style="background:var(--wood)"></i>목재</label>
+            <input type="number" id="have_w" value="200000" min="0" step="100">
+          </div>
+          <div class="field">
+            <label><i class="swatch" style="background:var(--iron)"></i>철광</label>
+            <input type="number" id="have_i" value="200000" min="0" step="100">
+          </div>
+          <div class="field">
+            <label><i class="swatch" style="background:var(--stone)"></i>석재</label>
+            <input type="number" id="have_s" value="200000" min="0" step="100">
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3 class="grp">시간당 생산량</h3>
+        <div class="grid3">
+          <div class="field">
+            <label><i class="swatch" style="background:var(--wood)"></i>목재/h</label>
+            <input type="number" id="rate_w" value="3000" min="0" step="100">
+          </div>
+          <div class="field">
+            <label><i class="swatch" style="background:var(--iron)"></i>철광/h</label>
+            <input type="number" id="rate_i" value="3000" min="0" step="100">
+          </div>
+          <div class="field">
+            <label><i class="swatch" style="background:var(--stone)"></i>석재/h</label>
+            <input type="number" id="rate_s" value="3000" min="0" step="100">
+          </div>
+        </div>
+        <div class="field">
+          <label>영지 한 칸 생산량 (전환 단위)</label>
+          <input type="number" id="unit" value="2800" min="1" step="100">
+        </div>
+      </section>
+
+      <section class="card">
+        <h3 class="grp">둔전</h3>
+        <div class="grid2">
+          <div class="field">
+            <label>개간지 레벨</label>
+            <input type="number" id="dt_lv" value="9" min="0" step="1">
+          </div>
+          <div class="field">
+            <label>둔전 횟수</label>
+            <input type="number" id="dt_n" value="0" min="0" step="1">
+          </div>
+        </div>
+        <div id="dtYield"></div>
+      </section>
+
+      <section class="card">
+        <h3 class="grp">군둔 <span style="font-weight:500;letter-spacing:0;text-transform:none">하루 1회</span></h3>
+        <div class="field">
+          <label>자원 종류</label>
+          <div class="btnrow" id="gdPick"></div>
+        </div>
+        <div class="field">
+          <label>1회 획득량</label>
+          <input type="number" id="gd_amt" value="0" min="0" step="1000">
+        </div>
+      </section>
+
+      <section class="card">
+        <h3 class="grp">보유 자원 상자</h3>
+        <div class="boxgrid" id="boxGrid"></div>
+      </section>
+
+      <div class="btnrow">
+        <button type="button" class="ghost" data-act="wipe">저장값 지우기</button>
+      </div>
+
+    </aside>
+
+    <!-- ================= MAIN ================= -->
+    <main class="results">
+
+      <section class="card">
+        <h2 class="sec">성내 건물 <span class="q" id="planCount"></span></h2>
+        <div class="roster tablewrap" id="rosterWrap"></div>
+        <p class="hint">목재·철광·석재 칸은 <b>현재 → 목표</b> 구간의 누적 비용입니다. 레벨 칸에 <b>마우스를 올린 채 휠</b>을 굴리면 값이 바뀌고 (Shift+휠은 10씩), <b>건물 이름</b>에 올리면 그 레벨의 효과가 뜹니다.</p>
+      </section>
+
+      <div class="verdict" id="verdict"></div>
+
+      <section class="card">
+        <h2 class="sec">상자·둔전 배분 <span class="q">가진 것을 어디에 쓸지</span></h2>
+        <div class="uses">
+          <label class="check"><input type="checkbox" id="use_box" checked><span>자원 상자 사용</span></label>
+          <label class="check"><input type="checkbox" id="use_dt" checked><span>둔전 사용</span></label>
+          <label class="check"><input type="checkbox" id="use_gd" checked><span>군둔 사용</span></label>
+        </div>
+        <div id="boxBody"></div>
+      </section>
+
+      <section class="card">
+        <h2 class="sec">생산 전환 <span class="q">어느 영지를 어느 자원으로 돌릴지</span></h2>
+        <div id="swapBody"></div>
+      </section>
+
+      <section class="card">
+        <h2 class="sec">완료까지 걸리는 시간 <span class="q">가진 것과 군둔까지 반영해서</span></h2>
+        <div id="needBody"></div>
+      </section>
+
+      <footer id="foot"></footer>
+
+    </main>
+  </div>
+</div>
+
+<!-- ================= TAB 2: 생산량 계산 ================= -->
+<div id="tab-production" class="tab-view" role="tabpanel">
+
+  <!-- 최상단 1행 총 생산량 요약 바 -->
+  <div class="verdict" id="prodVerdict" style="display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap:12px; padding:16px; margin-bottom: 20px;"></div>
+
+  <!-- 메인 2컬럼 레이아웃 (좌측: 1+2+3+5 / 우측: 4. 성지 건물) -->
+  <div class="prod-main-grid" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start;">
+
+    <!-- ================= LEFT COLUMN ================= -->
+    <div class="prod-col-left" style="display: flex; flex-direction: column; gap: 14px; min-width: 0;">
+
+      <!-- 1. 외성 영지 생산량 계산 표 -->
+      <section class="card compact-card">
+        <h2 class="sec">1. 외성 영지 생산량 계산 <span class="q">토지 구분별 외성 보유 개수</span></h2>
+        <div class="tablewrap">
+          <table class="land-table compact-table">
+            <thead>
+              <tr class="summary-header">
+                <th>외성 영지생산</th>
+                <th id="land_sum_w" style="color:var(--wood)">0</th>
+                <th id="land_sum_i" style="color:var(--iron)">0</th>
+                <th id="land_sum_s" style="color:var(--stone)">0</th>
+                <th id="land_sum_f" style="color:var(--ink-2)">0</th>
+                <th id="land_sum_all" style="color:var(--accent)">0</th>
+              </tr>
+              <tr>
+                <th>토지 구분</th>
+                <th><i class="swatch" style="background:var(--wood)"></i>목재</th>
+                <th><i class="swatch" style="background:var(--iron)"></i>철광</th>
+                <th><i class="swatch" style="background:var(--stone)"></i>석재</th>
+                <th><i class="swatch" style="background:var(--ink-2)"></i>군량</th>
+                <th>합계</th>
+              </tr>
+            </thead>
+            <tbody id="landTableBody"></tbody>
+            <tfoot>
+              <tr class="total-row">
+                <td><b>계</b></td>
+                <td id="land_cnt_w">0</td>
+                <td id="land_cnt_i">0</td>
+                <td id="land_cnt_s">0</td>
+                <td id="land_cnt_f">0</td>
+                <td id="land_cnt_all">0</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+
+      <!-- 2. 성지 생산량/h (1행 가로 4컬럼) -->
+      <section class="card compact-card">
+        <h3 class="grp">2. 성지 생산량/h</h3>
+        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:6px; margin-top:4px;">
+          <div class="field"><label><i class="swatch" style="background:var(--wood)"></i>목재</label><input type="number" id="sacred_w" value="0" min="0" step="100"></div>
+          <div class="field"><label><i class="swatch" style="background:var(--iron)"></i>철광</label><input type="number" id="sacred_i" value="0" min="0" step="100"></div>
+          <div class="field"><label><i class="swatch" style="background:var(--stone)"></i>석재</label><input type="number" id="sacred_s" value="0" min="0" step="100"></div>
+          <div class="field"><label><i class="swatch" style="background:var(--ink-2)"></i>군량</label><input type="number" id="sacred_f" value="0" min="0" step="100"></div>
+        </div>
+      </section>
+
+      <!-- 3. 동맹 생산량/h (1행 가로 4컬럼) -->
+      <section class="card compact-card">
+        <h3 class="grp">3. 동맹 생산량/h</h3>
+        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:6px; margin-top:4px;">
+          <div class="field"><label><i class="swatch" style="background:var(--wood)"></i>목재</label><input type="number" id="ally_w" value="1600" min="0" step="100"></div>
+          <div class="field"><label><i class="swatch" style="background:var(--iron)"></i>철광</label><input type="number" id="ally_i" value="1600" min="0" step="100"></div>
+          <div class="field"><label><i class="swatch" style="background:var(--stone)"></i>석재</label><input type="number" id="ally_s" value="1600" min="0" step="100"></div>
+          <div class="field"><label><i class="swatch" style="background:var(--ink-2)"></i>군량</label><input type="number" id="ally_f" value="1600" min="0" step="100"></div>
+        </div>
+      </section>
+
+      <!-- 5. 기타 생산량/h (1행 가로 4컬럼, 버프 % 입력 제외) -->
+      <section class="card compact-card">
+        <h3 class="grp">5. 기타 생산량/h</h3>
+        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:6px; margin-top:4px;">
+          <div class="field"><label><i class="swatch" style="background:var(--wood)"></i>목재</label><input type="number" id="etc_w" value="16000" min="0" step="100"></div>
+          <div class="field"><label><i class="swatch" style="background:var(--iron)"></i>철광</label><input type="number" id="etc_i" value="16000" min="0" step="100"></div>
+          <div class="field"><label><i class="swatch" style="background:var(--stone)"></i>석재</label><input type="number" id="etc_s" value="21000" min="0" step="100"></div>
+          <div class="field"><label><i class="swatch" style="background:var(--ink-2)"></i>군량</label><input type="number" id="etc_f" value="16000" min="0" step="100"></div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================= RIGHT COLUMN ================= -->
+    <div class="prod-col-right" style="display: flex; flex-direction: column; gap: 14px; min-width: 0;">
+
+      <!-- 4. 성지 건물 생산량 (건물 2개씩 + 내성 토지 최대 24개) -->
+      <section class="card compact-card" style="border-left: 3px solid var(--accent);">
+        <h2 class="sec">4. 성지 건물 생산량 <span class="q">건물 2개 + 내성 토지</span></h2>
+
+        <div class="summary-strip" id="castleSummaryStrip">
+          <div class="strip-item"><i class="swatch" style="background:var(--wood)"></i>목재 <b id="castle_sum_w" style="color:var(--wood)">0</b>/h</div>
+          <div class="strip-item"><i class="swatch" style="background:var(--iron)"></i>철광 <b id="castle_sum_i" style="color:var(--iron)">0</b>/h</div>
+          <div class="strip-item"><i class="swatch" style="background:var(--stone)"></i>석재 <b id="castle_sum_s" style="color:var(--stone)">0</b>/h</div>
+          <div class="strip-item"><i class="swatch" style="background:var(--ink-2)"></i>군량 <b id="castle_sum_f" style="color:var(--ink-2)">0</b>/h</div>
+        </div>
+
+        <!-- (1) 내성 자원 건물 생산량 + 버프 체크박스/입력 -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px; flex-wrap:wrap; gap:4px;">
+          <h3 class="grp" style="margin:0;">(1) 내성 자원 건물 생산량 <span style="font-weight:normal;font-size:11.5px;color:var(--ink-3)">(건물 2개씩 레벨)</span></h3>
+          <div style="display:flex; align-items:center; gap:6px; font-size:12px;">
+            <label class="check" style="margin:0;"><input type="checkbox" id="use_inner_b_buff"><span>내성 자원 건물 버프</span></label>
+            <input type="number" id="inner_b_buff" value="0" min="0" step="1" style="width:46px; padding:2px 4px; font-size:12px; text-align:center;"> %
+          </div>
+        </div>
+
+        <!-- 각 건물 개별 생산량 수치 표시 줄 -->
+        <div class="summary-strip" style="margin:4px 0 8px 0; font-size:11px;">
+          <div class="strip-item">🌲 목공소: <b id="b_eff_w" style="color:var(--wood)">0</b>/h</div>
+          <div class="strip-item">⛏️ 제련소: <b id="b_eff_i" style="color:var(--iron)">0</b>/h</div>
+          <div class="strip-item">🪨 석공소: <b id="b_eff_s" style="color:var(--stone)">0</b>/h</div>
+          <div class="strip-item">🌾 방앗간: <b id="b_eff_f" style="color:var(--ink-2)">0</b>/h</div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:6px; margin-bottom: 12px;">
+          <div class="field" style="display:flex; flex-direction:column; align-items:center; background:var(--sunk); padding:6px 4px; border-radius:3px; border:1px solid var(--line);">
+            <label style="margin:0 0 4px 0; font-size:11.5px; font-weight:600;"><i class="swatch" style="background:var(--wood)"></i>목공소 #1/#2</label>
+            <div class="pair-inputs">
+              <input type="number" id="prod_b_w1" value="13" min="0" max="25" step="1" title="목공소 1호관">
+              <input type="number" id="prod_b_w2" value="13" min="0" max="25" step="1" title="목공소 2호관">
+            </div>
+          </div>
+          <div class="field" style="display:flex; flex-direction:column; align-items:center; background:var(--sunk); padding:6px 4px; border-radius:3px; border:1px solid var(--line);">
+            <label style="margin:0 0 4px 0; font-size:11.5px; font-weight:600;"><i class="swatch" style="background:var(--iron)"></i>제련소 #1/#2</label>
+            <div class="pair-inputs">
+              <input type="number" id="prod_b_i1" value="13" min="0" max="25" step="1" title="제련소 1호관">
+              <input type="number" id="prod_b_i2" value="13" min="0" max="25" step="1" title="제련소 2호관">
+            </div>
+          </div>
+          <div class="field" style="display:flex; flex-direction:column; align-items:center; background:var(--sunk); padding:6px 4px; border-radius:3px; border:1px solid var(--line);">
+            <label style="margin:0 0 4px 0; font-size:11.5px; font-weight:600;"><i class="swatch" style="background:var(--stone)"></i>석재</label>
+            <div class="pair-inputs">
+              <input type="number" id="prod_b_s1" value="13" min="0" max="25" step="1" title="석공소 1호관">
+              <input type="number" id="prod_b_s2" value="12" min="0" max="25" step="1" title="석공소 2호관">
+            </div>
+          </div>
+          <div class="field" style="display:flex; flex-direction:column; align-items:center; background:var(--sunk); padding:6px 4px; border-radius:3px; border:1px solid var(--line);">
+            <label style="margin:0 0 4px 0; font-size:11.5px; font-weight:600;"><i class="swatch" style="background:var(--ink-2)"></i>방앗간 #1/#2</label>
+            <div class="pair-inputs">
+              <input type="number" id="prod_b_f1" value="13" min="0" max="25" step="1" title="방앗간 1호관">
+              <input type="number" id="prod_b_f2" value="10" min="0" max="25" step="1" title="방앗간 2호관">
+            </div>
+          </div>
+        </div>
+
+        <!-- (2) 내성 개간지 자원 생산량 + 버프 체크박스/입력 -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px; flex-wrap:wrap; gap:4px;">
+          <h3 class="grp" style="margin:0;">(2) 내성 개간지 자원 생산량 <span style="font-weight:normal;font-size:11.5px;color:var(--ink-3)">(최대 24칸)</span></h3>
+          <div style="display:flex; align-items:center; gap:6px; font-size:12px;">
+            <label class="check" style="margin:0;"><input type="checkbox" id="use_inner_l_buff" checked><span>내성 개간지 버프</span></label>
+            <input type="number" id="inner_l_buff" value="15" min="0" step="1" style="width:46px; padding:2px 4px; font-size:12px; text-align:center;"> %
+          </div>
+        </div>
+
+        <div class="tablewrap" style="margin-top:4px;">
+          <table class="land-table compact-table">
+            <thead>
+              <tr class="summary-header">
+                <th>내성 토지생산</th>
+                <th id="inner_sum_w" style="color:var(--wood)">0</th>
+                <th id="inner_sum_i" style="color:var(--iron)">0</th>
+                <th id="inner_sum_s" style="color:var(--stone)">0</th>
+                <th id="inner_sum_f" style="color:var(--ink-2)">0</th>
+                <th id="inner_status_cell" style="font-size:13px;color:var(--ink-2)">0/24칸</th>
+              </tr>
+              <tr>
+                <th>토지 구분</th>
+                <th><i class="swatch" style="background:var(--wood)"></i>목재</th>
+                <th><i class="swatch" style="background:var(--iron)"></i>철광</th>
+                <th><i class="swatch" style="background:var(--stone)"></i>석재</th>
+                <th><i class="swatch" style="background:var(--ink-2)"></i>군량</th>
+                <th>합계</th>
+              </tr>
+            </thead>
+            <tbody id="innerLandTableBody"></tbody>
+            <tfoot>
+              <tr class="total-row">
+                <td><b>계</b></td>
+                <td id="inner_cnt_w">0</td>
+                <td id="inner_cnt_i">0</td>
+                <td id="inner_cnt_s">0</td>
+                <td id="inner_cnt_f">0</td>
+                <td id="inner_cnt_all">0/24</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+
+  <!-- 넓은 전체 너비 총 생산량 5대 요소 명세 -->
+  <section class="card" style="margin-top:20px;">
+    <h2 class="sec">총 생산량 5대 요소 명세 <span class="q">영지 + 성지건물 + 성지 + 동맹 + 기타</span></h2>
+    <div class="tablewrap" id="prodTableWrap"></div>
+  </section>
+
+  <!-- 넓은 전체 너비 목표 자원 연동 카드 -->
+  <section class="card" style="margin-top:16px; border-left: 3px solid var(--accent);">
+    <h2 class="sec">목표 자원 계산기 연동</h2>
+    <p class="hint">계산된 최종 목재·철광·석재 시간당 생산량을 <b>[목표 자원 계산] 탭의 시간당 생산량 필드</b>에 즉시 반영하고 이동합니다.</p>
+    <div class="btnrow" style="margin-top: 4px;">
+      <button type="button" class="primary" id="btnApplyProd" style="padding: 9px 18px; font-size: 13.5px;">
+        ⚡ 총 생산량을 목표 자원 계산기에 적용하기
+      </button>
+    </div>
+  </section>
+
+</div>
+
+<!-- ================= TAB 3: 건물 레벨업 ROI 추천 ================= -->
+<div id="tab-roi" class="tab-view" role="tabpanel">
+
+  <!-- 최적 선투자 계획 설정 -->
+  <section class="card" style="margin-bottom: 20px; border-left: 3px solid var(--accent);">
+    <h2 class="sec">📈 최적 선투자 레벨 탐색 <span class="q">🏰 주요 건물 최적화 탭의 목표 기준</span></h2>
+    <p class="hint">
+      건물 하나만 따로 보고 "며칠 안에 회수되나"를 따지지 않습니다. 대신 <b>🏰 주요 건물 최적화</b> 탭에서 설정한 실제 목표 건물을 가장 빨리 달성하는 데 필요한 자원 건물(목공소·제련소·석공소·방앗간 각 #1·#2) 선투자 레벨과 순서를, 1레벨씩 쪼개 정밀 시뮬레이션해서 찾아냅니다.
+    </p>
+
+    <div class="field" style="margin-top:6px;">
+      <label class="check">
+        <input type="checkbox" id="roi_use_buff" checked>
+        <span>생산량 계산 탭의 자원별 버프 % 실시간 적용하기</span>
+      </label>
+      <p class="hint" style="font-size:11.5px; margin-top:2px;">목재(<span id="roi_b_w">15</span>%), 철광(<span id="roi_b_i">15</span>%), 석재(<span id="roi_b_s">15</span>%), 군량(<span id="roi_b_f">15</span>%) 버프 반영 중</p>
+    </div>
+
+    <div class="btnrow" style="margin-top: 10px;">
+      <button type="button" class="primary" id="btnCalcOptimalRoi" style="padding: 9px 18px; font-size: 13.5px;">
+        🎯 최적 선투자 계획 계산
+      </button>
+    </div>
+  </section>
+
+  <!-- 결과 요약 히어로 카드 -->
+  <section class="card" style="margin-bottom: 20px;">
+    <h2 class="sec">💡 건물별 추천 선투자 레벨</h2>
+    <div class="verdict" id="roiVerdict"></div>
+    <div class="btnrow" style="margin-top: 10px;">
+      <button type="button" class="primary" id="btnApplyRoi" style="padding: 9px 18px; font-size: 13.5px;">
+        ⚡ 이 레벨을 [생산량 계산기]에 즉시 반영하기
+      </button>
+    </div>
+  </section>
+
+  <!-- 추천 순서 상세 표 -->
+  <section class="card">
+    <h2 class="sec">📊 추천 선투자 순서 (1레벨씩)</h2>
+    <div class="tablewrap" id="roiTableWrap"></div>
+  </section>
+
+</div>
+
+<!-- ================= TAB 4: 주요 건물 최적화 ================= -->
+<div id="tab-building-opt" class="tab-view" role="tabpanel">
+
+  <!-- 설명 헤더 카드 -->
+  <section class="card" style="margin-bottom: 20px; border-left: 4px solid var(--accent);">
+    <h2 class="sec">🏰 주요 건물 MAX 달성 최적화 비교기 <span class="q">자원 건물 선투자 vs 즉시 목표 건물</span></h2>
+    <p class="hint">
+      목표 주요 건물(군왕전, 창고, 징병소, 병영 등)을 건축할 때, <b>1. 자원 건물 8개를 추천 레벨까지 먼저 올려 생산량을 확충한 뒤 추진하는 전략(옵션 B)</b>과 <b>2. 자원 건물 선투자 없이 목적 건물만 즉시 바로 추진하는 전략(옵션 A)</b> 중 어느 쪽이 더 빠른지 정밀 시뮬레이션합니다.
+    </p>
+  </section>
+
+  <!-- 1. 자원 건물 선투자 목표 설정 카드 (Group 1) -->
+  <section class="card" style="margin-bottom: 20px; border-left: 3px solid var(--wood);">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+      <h2 class="sec" style="margin:0;">🌾 1. 자원 건물 선투자 목표 설정 <span class="q">생산량 확충용 8개 건물</span></h2>
+      <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+        <span style="font-size:12px; font-weight:700; color:var(--ink-2);">선투자 목표 일괄 설정:</span>
+        <button type="button" class="sec-btn opt-res-preset-btn" data-lv="20">⚡ 20레벨 추천</button>
+        <button type="button" class="sec-btn opt-res-preset-btn" data-lv="15">⚡ 15레벨 추천</button>
+        <button type="button" class="sec-btn opt-res-preset-btn" data-lv="10">⚡ 10레벨 추천</button>
+        <button type="button" class="sec-btn" id="btnOptImportResPage2" title="2페이지 자원 생산 탭의 건물 레벨을 가져옵니다">🔄 2페이지 레벨 가져오기</button>
+        <button type="button" class="sec-btn" id="btnOptCalcOptimal" style="background:var(--accent); color:#fff; font-weight:bold;" title="2번 표의 목표 건물을 가장 빨리 달성하는 선투자 레벨/순서를 자동 계산합니다">⚡ 최적 선투자 계획 자동 계산</button>
+      </div>
+    </div>
+    <p class="hint" style="margin-top:6px;">
+      옵션 B(선투자 전략) 실행 시, 아래 8개 자원 건물을 먼저 선투자 목표 레벨까지 올린 후 신규 생산량으로 목표 건물을 올리게 됩니다. 레벨을 직접 입력하는 대신 <b>⚡ 최적 선투자 계획 자동 계산</b>을 누르면 2번 표의 목표 건물 기준으로 가장 빠른 레벨/순서를 자동으로 채워줍니다.
+    </p>
+
+    <div class="tablewrap" style="margin-top:10px;">
+      <table class="compact-table">
+        <thead>
+          <tr>
+            <th>자원 생산 건물</th>
+            <th>현재 레벨</th>
+            <th>선투자 목표 레벨</th>
+            <th>소모 목재</th>
+            <th>소모 철광</th>
+            <th>소모 석재</th>
+            <th>총 소모 자원</th>
+            <th>예상 시간당 생산 증가량</th>
+          </tr>
+        </thead>
+        <tbody id="optResBuildingTableBody"></tbody>
+      </table>
+    </div>
+
+    <div id="optPreinvestOrderWrap" style="margin-top:12px;"></div>
+  </section>
+
+  <!-- 2. 최종 목표 건물 설정 카드 (Group 2) -->
+  <section class="card" style="margin-bottom: 20px; border-left: 3px solid var(--iron);">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+      <h2 class="sec" style="margin:0;">🏰 2. 최종 목표 건물 설정 <span class="q">실제 달성하고자 하는 주요 건물</span></h2>
+      <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+        <span style="font-size:12px; font-weight:700; color:var(--ink-2);">목표 프리셋:</span>
+        <button type="button" class="sec-btn opt-preset-btn" data-preset="all">🏆 전 주요 건물 MAX</button>
+        <button type="button" class="sec-btn opt-preset-btn" data-preset="palace">👑 군왕전 20 테크</button>
+        <button type="button" class="sec-btn opt-preset-btn" data-preset="military">⚔️ 징병소·병영 10</button>
+        <button type="button" class="sec-btn opt-preset-btn" data-preset="storage">📦 창고 20</button>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; margin:12px 0 10px 0; flex-wrap:wrap; align-items:center; background:var(--sunk); padding:8px 12px; border-radius:4px;">
+      <span style="font-size:12.5px; font-weight:700; color:var(--ink-2);">🔄 연동 및 건물 관리:</span>
+      <button type="button" class="sec-btn" id="btnOptImportPage1">🔄 1페이지 목표 불러오기</button>
+      <button type="button" class="sec-btn" id="btnOptExportPage1">⬆️ 1페이지로 이 목표 적용</button>
+      <select id="optAddBuildingSelect" style="padding:4px 8px; font-size:12.5px; border-radius:3px; border:1px solid var(--line); background:var(--paper); color:var(--ink); font-weight:bold;"></select>
+      <button type="button" class="sec-btn" id="btnOptAddBuilding" style="background:var(--accent); color:#fff; font-weight:bold;">➕ 건물 추가</button>
+    </div>
+
+    <div class="tablewrap" style="margin-top:10px;">
+      <table class="compact-table">
+        <thead>
+          <tr>
+            <th style="text-align:center; width:65px;"><input type="checkbox" id="opt_goal_chk_all" title="전체 선택/해제" checked> 포함</th>
+            <th style="text-align:center; width:80px;">우선순위</th>
+            <th>대상 주요 건물</th>
+            <th>현재 레벨</th>
+            <th>목표 레벨</th>
+            <th>소모 목재</th>
+            <th>소모 철광</th>
+            <th>소모 석재</th>
+            <th>총 소모 자원</th>
+            <th style="text-align:center;">관리</th>
+          </tr>
+        </thead>
+        <tbody id="optGoalBuildingTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 상세 전략 비교 판정 결과 카드 -->
+  <section class="card" style="margin-bottom: 20px;">
+    <h2 class="sec">💡 전략 분석 및 소요 시간 비교 판정</h2>
+    <div id="optStrategyVerdict"></div>
+  </section>
+
+  <!-- 자원별 병목 분석 및 세부 명세 -->
+  <section class="card">
+    <h2 class="sec">📊 자원별 병목 분석 및 세부 명세</h2>
+    <div id="optDetailWrap"></div>
+  </section>
+
+</div>
+
+<div id="tip" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  var GD = JSON.parse(document.getElementById("gd").textContent);
+  var RES = ["w", "i", "s"];
+  var RNAME = { w: "목재", i: "철광", s: "석재" };
+  var RVAR = { w: "var(--wood)", i: "var(--iron)", s: "var(--stone)" };
+  var RTO = { w: "목재로", i: "철광으로", s: "석재로" };   // 조사
+
+  var PRODUCERS = ["목공소", "제련소", "석공소", "방앗간", "민가"];
+
+  var EFFECT_LABEL = {
+    add_wood_production: "목재/h", add_iron_production: "철광/h", add_stone_production: "석재/h",
+    add_food_production: "군량/h", add_copper_production: "동전/h",
+    warehouse_capacity: "창고 상한", add_troop_max: "무장별 병력 상한",
+    max_redif: "예비병 상한", redif_recovery_rate_add: "예비병 회복/h",
+    unlock_army_num: "출전 부대", set_city_durability: "주성 내구도"
+  };
+
+  var BOX_SIZES = [5000, 10000, 20000, 100000];
+
+  var $ = function (id) { return document.getElementById(id); };
+  var val = function (id) { var el = $(id); if (!el) return 0; var v = parseFloat(el.value); return isFinite(v) ? v : 0; };
+  var fmt = function (n) { return Math.round(n).toLocaleString("ko-KR"); };
+
+  function fmtHours(h) {
+    if (!isFinite(h)) return "생산 없음";
+    if (h <= 0) return "즉시";
+    var d = Math.floor(h / 24), r = h - d * 24;
+    if (d >= 1) return d + "일 " + (Math.round(r * 10) / 10) + "시간";
+    if (h >= 1) return (Math.round(h * 10) / 10) + "시간";
+    return Math.round(h * 60) + "분";
+  }
+
+  function fmtFullTime(h) {
+    if (!isFinite(h)) return "회수 불가 (생산 증가 없음)";
+    if (h <= 0) return "선투자 필요 없음 (즉시)";
+    var totalMin = Math.round(h * 60);
+    var d = Math.floor(totalMin / (24 * 60));
+    var remMin = totalMin % (24 * 60);
+    var hr = Math.floor(remMin / 60);
+    var mi = remMin % 60;
+
+    var parts = [];
+    if (d > 0) parts.push(d + "일");
+    if (hr > 0) parts.push(hr + "시간");
+    if (mi > 0 || parts.length === 0) parts.push(mi + "분");
+    return parts.join(" ");
+  }
+
+  var WD = ["일", "월", "화", "수", "목", "금", "토"];
+
+  function clock(d) {
+    var hh = d.getHours(), mi = d.getMinutes();
+    return (hh < 10 ? "0" : "") + hh + ":" + (mi < 10 ? "0" : "") + mi;
+  }
+
+  // 지금부터 hours 시간 뒤가 몇 월 며칠 몇 시인지
+  function endTime(hours) {
+    if (!isFinite(hours)) return "—";
+    var now = new Date(), d = new Date(now.getTime() + hours * 3600000);
+    var dayGap = Math.round((new Date(d.getFullYear(), d.getMonth(), d.getDate()) -
+      new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 86400000);
+    var head = dayGap === 0 ? "오늘" : dayGap === 1 ? "내일" : dayGap === 2 ? "모레"
+      : (d.getMonth() + 1) + "/" + d.getDate() + "(" + WD[d.getDay()] + ")";
+    return head + " " + clock(d);
+  }
+
+  function fmtDelta(h) {
+    if (h <= 0.05) return "0";
+    return h >= 24 ? (Math.round(h / 24 * 10) / 10) + "일" : (Math.round(h * 10) / 10) + "시간";
+  }
+
+  function getBaseBuildingName(n) { return n ? n.split(" #")[0] : ""; }
+  function bLevels(n) { var b = getBaseBuildingName(n); return (GD.buildings[b] || {}).levels || {}; }
+  function bMax(n) { return Math.max.apply(null, Object.keys(bLevels(n)).map(Number)); }
+
+  function effAt(name, lv, key) {
+    var l = bLevels(name);
+    if (lv < 1 || !l[lv]) return 0;
+    return (l[lv].e || {})[key] || 0;
+  }
+
+  function costRange(name, from, to) {
+    var levels = bLevels(name), c = { w: 0, i: 0, s: 0, p: 0, n: 0 };
+    for (var lv = from + 1; lv <= to; lv++) {
+      var row = levels[lv];
+      if (!row) continue;
+      c.w += row.w; c.i += row.i; c.s += row.s; c.p += row.p; c.n++;
+    }
+    return c;
+  }
+
+  function effAll(b, lv) {
+    var l = bLevels(b)[lv];
+    return lv >= 1 && l ? l.e || {} : {};
+  }
+
+  // 건물 이름에 마우스를 올렸을 때 뜨는 설명. 현재 레벨 효과와, 목표가 더 높으면
+  // 목표 레벨에서의 값과 증가분까지 함께 보여준다.
+  function tipFor(b) {
+    var baseName = getBaseBuildingName(b);
+    var c = getCurLv(b), t = Math.max(c, optTgtData[b] !== undefined ? optTgtData[b] : (tgt[baseName] || c));
+    var ec = effAll(baseName, c), et = effAll(baseName, t);
+    var keys = Object.keys(et).filter(function (k) { return EFFECT_LABEL[k]; });
+    var lines = [b + "  Lv" + c + (t > c ? " → Lv" + t : "")];
+    if (!keys.length) lines.push("표시할 효과 없음");
+    keys.forEach(function (k) {
+      var a = ec[k] || 0, z = et[k] || 0;
+      lines.push(EFFECT_LABEL[k] + "  " + fmt(a) + (t > c && z !== a ? "  →  " + fmt(z) + "   (+" + fmt(z - a) + ")" : ""));
+    });
+    return lines.join("\n");
+  }
+
+  /* ---------------- state ---------------- */
+  // 최대 레벨이 1인 건물(시장·연구소·대장간 등)은 올릴 수가 없으므로 표에서 뺀다.
+  var BLIST = Object.keys(GD.buildings)
+    .filter(function (b) { return Math.max.apply(null, Object.keys(GD.buildings[b].levels).map(Number)) > 1; })
+    .sort(function (a, b) { return GD.buildings[a].type - GD.buildings[b].type; });
+  var cur = {}, tgt = {}, boxes = {}, manual = { w: 0, i: 0, s: 0 };
+
+  var DEFAULT_OPT_BUILDINGS = [
+    "군왕전", "창고", "징병소", "병영", "민가",
+    "목공소 #1", "목공소 #2",
+    "제련소 #1", "제련소 #2",
+    "석공소 #1", "석공소 #2",
+    "방앗간 #1", "방앗간 #2"
+  ];
+  var optBuildings = DEFAULT_OPT_BUILDINGS.slice();
+  var optTgtData = {};
+  var optChkData = {};
+
+  function getCurLv(bName) {
+    if (cur[bName] !== undefined) return cur[bName];
+    if (bName === "목공소 #1") return val("prod_b_w1") || 10;
+    if (bName === "목공소 #2") return val("prod_b_w2") || 0;
+    if (bName === "제련소 #1") return val("prod_b_i1") || 10;
+    if (bName === "제련소 #2") return val("prod_b_i2") || 0;
+    if (bName === "석공소 #1") return val("prod_b_s1") || 10;
+    if (bName === "석공소 #2") return val("prod_b_s2") || 0;
+    if (bName === "방앗간 #1") return val("prod_b_f1") || 10;
+    if (bName === "방앗간 #2") return val("prod_b_f2") || 0;
+    var baseName = getBaseBuildingName(bName);
+    return cur[baseName] !== undefined ? cur[baseName] : 1;
+  }
+
+  BLIST.forEach(function (b) { cur[b] = 1; tgt[b] = 1; });
+  cur["군왕전"] = 6; tgt["군왕전"] = 6;
+  ["목공소", "제련소", "석공소", "방앗간", "민가"].forEach(function (b) { cur[b] = 10; tgt[b] = 10; });
+  cur["병영"] = 5; tgt["병영"] = 5;
+  cur["징병소"] = 3; tgt["징병소"] = 3;
+
+  boxes = { 5000: 6, 10000: 4, 20000: 2, 100000: 1 };
+
+  /* ---------------- computation ---------------- */
+  /* ---------------- 둔전 ---------------- */
+  var DT_BUILDING = { w: "목공소", i: "제련소", s: "석공소" };
+
+  function duntianCount() { return $("use_dt").checked ? Math.max(0, Math.round(val("dt_n"))) : 0; }
+
+  // 그 자원을 만드는 생산 건물(#1·#2 각각)이 20레벨 이상이면 채당 +25%, 최대 +50% 배율 보너스.
+  function duntianBonusPct(r) {
+    var baseName = DT_BUILDING[r];
+    if (!baseName) return 0;
+    var n = 0;
+    if (getCurLv(baseName + " #1") >= 20) n++;
+    if (getCurLv(baseName + " #2") >= 20) n++;
+    return n * 25;
+  }
+
+  // 개간지 레벨당 10,000이 기본이며, 위 배율 보너스가 곱연산으로 적용된다.
+  function duntianYield(r) {
+    var lv = Math.max(0, Math.round(val("dt_lv")));
+    if (lv <= 0) return 0;
+    return Math.round(lv * 10000 * (1 + duntianBonusPct(r) / 100));
+  }
+
+  function renderYield() {
+    var lv = Math.max(0, Math.round(val("dt_lv")));
+    var n = duntianCount();
+    if (!lv || !n) { $("dtYield").innerHTML = ""; return; }
+    $("dtYield").innerHTML = RES.map(function (r) {
+      var y = duntianYield(r);
+      var pct = duntianBonusPct(r);
+      return '<div class="readout"><span>' + RTO[r] + " 받으면" +
+        (pct > 0 ? " · " + DT_BUILDING[r] + " #1·#2 20↑ 보너스 +" + pct + "%" : "") +
+        "</span><b>" + fmt(y) + " × " + n + " = " + fmt(y * n) + "</b></div>";
+    }).join("");
+  }
+
+  /* ---------------- 군둔 ---------------- */
+  var gdRes = "s";
+
+  function gdLumps() {
+    var a = $("use_gd").checked ? Math.max(0, Math.round(val("gd_amt"))) : 0;
+    return { w: gdRes === "w" ? a : 0, i: gdRes === "i" ? a : 0, s: gdRes === "s" ? a : 0 };
+  }
+
+  function renderGdPick() {
+    $("gdPick").innerHTML = RES.map(function (r) {
+      return '<button type="button" data-gd="' + r + '"' + (gdRes === r ? ' class="primary"' : "") + ">" + RNAME[r] + "</button>";
+    }).join("");
+  }
+
+  function state() {
+    return {
+      have: { w: val("have_w"), i: val("have_i"), s: val("have_s") },
+      rate: { w: Math.max(0, val("rate_w")), i: Math.max(0, val("rate_i")), s: Math.max(0, val("rate_s")) }
+    };
+  }
+
+  function plan() {
+    var items = [], total = { w: 0, i: 0, s: 0, p: 0, n: 0 }, peak = { w: 0, i: 0, s: 0 };
+    BLIST.forEach(function (b) {
+      if (tgt[b] <= cur[b]) return;
+      var c = costRange(b, cur[b], tgt[b]);
+      items.push({ key: b, from: cur[b], to: tgt[b], c: c });
+      total.w += c.w; total.i += c.i; total.s += c.s;
+      total.p += c.p; total.n += c.n;
+      var levels = bLevels(b);
+      for (var L = cur[b] + 1; L <= tgt[b]; L++) {
+        if (!levels[L]) continue;
+        RES.forEach(function (r) { if (levels[L][r] > peak[r]) peak[r] = levels[L][r]; });
+      }
+    });
+    if (manual.w > 0 || manual.i > 0 || manual.s > 0) {
+      items.push({ key: "수동 입력", from: "—", to: "—", c: { w: manual.w, i: manual.i, s: manual.s, p: 0, n: 0 } });
+      total.w += manual.w; total.i += manual.i; total.s += manual.s;
+      if (manual.w > peak.w) peak.w = manual.w;
+      if (manual.i > peak.i) peak.i = manual.i;
+      if (manual.s > peak.s) peak.s = manual.s;
+    }
+    return { items: items, total: total, peak: peak };
+  }
+
+  // 부족분 gap 을 시간당 rate 로 모으되, 24시간마다 lump 만큼 한 번에 들어온다
+  // (군둔). 덩어리로 들어오는 것이라 단순 나눗셈으로는 맞지 않는다.
+  function timeFor(gap, rate, lump) {
+    if (gap <= 0) return 0;
+    if (lump <= 0) return rate > 0 ? gap / rate : Infinity;
+    for (var d = 0; d <= 4000; d++) {
+      if (gap - lump * d <= 0) return 24 * d;          // d번째 군둔이 들어오는 순간 충족
+      if (rate > 0) {
+        var t = (gap - lump * d) / rate;
+        if (t <= 24 * (d + 1)) return Math.max(t, 24 * d);
+      }
+    }
+    return Infinity;
+  }
+
+  function hoursFor(need, have, rate, lumpOverride) {
+    var lump = lumpOverride || gdLumps();
+    var out = { w: 0, i: 0, s: 0 }, eta = 0, neck = null;
+    RES.forEach(function (r) {
+      var h = timeFor(Math.max(0, need[r] - have[r]), rate[r], lump[r]);
+      out[r] = h;
+      if (h > eta) { eta = h; neck = r; }
+    });
+    return { per: out, eta: eta, neck: neck };
+  }
+
+  /* ---------------- roster ---------------- */
+  function renderRoster() {
+    var h = '<table><thead><tr><th>건물</th><th>최대</th><th>현재</th><th>목표</th><th>목재</th><th>철광</th><th>석재</th></tr></thead><tbody>';
+    BLIST.forEach(function (b) {
+      var mx = bMax(b);
+      h += '<tr data-b="' + b + '"><td class="bname" data-tip=""><span>' + b + "</span></td><td>" + mx + "</td>";
+      h += '<td class="lvl"><input type="number" data-k="cur" data-n="' + b + '" value="' + cur[b] + '" min="0" max="' + mx + '"></td>';
+      h += '<td class="lvl"><input type="number" class="tgt" data-k="tgt" data-n="' + b + '" value="' + tgt[b] + '" min="' + cur[b] + '" max="' + mx + '"></td>';
+      RES.forEach(function (r) { h += '<td data-c="' + r + '">—</td>'; });
+      h += "</tr>";
+    });
+    h += '<tr id="manualRow" class="manual-row"><td class="bname" data-tip="건물 선택 없이 수동으로 추가할 목표 자원을 입력합니다."><span>수동 입력</span></td>';
+    h += '<td>—</td><td>—</td><td>—</td>';
+    RES.forEach(function (r) {
+      h += '<td class="lvl"><input type="number" class="tgt" data-m="' + r + '" id="manual_' + r + '" value="' + (manual[r] || 0) + '" min="0" step="1000"></td>';
+    });
+    h += "</tr>";
+    $("rosterWrap").innerHTML = h + "</tbody></table>";
+  }
+
+  // 표를 다시 그리지 않고 셀만 고쳐 써서, 입력 중 포커스가 유지되게 한다.
+  function syncRoster() {
+    var n = 0, lv = 0;
+    document.querySelectorAll("#rosterWrap tr[data-b]").forEach(function (row) {
+      var b = row.dataset.b, c = costRange(b, cur[b], Math.max(cur[b], tgt[b]));
+      row.classList.toggle("active", tgt[b] > cur[b]);
+      if (tgt[b] > cur[b]) { n++; lv += c.n; }
+      RES.forEach(function (r) {
+        var td = row.querySelector('[data-c="' + r + '"]');
+        td.textContent = c[r] ? fmt(c[r]) : "—";
+        td.classList.toggle("zero", !c[r]);
+      });
+      row.querySelector(".bname").dataset.tip = tipFor(b);
+
+      // 목표 칸의 하한을 현재 레벨로 유지한다. 휠도 이 min에서 멈춘다.
+      var ti = row.querySelector("input.tgt");
+      ti.min = cur[b];
+      if (document.activeElement !== ti && parseInt(ti.value, 10) !== tgt[b]) ti.value = tgt[b];
+    });
+
+    var mRow = $("manualRow");
+    if (mRow) {
+      var hasManual = manual.w > 0 || manual.i > 0 || manual.s > 0;
+      mRow.classList.toggle("active", hasManual);
+      RES.forEach(function (r) {
+        var mi = $("manual_" + r);
+        if (mi && document.activeElement !== mi && parseInt(mi.value, 10) !== manual[r]) {
+          mi.value = manual[r];
+        }
+      });
+    }
+
+    var parts = [];
+    if (n) parts.push(n + "개 건물 · " + lv + "회 업그레이드 예정");
+    if (manual.w > 0 || manual.i > 0 || manual.s > 0) parts.push("수동 입력 자원 포함");
+    $("planCount").textContent = parts.length ? parts.join(" + ") : "목표를 잡으면 여기에 요약이 나옵니다";
+  }
+
+  /* ---------------- rendering ---------------- */
+  function bar(hours, max, color, extra) {
+    var pct = max > 0 && isFinite(hours) ? Math.max(hours / max * 100, hours > 0 ? 1.5 : 0) : (isFinite(hours) ? 0 : 100);
+    var html = '<div class="track">';
+    html += '<div class="fill" style="width:' + pct.toFixed(2) + "%;background:" + color + (extra > 0 ? ";border-radius:0" : "") + '"></div>';
+    if (extra > 0) {
+      var e = max > 0 ? Math.max(extra / max * 100, 1) : 0;
+      html += '<div class="fill saved" style="width:' + e.toFixed(2) + "%;background:" + color + '"></div>';
+    }
+    return html + "</div>";
+  }
+
+  function renderVerdict(pl, st, base, res, al) {
+    var el = $("verdict");
+    if (!pl.items.length) {
+      el.innerHTML = '<div class="hero"><span class="lab">대기 중</span><span class="val">목표 없음</span><span class="sub">위 표에서 목표 레벨을 올리세요</span></div>';
+      return;
+    }
+    var h = '<div class="hero"><span class="lab">완료까지</span><span class="val">' + fmtHours(res.eta) + "</span>";
+    h += '<span class="sub">' + (al.count
+      ? "상자·둔전 포함 · 안 쓰면 " + fmtHours(base.eta)
+      : (isFinite(res.eta) ? Math.round(res.eta) + "시간 · " : "") + pl.total.n + "회 업그레이드") + "</span></div>";
+    h += '<div class="hero"><span class="lab">종료 시각</span><span class="val" style="font-size:26px">' + endTime(res.eta) + "</span>";
+    h += '<span class="sub">지금 ' + clock(new Date()) + " 기준</span></div>";
+    h += '<div class="hero"><span class="lab">병목 자원</span><span class="val" style="color:' + (res.neck ? RVAR[res.neck] : "var(--ink-3)") + '">' +
+      (res.neck ? RNAME[res.neck] : "없음") + "</span>";
+    h += '<span class="sub">' + (res.neck ? "부족 " + fmt(Math.max(0, pl.total[res.neck] - al.have[res.neck])) : "가진 것으로 전부 충당") + "</span></div>";
+    h += '<div class="hero"><span class="lab">총 필요</span><span class="sub" style="font-size:13px;line-height:1.7">' +
+      RES.map(function (r) { return '<span style="color:' + RVAR[r] + '">■</span> ' + RNAME[r] + " " + fmt(pl.total[r]); }).join("<br>") + "</span></div>";
+    h += '<div class="hero"><span class="lab">번영도</span><span class="val" style="font-size:26px">+' + fmt(pl.total.p) + "</span>" +
+      '<span class="sub">' + pl.items.length + "개 건물 · " + pl.total.n + "회</span></div>";
+    el.innerHTML = h;
+  }
+
+  function renderNeed(pl, st, base, res, al) {
+    var el = $("needBody");
+    if (!pl.items.length) {
+      el.innerHTML = '<div class="empty">위 표에서 목표 레벨을 현재보다 높게 잡으면 계산됩니다.</div>';
+      return;
+    }
+    var max = 0, lump = gdLumps();
+    RES.forEach(function (r) { if (isFinite(res.per[r]) && res.per[r] > max) max = res.per[r]; });
+
+    var h = '<div class="bars">';
+    RES.forEach(function (r) {
+      var gap = Math.max(0, pl.total[r] - al.have[r]);
+      h += '<div class="bar-row" data-tip="' + RNAME[r] + "\n필요 " + fmt(pl.total[r]) + "\n보유 " + fmt(st.have[r]) +
+        (al.used[r] ? "\n상자·둔전 +" + fmt(al.used[r]) : "") +
+        (gdLumps()[r] ? "\n군둔 +" + fmt(gdLumps()[r]) + "/일" : "") +
+        "\n부족 " + fmt(gap) + "\n생산 " + fmt(st.rate[r]) + '/h">';
+      h += '<div class="rname"><i class="swatch" style="background:' + RVAR[r] + '"></i>' + RNAME[r] + "</div>";
+      h += bar(res.per[r], max, RVAR[r], Math.max(0, (isFinite(base.per[r]) ? base.per[r] : 0) - (isFinite(res.per[r]) ? res.per[r] : 0)));
+      h += '<div class="rval"><b>' + fmtHours(res.per[r]) + "</b></div></div>";
+    });
+    h += "</div>";
+    if (al.count) h += '<div class="legend"><span><i style="background:var(--ink-3)"></i>진한 칸 — 남은 시간</span><span><i style="background:var(--ink-3);opacity:.28"></i>흐린 칸 — 상자·둔전이 줄여준 시간</span></div>';
+
+    // 마지막 건물이 올라가는 시점(res.eta)까지 쌓인 양에서 목표 비용을 뺀 나머지.
+    // 병목 자원은 거의 0이 되고, 나머지는 그만큼 남아 다음 목표의 종잣돈이 된다.
+    var cap = effAt("창고", Math.max(1, cur["창고"]), "warehouse_capacity");
+    var left = {}, overCap = false;
+    RES.forEach(function (r) {
+      if (!isFinite(res.eta)) { left[r] = NaN; return; }
+      var got = al.have[r] + st.rate[r] * res.eta + lump[r] * Math.floor(res.eta / 24);
+      left[r] = Math.max(0, got - pl.total[r]);
+      if (left[r] > cap) overCap = true;
+    });
+
+    h += '<div class="tablewrap"><table><thead><tr><th>자원</th><th>필요</th><th>보유</th><th>상자·둔전</th><th>부족</th><th>생산/h</th><th>군둔/일</th><th>소요</th><th>종료</th><th>완료 후 남음</th></tr></thead><tbody>';
+    RES.forEach(function (r) {
+      var gap = Math.max(0, pl.total[r] - al.have[r]);
+      h += "<tr" + (res.neck === r ? ' class="best"' : "") + "><td>" + RNAME[r] + (res.neck === r ? '<span class="tag">병목</span>' : "") + "</td>";
+      h += "<td>" + fmt(pl.total[r]) + "</td><td>" + fmt(st.have[r]) + "</td>";
+      h += "<td>" + (al.used[r] ? "+" + fmt(al.used[r]) : "—") + "</td>";
+      h += "<td>" + (gap ? fmt(gap) : "—") + "</td>";
+      h += "<td>" + fmt(st.rate[r]) + "</td>";
+      h += '<td class="' + (lump[r] ? "pos" : "zero") + '">' + (lump[r] ? "+" + fmt(lump[r]) : "—") + "</td>";
+      h += "<td>" + fmtHours(res.per[r]) + "</td><td>" + endTime(res.per[r]) + "</td>";
+      h += '<td class="' + (isFinite(left[r]) && left[r] > 0 ? "pos" : "zero") + '">' +
+        (isFinite(left[r]) ? (left[r] > 0 ? fmt(left[r]) : "0") : "—") + "</td></tr>";
+    });
+    h += "</tbody></table></div>";
+
+    var notes = ["완료 시 번영도 <b>+" + fmt(pl.total.p) + "</b>, 총 <b>" + pl.total.n + "회</b>의 업그레이드가 필요합니다."];
+    if (lump[gdRes] > 0)
+      notes.push("군둔은 <b>24시간마다 " + RNAME[gdRes] + " " + fmt(lump[gdRes]) + "</b>이 한 번에 들어오는 것으로 계산합니다. 시간당으로 쪼개지 않으므로, 다음 군둔 직전에는 그만큼 덜 모여 있습니다.");
+    if (pl.items.some(function (i) { return PRODUCERS.indexOf(i.key) >= 0; }))
+      notes.push("목표에 생산 건물이 있어도 완료 시간은 <b>현재 생산량 기준</b>으로 계산합니다. 업그레이드가 끝나기 전까지는 생산이 늘지 않기 때문입니다.");
+    if (res.neck)
+      notes.push("생산을 늘린다면 <b>" + RNAME[res.neck] + "</b> 입니다. 병목이 아닌 자원의 생산을 늘려도 완료 시각은 바뀌지 않습니다. 건물 비용은 목:철:석 = <b>3:3:4</b> 라 석재 수요가 3분의 1 더 큽니다.");
+    if (overCap)
+      notes.push("완료 후 남는 양이 <b>창고 상한 " + fmt(cap) + "</b>을 넘습니다. 실제로는 상한에서 잘리므로 그만큼은 버려집니다.");
+    h += '<div class="callout">' + notes.join("<br>") + "</div>";
+
+    var over = RES.filter(function (r) { return pl.peak[r] > cap; });
+    if (over.length) {
+      h += '<div class="callout warn">창고 상한 <b>' + fmt(cap) + "</b> 보다 비싼 단일 업그레이드가 있습니다 (" +
+        over.map(function (r) { return RNAME[r] + " " + fmt(pl.peak[r]); }).join(", ") +
+        "). 창고를 먼저 올리지 않으면 그 항목의 자원을 모아둘 수 없습니다.</div>";
+    }
+
+    h += '<details class="spec"><summary>목표 명세 ' + pl.items.length + "건 펼치기</summary>";
+    h += '<div class="tablewrap"><table><thead><tr><th>건물</th><th>구간</th><th>횟수</th><th>목재</th><th>철광</th><th>석재</th><th>번영도</th></tr></thead><tbody>';
+    pl.items.forEach(function (it) {
+      h += "<tr><td>" + it.key + "</td><td>" + it.from + " → " + it.to + "</td><td>" + it.c.n + "</td>";
+      h += "<td>" + fmt(it.c.w) + "</td><td>" + fmt(it.c.i) + "</td><td>" + fmt(it.c.s) + "</td>";
+      h += "<td>+" + it.c.p + "</td></tr>";
+    });
+    h += "<tr><td><b>합계</b></td><td>—</td><td><b>" + pl.total.n + "</b></td><td><b>" + fmt(pl.total.w) + "</b></td><td><b>" + fmt(pl.total.i) +
+      "</b></td><td><b>" + fmt(pl.total.s) + "</b></td><td>+" + pl.total.p + "</td></tr>";
+    h += "</tbody></table></div></details>";
+
+    el.innerHTML = h;
+  }
+
+  // 상자와 둔전을 어디에 쓸지 정한다. 결과는 완료 시간 계산에도 그대로 쓰인다.
+  function allocate(pl, st) {
+    var pool = [], guard = 0;
+    if ($("use_box").checked) {
+      BOX_SIZES.forEach(function (size) {
+        for (var k = 0; k < Math.round(boxes[size] || 0); k++) {
+          pool.push({ kind: "box", box: size, top: size, amt: function () { return this.box; } });
+        }
+      });
+    }
+    for (var d = 0; d < duntianCount(); d++) {
+      pool.push({
+        kind: "dt", box: 0,
+        top: Math.max(duntianYield("w"), duntianYield("i"), duntianYield("s")),
+        amt: function (r) { return duntianYield(r); }
+      });
+    }
+
+    var have = { w: st.have.w, i: st.have.i, s: st.have.s };
+    var used = { w: 0, i: 0, s: 0 }, log = [];
+
+    // 1단계 — 큰 것부터 그때그때의 병목에 넣는다. 완료 시각을 가장 빨리
+    // 끌어내리는 순서다. 다만 이 단계만으로는 부족분이 8,000인데 10만 상자를
+    // 열어버리는 낭비가 생긴다.
+    pool.sort(function (a, b) { return b.top - a.top; });
+
+    while (pool.length && guard++ < 2000) {
+      var now = hoursFor(pl.total, have, st.rate);
+      var neck = null, neckH = -1;
+      RES.forEach(function (r) {
+        if (pl.total[r] - have[r] <= 0) return;
+        if (now.per[r] > neckH) { neckH = now.per[r]; neck = r; }
+      });
+      if (!neck) break;
+      var it = pool.shift();
+      var got = it.amt(neck);
+      have[neck] += got;
+      log.push({ it: it, r: neck, got: got });
+    }
+    var held = pool;
+
+    // 2단계 — 완료 시각을 그대로 두면서 더 작은 것으로 바꿔 끼운다.
+    // 8,000이 모자란 자리에 10만 대신 1만을 넣고, 10만은 다음 목표로 넘긴다.
+    var eta0 = hoursFor(pl.total, have, st.rate).eta;
+    var swapped = true;
+    guard = 0;
+    while (swapped && guard++ < 200) {
+      swapped = false;
+      log.sort(function (a, b) { return b.got - a.got; });
+      held.sort(function (a, b) { return a.top - b.top; });
+      for (var i = 0; i < log.length && !swapped; i++) {
+        for (var j = 0; j < held.length; j++) {
+          var alt = held[j].amt(log[i].r);
+          if (alt >= log[i].got) break;
+          var trial = { w: have.w, i: have.i, s: have.s };
+          trial[log[i].r] += alt - log[i].got;
+          if (hoursFor(pl.total, trial, st.rate).eta <= eta0 + 1e-9) {
+            have[log[i].r] = trial[log[i].r];
+            held.push(log[i].it);
+            log[i].it = held.splice(j, 1)[0];
+            log[i].got = alt;
+            swapped = true;
+            break;
+          }
+        }
+      }
+    }
+
+    log.forEach(function (l) { used[l.r] += l.got; });
+    var spill = 0;
+    RES.forEach(function (r) { spill += Math.max(0, have[r] - Math.max(pl.total[r], st.have[r])); });
+
+    return { have: have, used: used, log: log, held: held, spill: spill, count: log.length + held.length };
+  }
+
+  function renderAlloc(pl, st, base, res, al) {
+    var el = $("boxBody");
+    if (!pl.items.length) { el.innerHTML = '<div class="empty">목표를 넣으면 상자와 둔전을 어디에 쓸지 계산합니다.</div>'; return; }
+    if (!al.count) { el.innerHTML = '<div class="empty">보유한 상자와 둔전 횟수를 넣으면 어디에 쓸지 계산합니다.</div>'; return; }
+
+    var h = '<div class="alloc">';
+    RES.forEach(function (r) {
+      if (!al.used[r]) return;
+      var tally = {}, dt = 0;
+      al.log.filter(function (l) { return l.r === r; }).forEach(function (l) {
+        if (l.it.kind === "box") tally[l.it.box] = (tally[l.it.box] || 0) + 1; else dt++;
+      });
+      var parts = Object.keys(tally).sort(function (a, b) { return b - a; }).map(function (s) {
+        return (s >= 10000 ? s / 10000 + "만" : s / 1000 + "천") + " × " + tally[s];
+      });
+      if (dt) parts.push("둔전 × " + dt + " (" + fmt(duntianYield(r)) + "씩)");
+      h += '<div class="alloc-row" style="border-left-color:' + RVAR[r] + '"><b>' + RNAME[r] +
+        '</b><span style="color:var(--ink-3);font-size:12.5px">' + parts.join(", ") + '</span><span class="amt">+' + fmt(al.used[r]) + "</span></div>";
+    });
+    if (al.held.length) {
+      var byS = {}, dtHeld = 0;
+      al.held.forEach(function (it) { if (it.kind === "box") byS[it.box] = (byS[it.box] || 0) + 1; else dtHeld++; });
+      var parts2 = Object.keys(byS).sort(function (a, b) { return b - a; }).map(function (sz) {
+        return (sz >= 10000 ? sz / 10000 + "만" : sz / 1000 + "천") + " × " + byS[sz];
+      });
+      if (dtHeld) parts2.push("둔전 × " + dtHeld);
+      h += '<div class="alloc-row"><b>아껴 두기</b><span style="color:var(--ink-3);font-size:12.5px">' +
+        parts2.join(", ") + '</span><span class="amt">지금 쓰면 0</span>';
+      h += "</div>";
+    }
+    h += "</div>";
+
+    h += '<div class="callout">이대로 쓰면 완료까지 <b>' + fmtHours(base.eta) + "</b> → <b>" + fmtHours(res.eta) +
+      "</b>, <b>" + fmtDelta(base.eta - res.eta) + "</b> 단축됩니다." +
+      (al.spill > 0 ? " 목표를 넘겨 쌓이는 초과분은 <b>" + fmt(al.spill) + "</b> 입니다." : "") + "</div>";
+
+    el.innerHTML = h;
+  }
+
+
+  // 상자·둔전·군둔을 이미 다 쓴 상태에서, 그래도 더 줄일 방법이 있는지 찾는다.
+  // 두 가지 레버가 있다 — 영지 생산을 옮기는 것, 그리고 군둔을 받을 자원을 바꾸는 것.
+  function renderSwap(pl, st, al, res) {
+    var el = $("swapBody");
+    if (!pl.items.length) { el.innerHTML = '<div class="empty">목표를 넣으면 어떤 자원을 어디로 돌릴지 계산합니다.</div>'; return; }
+
+    var unit = Math.max(1, Math.round(val("unit")));
+    var gAmt = $("use_gd").checked ? Math.max(0, Math.round(val("gd_amt"))) : 0;
+
+    function lumpsFor(r) {
+      var L = { w: 0, i: 0, s: 0 };
+      if (gAmt > 0 && r) L[r] = gAmt;
+      return L;
+    }
+
+    // 군둔을 r 로 고정한 채, 영지를 한 칸씩 옮겨 더 나아지지 않을 때까지 반복
+    function solve(r) {
+      var L = lumpsFor(r), rate = { w: st.rate.w, i: st.rate.i, s: st.rate.s }, moves = [], guard = 0;
+      while (guard++ < 30) {
+        var now = hoursFor(pl.total, al.have, rate, L).eta;
+        var best = null;
+        RES.forEach(function (from) {
+          if (rate[from] < unit) return;              // 뺄 칸이 없다
+          RES.forEach(function (to) {
+            if (from === to) return;
+            var trial = { w: rate.w, i: rate.i, s: rate.s };
+            trial[from] -= unit;
+            trial[to] += unit;
+            var m = hoursFor(pl.total, al.have, trial, L).eta;
+            if (!best || m < best.m - 1e-9) best = { m: m, from: from, to: to };
+          });
+        });
+        if (!best || best.m >= now - 1e-9) break;
+        rate[best.from] -= unit;
+        rate[best.to] += unit;
+        moves.push(best);
+      }
+      var fin = hoursFor(pl.total, al.have, rate, L);
+      return { g: r, rate: rate, moves: moves, fin: fin, L: L };
+    }
+
+    var cands = gAmt > 0 ? RES.map(solve) : [solve(null)];
+    var best = cands[0];
+    cands.forEach(function (c) {
+      if (c.fin.eta < best.fin.eta - 1e-9) best = c;
+      else if (Math.abs(c.fin.eta - best.fin.eta) < 1e-9 && c.g === gdRes) best = c;   // 같으면 지금 설정 유지
+    });
+
+    var gChange = gAmt > 0 && best.g !== gdRes;
+    var gain = res.eta - best.fin.eta;
+
+    if (!best.moves.length && !gChange) {
+      el.innerHTML = '<div class="callout">상자·둔전·군둔을 다 쓴 상태에서 <b>더 줄일 방법이 없습니다</b>. 영지 한 칸(' +
+        fmt(unit) + "/h)을 어디로 옮겨도, 군둔을 다른 자원으로 받아도 완료 시각이 그대로입니다." +
+        (res.neck ? " 병목은 <b>" + RNAME[res.neck] + "</b> 이지만 다른 자원에서 빼면 그쪽이 새 병목이 됩니다." : "") + "</div>";
+      return;
+    }
+
+    var h = '<div class="alloc">';
+    if (gChange) {
+      h += '<div class="swap-row" style="border-left-color:var(--ink-3)"><b>군둔</b>';
+      h += '<b style="color:' + RVAR[gdRes] + '">' + RNAME[gdRes] + "</b>";
+      h += '<span style="color:var(--ink-3)">→</span>';
+      h += '<b style="color:' + RVAR[best.g] + '">' + RNAME[best.g] + "</b>";
+      h += '<span style="color:var(--ink-3);font-size:12.5px">받는 자원 바꾸기</span>';
+      h += '<span class="amt">' + fmt(gAmt) + "/일</span></div>";
+    }
+    var group = {};
+    best.moves.forEach(function (m) { var k = m.from + ">" + m.to; group[k] = (group[k] || 0) + 1; });
+    Object.keys(group).forEach(function (k) {
+      var f = k.split(">")[0], t = k.split(">")[1], n = group[k];
+      h += '<div class="swap-row"><b>영지</b><b style="color:' + RVAR[f] + '">' + RNAME[f] + "</b>";
+      h += '<span style="color:var(--ink-3)">→</span>';
+      h += '<b style="color:' + RVAR[t] + '">' + RNAME[t] + "</b>";
+      h += '<span style="color:var(--ink-3);font-size:12.5px">' + n + "칸 · " + fmt(unit) + "/h씩</span>";
+      h += '<span class="amt">' + fmt(n * unit) + "/h</span></div>";
+    });
+    h += "</div>";
+
+    h += '<div class="tablewrap"><table><thead><tr><th>자원</th><th>지금 생산/h</th><th>전환 후</th><th>변화</th><th>군둔/일</th><th>소요</th></tr></thead><tbody>';
+    RES.forEach(function (r) {
+      var d = best.rate[r] - st.rate[r];
+      h += "<tr" + (best.fin.neck === r ? ' class="best"' : "") + "><td>" + RNAME[r] + (best.fin.neck === r ? '<span class="tag">병목</span>' : "") + "</td>";
+      h += "<td>" + fmt(st.rate[r]) + "</td><td>" + fmt(best.rate[r]) + "</td>";
+      h += '<td class="' + (d > 0 ? "pos" : d < 0 ? "neg" : "") + '">' + (d ? (d > 0 ? "+" : "−") + fmt(Math.abs(d)) : "—") + "</td>";
+      h += '<td class="' + (best.L[r] ? "pos" : "zero") + '">' + (best.L[r] ? "+" + fmt(best.L[r]) : "—") + "</td>";
+      h += "<td>" + fmtHours(best.fin.per[r]) + "</td></tr>";
+    });
+    h += "</tbody></table></div>";
+
+    h += '<div class="callout">상자·둔전·군둔을 다 쓴 <b>' + fmtHours(res.eta) + "</b>에서 " +
+      (gChange ? "군둔을 <b>" + RTO[best.g] + "</b> 바꾸고 " : "") +
+      (best.moves.length ? "영지 <b>" + best.moves.length + "칸</b>을 옮기면 " : "") +
+      "<b>" + fmtHours(best.fin.eta) + "</b>까지 <b>" + fmtDelta(gain) + "</b> 더 줄어듭니다. 종료 시각은 <b>" +
+      endTime(res.eta) + "</b> → <b>" + endTime(best.fin.eta) + "</b>.</div>";
+
+    el.innerHTML = h;
+  }
+
+  function renderFoot() {
+    $("foot").innerHTML =
+      "데이터 출처 — <b>main_city_building_levels.current.csv</b> (A107 현재 런타임, 성내 건물 20종 191행). " +
+      "건설 소요시간은 원시 테이블에서 전 행 0이므로 이 계산기는 <b>자원 축적 시간만</b> 병목으로 봅니다. " +
+      "건물의 군왕전 레벨 해금 조건은 이 데이터셋에 없으므로 <b>레벨은 자유롭게 입력</b>됩니다 — 실제로 못 짓는 목표도 막지 않습니다. 생산량 역시 직접 입력값을 그대로 씁니다. " +
+      "입력한 값은 <b>이 브라우저에만</b> 저장되며 서버로 가지 않습니다.";
+  }
+
+  /* ---------------- 생산량 계산 ---------------- */
+  var RES_ALL = ["w", "i", "s", "f"];
+  var RNAME_ALL = { w: "목재", i: "철광", s: "석재", f: "군량", c: "동전" };
+
+  var LAND_LEVELS = [
+    { k: "0", name: "0토지", yield: 0, foodYield: 100, isZero: true },
+    { k: "1", name: "1토지", yield: 200 },
+    { k: "2", name: "2토지", yield: 600 },
+    { k: "3", name: "3토지", yield: 1000 },
+    { k: "4", name: "4토지", yield: 1400 },
+    { k: "5", name: "5토지", yield: 1800 },
+    { k: "6", name: "6토지", yield: 2200 },
+    { k: "7", name: "7토지", yield: 2500 },
+    { k: "8_g", name: "8개간", yield: 2800 },
+    { k: "8", name: "8토지", yield: 2800 },
+    { k: "9", name: "9토지", yield: 3100 },
+    { k: "10", name: "10토지", yield: 3400 },
+    { k: "11", name: "11토지", yield: 3700 },
+    { k: "12", name: "12토지", yield: 4000 }
+  ];
+
+  var landData = {
+    "0": { w: 0, i: 0, s: 0, f: 0 },
+    "1": { w: 0, i: 0, s: 0, f: 0 },
+    "2": { w: 0, i: 0, s: 0, f: 0 },
+    "3": { w: 0, i: 0, s: 0, f: 0 },
+    "4": { w: 0, i: 0, s: 0, f: 0 },
+    "5": { w: 0, i: 0, s: 0, f: 0 },
+    "6": { w: 0, i: 0, s: 0, f: 0 },
+    "7": { w: 0, i: 0, s: 0, f: 0 },
+    "8_g": { w: 0, i: 0, s: 0, f: 0 },
+    "8": { w: 4, i: 4, s: 8, f: 0 },
+    "9": { w: 8, i: 8, s: 11, f: 12 },
+    "10": { w: 0, i: 0, s: 0, f: 0 },
+    "11": { w: 0, i: 0, s: 0, f: 0 },
+    "12": { w: 0, i: 0, s: 0, f: 0 }
+  };
+
+  var innerLandData = {
+    "0": { w: 0, i: 0, s: 0, f: 0 },
+    "1": { w: 0, i: 0, s: 0, f: 0 },
+    "2": { w: 0, i: 0, s: 0, f: 0 },
+    "3": { w: 0, i: 0, s: 0, f: 0 },
+    "4": { w: 0, i: 0, s: 0, f: 0 },
+    "5": { w: 0, i: 0, s: 0, f: 0 },
+    "6": { w: 0, i: 0, s: 0, f: 0 },
+    "7": { w: 0, i: 0, s: 0, f: 0 },
+    "8_g": { w: 0, i: 0, s: 0, f: 0 },
+    "8": { w: 0, i: 0, s: 0, f: 0 },
+    "9": { w: 0, i: 0, s: 0, f: 6 },
+    "10": { w: 5, i: 5, s: 5, f: 0 },
+    "11": { w: 1, i: 1, s: 1, f: 0 },
+    "12": { w: 0, i: 0, s: 0, f: 0 }
+  };
+
+  var activeTab = "target";
+
+  function switchTab(tabId) {
+    activeTab = tabId;
+    document.querySelectorAll(".tab-btn").forEach(function (btn) {
+      var isActive = btn.dataset.tab === tabId;
+      btn.classList.toggle("active", isActive);
+      btn.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+    document.querySelectorAll(".tab-view").forEach(function (view) {
+      view.classList.toggle("active", view.id === "tab-" + tabId);
+    });
+    if (tabId === "target") {
+      renderRoster();
+      render();
+    } else if (tabId === "production") {
+      renderLandTable();
+      renderInnerLandTable();
+      renderProduction();
+    } else if (tabId === "roi") {
+      renderRoi();
+    }
+    saveState();
+  }
+
+  function renderLandTable() {
+    var tbody = $("landTableBody");
+    if (!tbody) return;
+    var h = "";
+    LAND_LEVELS.forEach(function (lvl) {
+      var k = lvl.k;
+      var data = landData[k] || { w: 0, i: 0, s: 0, f: 0 };
+      var rowTotal = (data.w || 0) + (data.i || 0) + (data.s || 0) + (data.f || 0);
+      h += '<tr><td><b>' + lvl.name + '</b></td>';
+      RES_ALL.forEach(function (r) {
+        if (lvl.isZero && r !== "f") {
+          h += '<td><input type="number" value="0" disabled style="opacity:0.4;background:var(--sunk)"></td>';
+        } else {
+          h += '<td><input type="number" min="0" data-landk="' + k + '" data-landr="' + r + '" value="' + (data[r] || 0) + '"></td>';
+        }
+      });
+      h += '<td><b id="land_row_tot_' + k + '">' + rowTotal + '</b></td></tr>';
+    });
+    tbody.innerHTML = h;
+  }
+
+  function renderInnerLandTable() {
+    var tbody = $("innerLandTableBody");
+    if (!tbody) return;
+    var h = "";
+    LAND_LEVELS.forEach(function (lvl) {
+      var k = lvl.k;
+      var data = innerLandData[k] || { w: 0, i: 0, s: 0, f: 0 };
+      var rowTotal = (data.w || 0) + (data.i || 0) + (data.s || 0) + (data.f || 0);
+      h += '<tr><td><b>' + lvl.name + '</b></td>';
+      RES_ALL.forEach(function (r) {
+        if (lvl.isZero && r !== "f") {
+          h += '<td><input type="number" value="0" disabled style="opacity:0.4;background:var(--sunk)"></td>';
+        } else {
+          h += '<td><input type="number" min="0" data-innerk="' + k + '" data-innerr="' + r + '" value="' + (data[r] || 0) + '"></td>';
+        }
+      });
+      h += '<td><b id="inner_row_tot_' + k + '">' + rowTotal + '</b></td></tr>';
+    });
+    tbody.innerHTML = h;
+  }
+
+  function calcLandProduction() {
+    var landSum = { w: 0, i: 0, s: 0, f: 0 };
+    var landCnt = { w: 0, i: 0, s: 0, f: 0, all: 0 };
+
+    LAND_LEVELS.forEach(function (lvl) {
+      var k = lvl.k;
+      var data = landData[k] || { w: 0, i: 0, s: 0, f: 0 };
+      RES_ALL.forEach(function (r) {
+        var cnt = Math.max(0, parseInt(data[r], 10) || 0);
+        landCnt[r] += cnt;
+        landCnt.all += cnt;
+        var y = lvl.isZero ? (r === "f" ? lvl.foodYield : 0) : lvl.yield;
+        landSum[r] += cnt * y;
+      });
+    });
+
+    return { sum: landSum, cnt: landCnt };
+  }
+
+  function calcInnerLandProduction() {
+    var landSum = { w: 0, i: 0, s: 0, f: 0 };
+    var landCnt = { w: 0, i: 0, s: 0, f: 0, all: 0 };
+
+    LAND_LEVELS.forEach(function (lvl) {
+      var k = lvl.k;
+      var data = innerLandData[k] || { w: 0, i: 0, s: 0, f: 0 };
+      RES_ALL.forEach(function (r) {
+        var cnt = Math.max(0, parseInt(data[r], 10) || 0);
+        landCnt[r] += cnt;
+        landCnt.all += cnt;
+        var y = lvl.isZero ? (r === "f" ? lvl.foodYield : 0) : lvl.yield;
+        landSum[r] += cnt * y;
+      });
+    });
+
+    return { sum: landSum, cnt: landCnt };
+  }
+
+  function calcProduction() {
+    var outerLand = calcLandProduction();
+    var innerLand = calcInnerLandProduction();
+
+    // 성지 건물 1호/2호관 레벨
+    var bw1 = Math.max(0, val("prod_b_w1")), bw2 = Math.max(0, val("prod_b_w2"));
+    var bi1 = Math.max(0, val("prod_b_i1")), bi2 = Math.max(0, val("prod_b_i2"));
+    var bs1 = Math.max(0, val("prod_b_s1")), bs2 = Math.max(0, val("prod_b_s2"));
+    var bf1 = Math.max(0, val("prod_b_f1")), bf2 = Math.max(0, val("prod_b_f2"));
+
+    var buildOnly = {
+      w: effAt("목공소", bw1, "add_wood_production") + effAt("목공소", bw2, "add_wood_production"),
+      i: effAt("제련소", bi1, "add_iron_production") + effAt("제련소", bi2, "add_iron_production"),
+      s: effAt("석공소", bs1, "add_stone_production") + effAt("석공소", bs2, "add_stone_production"),
+      f: effAt("방앗간", bf1, "add_food_production") + effAt("방앗간", bf2, "add_food_production")
+    };
+
+    // (1) 내성 자원 건물 버프 %
+    var bBuffUse = ($("use_inner_b_buff") && $("use_inner_b_buff").checked);
+    var bBuffPct = bBuffUse ? Math.max(0, val("inner_b_buff")) : 0;
+
+    var buildEff = {
+      w: Math.round(buildOnly.w * (1 + bBuffPct / 100)),
+      i: Math.round(buildOnly.i * (1 + bBuffPct / 100)),
+      s: Math.round(buildOnly.s * (1 + bBuffPct / 100)),
+      f: Math.round(buildOnly.f * (1 + bBuffPct / 100))
+    };
+
+    // (2) 내성 개간지 자원 버프 %
+    var lBuffUse = ($("use_inner_l_buff") && $("use_inner_l_buff").checked);
+    var lBuffPct = lBuffUse ? Math.max(0, val("inner_l_buff")) : 0;
+
+    var innerLandEff = {
+      w: Math.round(innerLand.sum.w * (1 + lBuffPct / 100)),
+      i: Math.round(innerLand.sum.i * (1 + lBuffPct / 100)),
+      s: Math.round(innerLand.sum.s * (1 + lBuffPct / 100)),
+      f: Math.round(innerLand.sum.f * (1 + lBuffPct / 100))
+    };
+
+    // 4. 성지 건물 총 생산량 = 건물 유효 생산량 + 내성 토지 유효 생산량
+    var castleTotal = {
+      w: buildEff.w + innerLandEff.w,
+      i: buildEff.i + innerLandEff.i,
+      s: buildEff.s + innerLandEff.s,
+      f: buildEff.f + innerLandEff.f
+    };
+
+    // 2. 성지 생산량
+    var sacred = { w: Math.max(0, val("sacred_w")), i: Math.max(0, val("sacred_i")), s: Math.max(0, val("sacred_s")), f: Math.max(0, val("sacred_f")) };
+
+    // 3. 동맹 생산량
+    var ally = { w: Math.max(0, val("ally_w")), i: Math.max(0, val("ally_i")), s: Math.max(0, val("ally_s")), f: Math.max(0, val("ally_f")) };
+
+    // 5. 기타 생산량
+    var etc = { w: Math.max(0, val("etc_w")), i: Math.max(0, val("etc_i")), s: Math.max(0, val("etc_s")), f: Math.max(0, val("etc_f")) };
+
+    // 최종 생산량 (5개 항목 합산)
+    var totalYield = {
+      w: outerLand.sum.w + castleTotal.w + sacred.w + ally.w + etc.w,
+      i: outerLand.sum.i + castleTotal.i + sacred.i + ally.i + etc.i,
+      s: outerLand.sum.s + castleTotal.s + sacred.s + ally.s + etc.s,
+      f: outerLand.sum.f + castleTotal.f + sacred.f + ally.f + etc.f
+    };
+
+    return {
+      outerLand: outerLand,
+      innerLand: innerLand,
+      buildOnly: buildOnly,
+      buildEff: buildEff,
+      bBuffUse: bBuffUse,
+      bBuffPct: bBuffPct,
+      innerLandEff: innerLandEff,
+      lBuffUse: lBuffUse,
+      lBuffPct: lBuffPct,
+      castleTotal: castleTotal,
+      sacred: sacred,
+      ally: ally,
+      etc: etc,
+      total: totalYield
+    };
+  }
+
+  function renderProduction() {
+    var p = calcProduction();
+
+    // 1. 외성 영지 표 헤더 수치
+    if ($("land_sum_w")) $("land_sum_w").textContent = fmt(p.outerLand.sum.w);
+    if ($("land_sum_i")) $("land_sum_i").textContent = fmt(p.outerLand.sum.i);
+    if ($("land_sum_s")) $("land_sum_s").textContent = fmt(p.outerLand.sum.s);
+    if ($("land_sum_f")) $("land_sum_f").textContent = fmt(p.outerLand.sum.f);
+    var outerSumTotal = p.outerLand.sum.w + p.outerLand.sum.i + p.outerLand.sum.s + p.outerLand.sum.f;
+    if ($("land_sum_all")) $("land_sum_all").textContent = fmt(outerSumTotal);
+
+    if ($("land_cnt_w")) $("land_cnt_w").textContent = fmt(p.outerLand.cnt.w);
+    if ($("land_cnt_i")) $("land_cnt_i").textContent = fmt(p.outerLand.cnt.i);
+    if ($("land_cnt_s")) $("land_cnt_s").textContent = fmt(p.outerLand.cnt.s);
+    if ($("land_cnt_f")) $("land_cnt_f").textContent = fmt(p.outerLand.cnt.f);
+    if ($("land_cnt_all")) $("land_cnt_all").textContent = fmt(p.outerLand.cnt.all);
+
+    LAND_LEVELS.forEach(function (lvl) {
+      var k = lvl.k;
+      var d = landData[k] || { w: 0, i: 0, s: 0, f: 0 };
+      var rt = (d.w || 0) + (d.i || 0) + (d.s || 0) + (d.f || 0);
+      if ($("land_row_tot_" + k)) $("land_row_tot_" + k).textContent = rt;
+    });
+
+    // 내성 건물 개별 유효 생산량 표시
+    if ($("b_eff_w")) $("b_eff_w").textContent = fmt(p.buildEff.w);
+    if ($("b_eff_i")) $("b_eff_i").textContent = fmt(p.buildEff.i);
+    if ($("b_eff_s")) $("b_eff_s").textContent = fmt(p.buildEff.s);
+    if ($("b_eff_f")) $("b_eff_f").textContent = fmt(p.buildEff.f);
+
+    // 4. 성지 건물 총 생산량 요약 바 및 내성 토지 표 수치
+    if ($("castle_sum_w")) $("castle_sum_w").textContent = fmt(p.castleTotal.w);
+    if ($("castle_sum_i")) $("castle_sum_i").textContent = fmt(p.castleTotal.i);
+    if ($("castle_sum_s")) $("castle_sum_s").textContent = fmt(p.castleTotal.s);
+    if ($("castle_sum_f")) $("castle_sum_f").textContent = fmt(p.castleTotal.f);
+
+    if ($("inner_sum_w")) $("inner_sum_w").textContent = fmt(p.innerLandEff.w);
+    if ($("inner_sum_i")) $("inner_sum_i").textContent = fmt(p.innerLandEff.i);
+    if ($("inner_sum_s")) $("inner_sum_s").textContent = fmt(p.innerLandEff.s);
+    if ($("inner_sum_f")) $("inner_sum_f").textContent = fmt(p.innerLandEff.f);
+
+    if ($("inner_cnt_w")) $("inner_cnt_w").textContent = fmt(p.innerLand.cnt.w);
+    if ($("inner_cnt_i")) $("inner_cnt_i").textContent = fmt(p.innerLand.cnt.i);
+    if ($("inner_cnt_s")) $("inner_cnt_s").textContent = fmt(p.innerLand.cnt.s);
+    if ($("inner_cnt_f")) $("inner_cnt_f").textContent = fmt(p.innerLand.cnt.f);
+
+    var innerStatusText = p.innerLand.cnt.all + " / 24";
+    if (p.innerLand.cnt.all > 24) innerStatusText += " (초과)";
+    if ($("inner_cnt_all")) $("inner_cnt_all").textContent = innerStatusText;
+    if ($("inner_status_cell")) {
+      $("inner_status_cell").textContent = innerStatusText + "칸";
+      $("inner_status_cell").style.color = p.innerLand.cnt.all > 24 ? "var(--neg)" : "var(--ink-2)";
+    }
+
+    LAND_LEVELS.forEach(function (lvl) {
+      var k = lvl.k;
+      var d = innerLandData[k] || { w: 0, i: 0, s: 0, f: 0 };
+      var rt = (d.w || 0) + (d.i || 0) + (d.s || 0) + (d.f || 0);
+      if ($("inner_row_tot_" + k)) $("inner_row_tot_" + k).textContent = rt;
+    });
+
+    // 최상단 4대 자원 히어로 수치 카드
+    var vHtml = '';
+    vHtml += '<div class="hero"><span class="lab">총 목재 생산량</span><span class="val" style="color:var(--wood)">' + fmt(p.total.w) + '<span style="font-size:16px"> /h</span></span></div>';
+    vHtml += '<div class="hero"><span class="lab">총 철광 생산량</span><span class="val" style="color:var(--iron)">' + fmt(p.total.i) + '<span style="font-size:16px"> /h</span></span></div>';
+    vHtml += '<div class="hero"><span class="lab">총 석재 생산량</span><span class="val" style="color:var(--stone)">' + fmt(p.total.s) + '<span style="font-size:16px"> /h</span></span></div>';
+    vHtml += '<div class="hero"><span class="lab">총 군량 생산량</span><span class="val" style="color:var(--ink-2)">' + fmt(p.total.f) + '<span style="font-size:16px"> /h</span></span></div>';
+    if ($("prodVerdict")) $("prodVerdict").innerHTML = vHtml;
+
+    // 5대 요소 상세 명세 표 (풀위드)
+    var tHtml = '<table><thead><tr><th>구분</th><th>1. 외성 영지</th><th>4. 성지 건물 (건물+내성토지)</th><th>2. 성지 생산</th><th>3. 동맹 생산</th><th>5. 기타 생산</th><th>최종 생산량/h</th></tr></thead><tbody>';
+    tHtml += '<tr><td><i class="swatch" style="background:var(--wood)"></i>목재</td><td>' + fmt(p.outerLand.sum.w) + '</td><td>+' + fmt(p.castleTotal.w) + ' <span style="font-size:11px;color:var(--ink-3)">(건물 ' + fmt(p.buildEff.w) + (p.bBuffUse ? ' [' + p.bBuffPct + '%]' : '') + ' + 내성 ' + fmt(p.innerLandEff.w) + (p.lBuffUse ? ' [' + p.lBuffPct + '%]' : '') + ')</span></td><td>' + fmt(p.sacred.w) + '</td><td>' + fmt(p.ally.w) + '</td><td>' + fmt(p.etc.w) + '</td><td class="pos">' + fmt(p.total.w) + ' /h</td></tr>';
+    tHtml += '<tr><td><i class="swatch" style="background:var(--iron)"></i>철광</td><td>' + fmt(p.outerLand.sum.i) + '</td><td>+' + fmt(p.castleTotal.i) + ' <span style="font-size:11px;color:var(--ink-3)">(건물 ' + fmt(p.buildEff.i) + (p.bBuffUse ? ' [' + p.bBuffPct + '%]' : '') + ' + 내성 ' + fmt(p.innerLandEff.i) + (p.lBuffUse ? ' [' + p.lBuffPct + '%]' : '') + ')</span></td><td>' + fmt(p.sacred.i) + '</td><td>' + fmt(p.ally.i) + '</td><td>' + fmt(p.etc.i) + '</td><td class="pos">' + fmt(p.total.i) + ' /h</td></tr>';
+    tHtml += '<tr><td><i class="swatch" style="background:var(--stone)"></i>석재</td><td>' + fmt(p.outerLand.sum.s) + '</td><td>+' + fmt(p.castleTotal.s) + ' <span style="font-size:11px;color:var(--ink-3)">(건물 ' + fmt(p.buildEff.s) + (p.bBuffUse ? ' [' + p.bBuffPct + '%]' : '') + ' + 내성 ' + fmt(p.innerLandEff.s) + (p.lBuffUse ? ' [' + p.lBuffPct + '%]' : '') + ')</span></td><td>' + fmt(p.sacred.s) + '</td><td>' + fmt(p.ally.s) + '</td><td>' + fmt(p.etc.s) + '</td><td class="pos">' + fmt(p.total.s) + ' /h</td></tr>';
+    tHtml += '<tr><td><i class="swatch" style="background:var(--ink-2)"></i>군량</td><td>' + fmt(p.outerLand.sum.f) + '</td><td>+' + fmt(p.castleTotal.f) + ' <span style="font-size:11px;color:var(--ink-3)">(건물 ' + fmt(p.buildEff.f) + (p.bBuffUse ? ' [' + p.bBuffPct + '%]' : '') + ' + 내성 ' + fmt(p.innerLandEff.f) + (p.lBuffUse ? ' [' + p.lBuffPct + '%]' : '') + ')</span></td><td>' + fmt(p.sacred.f) + '</td><td>' + fmt(p.ally.f) + '</td><td>' + fmt(p.etc.f) + '</td><td class="pos">' + fmt(p.total.f) + ' /h</td></tr>';
+    tHtml += '</tbody></table>';
+    if ($("prodTableWrap")) $("prodTableWrap").innerHTML = tHtml;
+  }
+
+  /* ---------------- 로컬 저장 ---------------- */
+  var LS_KEY = "cheonha-planner-v1";
+
+  function saveState() {
+    try {
+      var optGoalTgtState = {};
+      var optGoalChkState = {};
+      optGoalBuildings.forEach(function (bName) {
+        if ($("opt_goal_tgt_" + bName)) optGoalTgtData[bName] = val("opt_goal_tgt_" + bName);
+        optGoalTgtState[bName] = optGoalTgtData[bName];
+        if ($("opt_goal_chk_" + bName)) optGoalChkData[bName] = $("opt_goal_chk_" + bName).checked;
+        optGoalChkState[bName] = optGoalChkData[bName];
+      });
+      OPT_RES_BUILDINGS.forEach(function (bName) {
+        if ($("opt_res_tgt_" + bName)) optResTgtData[bName] = val("opt_res_tgt_" + bName);
+      });
+
+      localStorage.setItem(LS_KEY, JSON.stringify({
+        v: 1, cur: cur, tgt: tgt, boxes: boxes, manual: manual, activeTab: activeTab,
+        have: { w: val("have_w"), i: val("have_i"), s: val("have_s") },
+        rate: { w: val("rate_w"), i: val("rate_i"), s: val("rate_s") },
+        dt: { lv: val("dt_lv"), n: val("dt_n") },
+        gd: { amt: val("gd_amt"), res: gdRes },
+        unit: val("unit"),
+        use: { box: $("use_box").checked, dt: $("use_dt").checked, gd: $("use_gd").checked },
+        landData: landData,
+        innerLandData: innerLandData,
+        useInnerBBuff: $("use_inner_b_buff") ? $("use_inner_b_buff").checked : false,
+        innerBBuff: val("inner_b_buff"),
+        useInnerLBuff: $("use_inner_l_buff") ? $("use_inner_l_buff").checked : false,
+        innerLBuff: val("inner_l_buff"),
+        sacred: { w: val("sacred_w"), i: val("sacred_i"), s: val("sacred_s"), f: val("sacred_f") },
+        ally: { w: val("ally_w"), i: val("ally_i"), s: val("ally_s"), f: val("ally_f") },
+        etc: { w: val("etc_w"), i: val("etc_i"), s: val("etc_s"), f: val("etc_f") },
+        prod: {
+          b1: { w: val("prod_b_w1"), i: val("prod_b_i1"), s: val("prod_b_s1"), f: val("prod_b_f1") },
+          b2: { w: val("prod_b_w2"), i: val("prod_b_i2"), s: val("prod_b_s2"), f: val("prod_b_f2") }
+        },
+        roiUseBuff: $("roi_use_buff") ? $("roi_use_buff").checked : true,
+        optResTgt: optResTgtData,
+        optGoalBuildings: optGoalBuildings,
+        optGoalTgt: optGoalTgtState,
+        optGoalChk: optGoalChkState
+      }));
+    } catch (e) { /* 시크릿 모드 등 저장이 막힌 환경에서는 그냥 넘어간다 */ }
+  }
+
+  function loadState() {
+    var d;
+    try { d = JSON.parse(localStorage.getItem(LS_KEY) || "null"); } catch (e) { return false; }
+    if (!d || d.v !== 1) return false;
+
+    if (d.activeTab) activeTab = d.activeTab;
+
+    BLIST.forEach(function (b) {
+      var mx = bMax(b);
+      if (d.cur && isFinite(d.cur[b])) cur[b] = Math.min(mx, Math.max(0, d.cur[b]));
+      if (d.tgt && isFinite(d.tgt[b])) tgt[b] = Math.min(mx, Math.max(cur[b], d.tgt[b]));
+      else tgt[b] = Math.max(tgt[b], cur[b]);
+    });
+    BOX_SIZES.forEach(function (s) {
+      if (d.boxes && isFinite(d.boxes[s])) boxes[s] = Math.max(0, Math.round(d.boxes[s]));
+    });
+    RES.forEach(function (r) {
+      if (d.have && isFinite(d.have[r])) $("have_" + r).value = Math.max(0, d.have[r]);
+      if (d.rate && isFinite(d.rate[r])) $("rate_" + r).value = Math.max(0, d.rate[r]);
+      if (d.manual && isFinite(d.manual[r])) manual[r] = Math.max(0, d.manual[r]);
+    });
+    if (d.dt) {
+      if (isFinite(d.dt.lv)) $("dt_lv").value = Math.max(0, d.dt.lv);
+      if (isFinite(d.dt.n)) $("dt_n").value = Math.max(0, d.dt.n);
+    }
+    if (d.gd) {
+      if (isFinite(d.gd.amt)) $("gd_amt").value = Math.max(0, d.gd.amt);
+      if (RES.indexOf(d.gd.res) >= 0) gdRes = d.gd.res;
+    }
+    if (isFinite(d.unit) && d.unit > 0) $("unit").value = d.unit;
+    if (d.use) {
+      $("use_box").checked = d.use.box !== false;
+      $("use_dt").checked = d.use.dt !== false;
+      $("use_gd").checked = d.use.gd !== false;
+    }
+    if (d.landData) landData = d.landData;
+    if (d.innerLandData) innerLandData = d.innerLandData;
+
+    if (d.useInnerBBuff !== undefined && $("use_inner_b_buff")) $("use_inner_b_buff").checked = d.useInnerBBuff;
+    if (isFinite(d.innerBBuff) && $("inner_b_buff")) $("inner_b_buff").value = d.innerBBuff;
+    if (d.useInnerLBuff !== undefined && $("use_inner_l_buff")) $("use_inner_l_buff").checked = d.useInnerLBuff;
+    if (isFinite(d.innerLBuff) && $("inner_l_buff")) $("inner_l_buff").value = d.innerLBuff;
+
+    if (d.sacred) {
+      if (isFinite(d.sacred.w)) $("sacred_w").value = d.sacred.w;
+      if (isFinite(d.sacred.i)) $("sacred_i").value = d.sacred.i;
+      if (isFinite(d.sacred.s)) $("sacred_s").value = d.sacred.s;
+      if (isFinite(d.sacred.f)) $("sacred_f").value = d.sacred.f;
+    }
+    if (d.ally) {
+      if (isFinite(d.ally.w)) $("ally_w").value = d.ally.w;
+      if (isFinite(d.ally.i)) $("ally_i").value = d.ally.i;
+      if (isFinite(d.ally.s)) $("ally_s").value = d.ally.s;
+      if (isFinite(d.ally.f)) $("ally_f").value = d.ally.f;
+    }
+    if (d.etc) {
+      if (isFinite(d.etc.w)) $("etc_w").value = d.etc.w;
+      if (isFinite(d.etc.i)) $("etc_i").value = d.etc.i;
+      if (isFinite(d.etc.s)) $("etc_s").value = d.etc.s;
+      if (isFinite(d.etc.f)) $("etc_f").value = d.etc.f;
+    }
+    if (d.prod) {
+      if (d.prod.b1) {
+        if (isFinite(d.prod.b1.w) && $("prod_b_w1")) $("prod_b_w1").value = d.prod.b1.w;
+        if (isFinite(d.prod.b1.i) && $("prod_b_i1")) $("prod_b_i1").value = d.prod.b1.i;
+        if (isFinite(d.prod.b1.s) && $("prod_b_s1")) $("prod_b_s1").value = d.prod.b1.s;
+        if (isFinite(d.prod.b1.f) && $("prod_b_f1")) $("prod_b_f1").value = d.prod.b1.f;
+      }
+      if (d.prod.b2) {
+        if (isFinite(d.prod.b2.w) && $("prod_b_w2")) $("prod_b_w2").value = d.prod.b2.w;
+        if (isFinite(d.prod.b2.i) && $("prod_b_i2")) $("prod_b_i2").value = d.prod.b2.i;
+        if (isFinite(d.prod.b2.s) && $("prod_b_s2")) $("prod_b_s2").value = d.prod.b2.s;
+        if (isFinite(d.prod.b2.f) && $("prod_b_f2")) $("prod_b_f2").value = d.prod.b2.f;
+      }
+    }
+    if (d.roiUseBuff !== undefined && $("roi_use_buff")) $("roi_use_buff").checked = d.roiUseBuff;
+
+    if (d.optResTgt) optResTgtData = d.optResTgt;
+    if (d.optGoalBuildings && Array.isArray(d.optGoalBuildings) && d.optGoalBuildings.length > 0) {
+      optGoalBuildings = d.optGoalBuildings;
+    } else if (d.optBuildings && Array.isArray(d.optBuildings)) {
+      optGoalBuildings = d.optBuildings.filter(function (b) { return OPT_RES_BUILDINGS.indexOf(b) < 0; });
+    }
+    if (d.optGoalTgt) optGoalTgtData = d.optGoalTgt;
+    else if (d.optTgt) optGoalTgtData = d.optTgt;
+
+    if (d.optGoalChk) optGoalChkData = d.optGoalChk;
+    else if (d.optChk) optGoalChkData = d.optChk;
+
+    return true;
+  }
+
+  function render() {
+    var pl = plan(), st = state();
+    var base = hoursFor(pl.total, st.have, st.rate);   // 상자·둔전·군둔을 안 쓴 경우
+    var al = allocate(pl, st);                          // 가진 것을 어디에 쓸지
+    var res = hoursFor(pl.total, al.have, st.rate);     // 실제로 걸리는 시간
+    syncRoster();
+    renderYield();
+    renderGdPick();
+    renderVerdict(pl, st, base, res, al);
+    renderAlloc(pl, st, base, res, al);
+    renderNeed(pl, st, base, res, al);
+    renderSwap(pl, st, al, res);
+    renderFoot();
+    saveState();
+  }
+
+  function refresh() { renderRoster(); render(); }
+
+  /* ---------------- setup ---------------- */
+  function setup() {
+    var restored = loadState();
+
+    $("boxGrid").innerHTML = BOX_SIZES.map(function (s) {
+      return '<div class="cell"><div class="rl">' + (s >= 10000 ? s / 10000 + "만" : s / 1000 + "천") +
+        '</div><input type="number" min="0" data-box="' + s + '" value="' + boxes[s] + '"></div>';
+    }).join("");
+
+    renderRoster();
+    render();
+    renderLandTable();
+    renderInnerLandTable();
+    renderProduction();
+    renderRoi();
+    renderOptResTable();
+    renderOptGoalTable();
+    renderOptStrategy();
+    switchTab(activeTab || "target");
+
+    if (restored) {
+      var note = document.createElement("p");
+      note.className = "hint";
+      note.textContent = "저장해 둔 입력값을 불러왔습니다.";
+      var wrap = $("rosterWrap");
+      wrap.parentNode.insertBefore(note, wrap);
+      setTimeout(function () { note.remove(); }, 6000);
+    }
+  }
+
+  /* ---------------- events ---------------- */
+  document.addEventListener("input", function (e) {
+    var t = e.target;
+    if (t.dataset && t.dataset.landk && t.dataset.landr) {
+      var lk = t.dataset.landk, lr = t.dataset.landr;
+      if (!landData[lk]) landData[lk] = {};
+      landData[lk][lr] = Math.max(0, parseInt(t.value, 10) || 0);
+      renderProduction();
+      return;
+    }
+    if (t.dataset && t.dataset.innerk && t.dataset.innerr) {
+      var ik = t.dataset.innerk, ir = t.dataset.innerr;
+      if (!innerLandData[ik]) innerLandData[ik] = {};
+      innerLandData[ik][ir] = Math.max(0, parseInt(t.value, 10) || 0);
+      renderProduction();
+      return;
+    }
+    if (t.dataset && t.dataset.box) {
+      boxes[t.dataset.box] = Math.max(0, parseInt(t.value, 10) || 0);
+      render(); return;
+    }
+    if (t.dataset && t.dataset.m) {
+      manual[t.dataset.m] = Math.max(0, parseInt(t.value, 10) || 0);
+      render(); return;
+    }
+    if (t.id && t.id.indexOf("manual_") === 0) {
+      var rKey = t.id.replace("manual_", "");
+      manual[rKey] = Math.max(0, parseInt(t.value, 10) || 0);
+      render(); return;
+    }
+    if (t.dataset && t.dataset.k) {
+      var n = t.dataset.n, v = Math.max(0, parseInt(t.value, 10) || 0);
+      // 목표는 현재 아래로 못 내려간다. 현재를 올리면 목표가 따라 올라간다.
+      if (t.dataset.k === "cur") { cur[n] = v; if (tgt[n] < v) tgt[n] = v; }
+      else tgt[n] = Math.max(v, cur[n]);
+      render(); return;
+    }
+    if (t.classList.contains("opt-res-cur") || (t.id && t.id.indexOf("opt_res_cur_") === 0)) {
+      var bName = t.dataset.b || t.id.replace("opt_res_cur_", "");
+      var newCur = Math.max(0, parseInt(t.value, 10) || 0);
+      cur[bName] = newCur;
+      var baseName = getBaseBuildingName(bName);
+      if (cur[baseName] !== undefined) cur[baseName] = newCur;
+
+      if (bName === "목공소 #1" && $("prod_b_w1")) $("prod_b_w1").value = newCur;
+      if (bName === "목공소 #2" && $("prod_b_w2")) $("prod_b_w2").value = newCur;
+      if (bName === "제련소 #1" && $("prod_b_i1")) $("prod_b_i1").value = newCur;
+      if (bName === "제련소 #2" && $("prod_b_i2")) $("prod_b_i2").value = newCur;
+      if (bName === "석공소 #1" && $("prod_b_s1")) $("prod_b_s1").value = newCur;
+      if (bName === "석공소 #2" && $("prod_b_s2")) $("prod_b_s2").value = newCur;
+      if (bName === "방앗간 #1" && $("prod_b_f1")) $("prod_b_f1").value = newCur;
+      if (bName === "방앗간 #2" && $("prod_b_f2")) $("prod_b_f2").value = newCur;
+
+      renderOptResTable();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+    if (t.classList.contains("opt-res-tgt") || (t.id && t.id.indexOf("opt_res_tgt_") === 0)) {
+      var bName = t.dataset.b || t.id.replace("opt_res_tgt_", "");
+      var newTgt = Math.max(getCurLv(bName), parseInt(t.value, 10) || 0);
+      optResTgtData[bName] = newTgt;
+      renderOptResTable();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+    if (t.classList.contains("opt-goal-cur") || (t.id && t.id.indexOf("opt_goal_cur_") === 0)) {
+      var bName = t.dataset.b || t.id.replace("opt_goal_cur_", "");
+      var newCur = Math.max(0, parseInt(t.value, 10) || 0);
+      cur[bName] = newCur;
+      var baseName = getBaseBuildingName(bName);
+      if (cur[baseName] !== undefined) cur[baseName] = newCur;
+
+      renderOptGoalTable();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+    if (t.classList.contains("opt-goal-tgt") || (t.id && t.id.indexOf("opt_goal_tgt_") === 0)) {
+      var bName = t.dataset.b || t.id.replace("opt_goal_tgt_", "");
+      var newTgt = Math.max(getCurLv(bName), parseInt(t.value, 10) || 0);
+      optGoalTgtData[bName] = newTgt;
+      renderOptGoalTable();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+    if (t.classList.contains("opt-goal-check")) {
+      var bName = t.dataset.b;
+      optGoalChkData[bName] = t.checked;
+      renderOptGoalTable();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+    if (t.id === "opt_goal_chk_all") {
+      var isChecked = t.checked;
+      optGoalBuildings.forEach(function (bName) { optGoalChkData[bName] = isChecked; });
+      renderOptGoalTable();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+    if (t.tagName === "INPUT") {
+      if (activeTab === "production") {
+        renderProduction();
+        saveState();
+      } else if (activeTab === "roi") {
+        renderRoi();
+        saveState();
+      } else if (activeTab === "building-opt") {
+        renderOptResTable();
+        renderOptGoalTable();
+        renderOptStrategy();
+        saveState();
+      } else {
+        render();
+        saveState();
+      }
+    }
+  });
+
+  document.addEventListener("change", function (e) {
+    if (e.target.id === "use_inner_b_buff" || e.target.id === "use_inner_l_buff") {
+      renderProduction();
+      saveState();
+      return;
+    }
+    if (e.target.id === "roi_use_buff") {
+      renderRoi();
+      saveState();
+      return;
+    }
+    if (e.target.id === "opt_chk_all") {
+      var isChecked = e.target.checked;
+      optBuildings.forEach(function (bName) {
+        optChkData[bName] = isChecked;
+        var chk = $("opt_chk_" + bName);
+        if (chk) chk.checked = isChecked;
+      });
+      syncOptTable();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+    if (e.target.classList.contains("opt-b-check") || (e.target.id && e.target.id.indexOf("opt_chk_") === 0)) {
+      syncOptTable();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+    if (e.target.type === "checkbox") {
+      if (activeTab === "production") renderProduction();
+      else if (activeTab === "roi") renderRoi();
+      else if (activeTab === "building-opt") { syncOptTable(); renderOptStrategy(); }
+      else render();
+      saveState();
+    }
+  });
+
+  /* ---------------- 최적 선투자 계획 탐색 (Tab 3 · Tab 4 공용) ---------------- */
+
+  // 탭4 목표 건물/현재 레벨/버프 설정의 "지금 상태" 지문. lastOptimalPlan이 이 지문과
+  // 달라지면 마지막 계산 결과가 낡았다는 뜻이므로 재계산을 유도한다.
+  function planSignature() {
+    var goalSig = optGoalBuildings.map(function (b) {
+      return b + ":" + (optGoalChkData[b] !== false ? 1 : 0) + ":" + (optGoalTgtData[b] || "");
+    }).join(",");
+    var curSig = OPT_RES_BUILDINGS.map(function (b) { return b + ":" + getCurLv(b); }).join(",");
+    var buffSig = [
+      $("roi_use_buff") && $("roi_use_buff").checked ? 1 : 0,
+      $("use_inner_b_buff") && $("use_inner_b_buff").checked ? 1 : 0,
+      val("inner_b_buff"),
+      $("use_inner_l_buff") && $("use_inner_l_buff").checked ? 1 : 0,
+      val("inner_l_buff")
+    ].join(",");
+    return goalSig + "|" + curSig + "|" + buffSig;
+  }
+
+  function hasSelectedGoalBuildings() {
+    return optGoalBuildings.length > 0 && optGoalBuildings.some(function (b) { return optGoalChkData[b] !== false; });
+  }
+
+  // lastOptimalPlan.steps를 "몇 번째로 무엇을 언제까지 올리는지" 상세 표로 렌더.
+  function preinvestStepsTableHtml(steps) {
+    if (!steps.length) return '<p class="hint">추가로 선투자할 필요가 없습니다 — 지금 상태가 이미 최적입니다.</p>';
+    var h = '<table><thead><tr><th>#</th><th>건물</th><th>구간</th><th>소요 자원(목/철/석)</th><th>이 스텝 소요시간</th><th>누적 선투자 시간</th></tr></thead><tbody>';
+    steps.forEach(function (s, idx) {
+      h += '<tr><td>' + (idx + 1) + '</td><td><b>' + s.bName + '</b></td><td>Lv' + s.fromLv + ' → Lv' + s.toLv + '</td>' +
+        '<td>' + fmt(s.stepCost.w) + ' / ' + fmt(s.stepCost.i) + ' / ' + fmt(s.stepCost.s) + '</td>' +
+        '<td>' + fmtHours(s.hStep) + '</td><td>' + fmtHours(s.cumHours) + '</td></tr>';
+    });
+    h += '</tbody></table>';
+    return h;
+  }
+
+  // lastOptimalPlan.steps를 건물 인스턴스별로 묶어 "Lv시작 → Lv도착" 히어로 카드로 렌더.
+  function preinvestHeroCardsHtml(plan) {
+    var byBuilding = {};
+    OPT_RES_BUILDINGS.forEach(function (b) {
+      var lv = getCurLv(b);
+      byBuilding[b] = { from: lv, to: lv };
+    });
+    plan.steps.forEach(function (s) {
+      if (!byBuilding[s.bName]) byBuilding[s.bName] = { from: s.fromLv, to: s.toLv };
+      byBuilding[s.bName].to = s.toLv;
+    });
+    var h = "";
+    OPT_RES_BUILDINGS.forEach(function (b) {
+      var info = byBuilding[b];
+      var improved = info.to > info.from;
+      var subText = improved ? "Lv " + info.from + " → Lv " + info.to + " 강추!" : "현재 레벨 유지 권장 (더 투자해도 총 시간이 줄지 않음)";
+      h += '<div class="hero"><span class="lab">' + b + '</span>';
+      h += '<span class="val">' + (improved ? 'Lv ' + info.from + ' → Lv ' + info.to : 'Lv ' + info.from) + '</span>';
+      h += '<span class="sub">' + subText + '</span></div>';
+    });
+    return h;
+  }
+
+  // "🎯 최적 선투자 계획 계산" / "⚡ 최적 선투자 계획 자동 계산" 버튼 공용 핸들러.
+  function runOptimalPreinvestSearch() {
+    initOptData();
+
+    if (!hasSelectedGoalBuildings()) {
+      lastOptimalPlan = { empty: true };
+      renderRoi();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+
+    var pCur = calcProduction();
+    var curRate = pCur.total;
+    var useBuff = $("roi_use_buff") ? $("roi_use_buff").checked : true;
+    var bBuffUse = ($("use_inner_b_buff") && $("use_inner_b_buff").checked);
+    var bBuffPct = (useBuff && bBuffUse) ? Math.max(0, val("inner_b_buff")) : 0;
+    var lBuffUse = ($("use_inner_l_buff") && $("use_inner_l_buff").checked);
+    var lBuffPct = (useBuff && lBuffUse) ? Math.max(0, val("inner_l_buff")) : 0;
+
+    var curLevels = {};
+    OPT_RES_BUILDINGS.forEach(function (bName) { curLevels[bName] = getCurLv(bName); });
+
+    var baselineGoalHours = simGoalUpgradePath(optGoalBuildings, curRate, bBuffPct).totalHours;
+    var sim = simulatePreinvestSteps(curLevels, null, "optimal", curRate, optGoalBuildings, bBuffPct, lBuffPct);
+    var finalGoalHours = simGoalUpgradePath(optGoalBuildings, sim.finalRate, bBuffPct).totalHours;
+
+    lastOptimalPlan = {
+      steps: sim.steps,
+      finalLevels: sim.finalLevels,
+      preinvestHours: sim.preinvestHours,
+      goalHoursAfter: finalGoalHours,
+      grandTotal: sim.preinvestHours + finalGoalHours,
+      baselineGrandTotal: baselineGoalHours,
+      signature: planSignature()
+    };
+
+    OPT_RES_BUILDINGS.forEach(function (bName) { optResTgtData[bName] = sim.finalLevels[bName]; });
+
+    renderOptResTable();
+    renderOptStrategy();
+    renderRoi();
+    saveState();
+  }
+
+  function applyRoiToProduction() {
+    if (!lastOptimalPlan || lastOptimalPlan.empty) return;
+    var idMap = {
+      "목공소 #1": "prod_b_w1", "목공소 #2": "prod_b_w2",
+      "제련소 #1": "prod_b_i1", "제련소 #2": "prod_b_i2",
+      "석공소 #1": "prod_b_s1", "석공소 #2": "prod_b_s2",
+      "방앗간 #1": "prod_b_f1", "방앗간 #2": "prod_b_f2"
+    };
+    OPT_RES_BUILDINGS.forEach(function (bName) {
+      var id = idMap[bName];
+      if (id && $(id)) $(id).value = lastOptimalPlan.finalLevels[bName];
+    });
+    switchTab("production");
+    renderProduction();
+  }
+
+  function renderRoi() {
+    if (!($("roiVerdict"))) return;
+    initOptData();
+
+    var bBuffUse = ($("use_inner_b_buff") && $("use_inner_b_buff").checked);
+    var bBuffPct = ($("roi_use_buff") && $("roi_use_buff").checked && bBuffUse) ? Math.max(0, val("inner_b_buff")) : 0;
+    if ($("roi_b_w")) $("roi_b_w").textContent = bBuffPct;
+    if ($("roi_b_i")) $("roi_b_i").textContent = bBuffPct;
+    if ($("roi_b_s")) $("roi_b_s").textContent = bBuffPct;
+    if ($("roi_b_f")) $("roi_b_f").textContent = bBuffPct;
+
+    if (!hasSelectedGoalBuildings()) {
+      $("roiVerdict").innerHTML = '<p class="hint">🏰 주요 건물 최적화 탭에서 목표 건물을 먼저 설정해주세요.</p>';
+      if ($("roiTableWrap")) $("roiTableWrap").innerHTML = '';
+      return;
+    }
+
+    if (!lastOptimalPlan || lastOptimalPlan.empty) {
+      $("roiVerdict").innerHTML = '<p class="hint">위의 "🎯 최적 선투자 계획 계산" 버튼을 눌러 시작하세요.</p>';
+      if ($("roiTableWrap")) $("roiTableWrap").innerHTML = '';
+      return;
+    }
+
+    var stale = lastOptimalPlan.signature !== planSignature();
+    var html = "";
+    if (stale) {
+      html += '<p class="hint" style="color:var(--accent); font-weight:600;">⚠️ 목표 건물/현재 레벨/버프 설정이 계산 이후 바뀌었습니다 — 버튼을 다시 눌러 재계산해 주세요. (아래는 마지막 계산 결과입니다)</p>';
+    }
+    html += preinvestHeroCardsHtml(lastOptimalPlan);
+    var saved = Math.max(0, lastOptimalPlan.baselineGrandTotal - lastOptimalPlan.grandTotal);
+    html += '<p style="margin-top:10px; font-size:13.5px;">💡 이 계획대로 선투자하면, 선투자 없이 바로 목표 건물을 올릴 때보다 총 <b style="color:var(--accent);">' + fmtHours(saved) + '</b> 더 빠르게 목표를 달성합니다.</p>';
+    $("roiVerdict").innerHTML = html;
+
+    if ($("roiTableWrap")) $("roiTableWrap").innerHTML = preinvestStepsTableHtml(lastOptimalPlan.steps);
+  }
+
+  /* ---------------- 주요 건물 MAX 달성 최적화 연산 엔진 (Tab 4: 2단 분리 개편) ---------------- */
+  var OPT_RES_BUILDINGS = [
+    "목공소 #1", "목공소 #2",
+    "제련소 #1", "제련소 #2",
+    "석공소 #1", "석공소 #2",
+    "방앗간 #1", "방앗간 #2"
+  ];
+  var DEFAULT_OPT_GOAL_BUILDINGS = ["군왕전", "창고", "징병소", "병영", "민가"];
+
+  var optResTgtData = {};
+  var optGoalBuildings = [];
+  var optGoalTgtData = {};
+  var optGoalChkData = {};
+
+  // "⚡ 최적 선투자 계획 자동 계산" 버튼(탭3·탭4 공용)의 마지막 계산 결과.
+  // simulatePreinvestSteps(..., "optimal", ...)의 반환값 + 계산 당시 목표 건물 스냅샷을 담는다.
+  var lastOptimalPlan = null;
+
+  function initOptData() {
+    OPT_RES_BUILDINGS.forEach(function (bName) {
+      if (optResTgtData[bName] === undefined) {
+        var baseName = getBaseBuildingName(bName);
+        var maxLv = bMax(baseName);
+        optResTgtData[bName] = Math.min(20, maxLv);
+      }
+    });
+
+    if (!optGoalBuildings || !optGoalBuildings.length) {
+      optGoalBuildings = DEFAULT_OPT_GOAL_BUILDINGS.slice();
+    }
+
+    optGoalBuildings.forEach(function (bName) {
+      var baseName = getBaseBuildingName(bName);
+      var maxLv = bMax(baseName);
+      if (optGoalTgtData[bName] === undefined) {
+        optGoalTgtData[bName] = tgt[bName] !== undefined ? tgt[bName] : (tgt[baseName] !== undefined ? tgt[baseName] : maxLv);
+      }
+      if (optGoalChkData[bName] === undefined) {
+        optGoalChkData[bName] = true;
+      }
+    });
+  }
+
+  // 리렌더로 새로 생성된 input을 focus()하면 브라우저가 값 전체를 선택 상태로 만들어,
+  // 바로 이어지는 다음 숫자 입력이 이어붙지 않고 전체를 덮어써 버린다(2자리 이상 입력 시
+  // 마지막 한 자리만 남는 원인). number 타입은 setSelectionRange를 지원하지 않으므로
+  // 잠시 text로 바꿔 커서를 끝으로 옮긴 뒤 원래 타입으로 되돌린다.
+  function restoreCaretToEnd(el) {
+    var len = el.value.length;
+    var origType = el.type;
+    try {
+      el.type = "text";
+      el.setSelectionRange(len, len);
+    } catch (e) { /* 무시 */ }
+    finally {
+      el.type = origType;
+    }
+  }
+
+  function renderOptResTable() {
+    if (!($("optResBuildingTableBody"))) return;
+    initOptData();
+
+    // 리렌더가 입력 중인 필드의 포커스/커서를 끊어먹지 않도록, 현재 포커스된 입력의
+    // id와 입력 중인 원본 문자열 값을 미리 기억해 두었다가 재사용/재포커스한다.
+    var activeEl = document.activeElement;
+    var activeId = activeEl && activeEl.id;
+    var activeVal = activeId ? activeEl.value : null;
+
+    var tbodyHtml = "";
+    var effKeyMap = { "목공소": "add_wood_production", "제련소": "add_iron_production", "석공소": "add_stone_production", "방앗간": "add_food_production" };
+    var rNameMap = { "목공소": "목재", "제련소": "철광", "석공소": "석재", "방앗간": "군량" };
+    var rColorMap = { "목공소": "var(--wood)", "제련소": "var(--iron)", "석공소": "var(--stone)", "방앗간": "var(--ink-2)" };
+
+    OPT_RES_BUILDINGS.forEach(function (bName) {
+      var curLv = getCurLv(bName);
+      var baseName = getBaseBuildingName(bName);
+      var maxLv = bMax(baseName);
+      var curInputId = "opt_res_cur_" + bName;
+      var tgtInputId = "opt_res_tgt_" + bName;
+
+      var savedTgt = optResTgtData[bName] !== undefined ? optResTgtData[bName] : Math.min(20, maxLv);
+      var tgtLv = Math.max(curLv, Math.min(maxLv, savedTgt));
+      optResTgtData[bName] = tgtLv;
+
+      var c = costRange(baseName, curLv, tgtLv);
+      var costTot = c.w + c.i + c.s;
+
+      var effKey = effKeyMap[baseName];
+      var effCur = effAt(baseName, curLv, effKey);
+      var effTgt = effAt(baseName, tgtLv, effKey);
+      var deltaEff = Math.max(0, effTgt - effCur);
+
+      // 지금 사용자가 타이핑 중인 칸이라면 클램프된 값 대신 입력 중인 원본 값을 그대로 보여준다
+      // (예: 10 -> 20 입력 시 "2"만 쳤을 때 min=10 클램프로 즉시 10으로 되돌아가는 것을 방지).
+      var curDisplayVal = (curInputId === activeId) ? activeVal : curLv;
+      var tgtDisplayVal = (tgtInputId === activeId) ? activeVal : tgtLv;
+
+      tbodyHtml += '<tr data-res-b="' + bName + '">';
+      tbodyHtml += '<td class="bname" data-tip="' + tipFor(baseName) + '"><b>' + bName + '</b></td>';
+      tbodyHtml += '<td><input type="number" id="' + curInputId + '" class="opt-res-cur" data-b="' + bName + '" value="' + curDisplayVal + '" min="0" max="' + maxLv + '" style="width:55px; padding:3px 5px; font-weight:bold;"> / ' + maxLv + '</td>';
+      tbodyHtml += '<td><input type="number" id="' + tgtInputId + '" class="opt-res-tgt" data-b="' + bName + '" value="' + tgtDisplayVal + '" min="' + curLv + '" max="' + maxLv + '" style="width:55px; padding:3px 5px; font-weight:bold;"> / ' + maxLv + '</td>';
+      tbodyHtml += '<td data-opt-res-c="w" style="color:var(--wood);">' + (c.w > 0 ? fmt(c.w) : '0') + '</td>';
+      tbodyHtml += '<td data-opt-res-c="i" style="color:var(--iron);">' + (c.i > 0 ? fmt(c.i) : '0') + '</td>';
+      tbodyHtml += '<td data-opt-res-c="s" style="color:var(--stone);">' + (c.s > 0 ? fmt(c.s) : '0') + '</td>';
+      tbodyHtml += '<td data-opt-res-c="tot"><b>' + fmt(costTot) + '</b></td>';
+      tbodyHtml += '<td style="color:' + rColorMap[baseName] + '; font-weight:bold;">' + (deltaEff > 0 ? '+' + fmt(deltaEff) + '/h (' + rNameMap[baseName] + ')' : '—') + '</td>';
+      tbodyHtml += '</tr>';
+    });
+
+    $("optResBuildingTableBody").innerHTML = tbodyHtml;
+
+    if (activeId) {
+      var newActive = $(activeId);
+      if (newActive) { newActive.focus(); restoreCaretToEnd(newActive); }
+    }
+  }
+
+  function renderOptGoalTable() {
+    if (!($("optGoalBuildingTableBody"))) return;
+    initOptData();
+
+    // renderOptResTable()과 동일한 이유로, 리렌더 중 포커스된 입력의 원본 값을 보존한다.
+    var activeEl = document.activeElement;
+    var activeId = activeEl && activeEl.id;
+    var activeVal = activeId ? activeEl.value : null;
+
+    var sel = $("optAddBuildingSelect");
+    if (sel) {
+      var prevVal = sel.value;
+      var availHtml = '<option value="">-- 건물 추가 선택 --</option>';
+      BLIST.forEach(function (bName) {
+        if (optGoalBuildings.indexOf(bName) < 0) {
+          availHtml += '<option value="' + bName + '">' + bName + ' (최대 Lv ' + bMax(bName) + ')</option>';
+        }
+      });
+      sel.innerHTML = availHtml;
+      if (prevVal) sel.value = prevVal;
+    }
+
+    var tbodyHtml = "";
+    var allChecked = optGoalBuildings.length > 0;
+
+    optGoalBuildings.forEach(function (bName, idx) {
+      var curLv = getCurLv(bName);
+      var baseName = getBaseBuildingName(bName);
+      var maxLv = bMax(baseName);
+      var tgtInputId = "opt_goal_tgt_" + bName;
+      var curInputId = "opt_goal_cur_" + bName;
+      var chkInputId = "opt_goal_chk_" + bName;
+
+      var savedTgt = optGoalTgtData[bName] !== undefined ? optGoalTgtData[bName] : (tgt[bName] !== undefined ? tgt[bName] : maxLv);
+      var tgtLv = Math.max(curLv, Math.min(maxLv, savedTgt));
+      optGoalTgtData[bName] = tgtLv;
+
+      var isChecked = optGoalChkData[bName] !== undefined ? optGoalChkData[bName] : true;
+      optGoalChkData[bName] = isChecked;
+      if (!isChecked) allChecked = false;
+
+      var c = costRange(baseName, curLv, tgtLv);
+      var costTot = c.w + c.i + c.s;
+      var isDefault = DEFAULT_OPT_GOAL_BUILDINGS.indexOf(bName) >= 0;
+
+      var upBtn = '<button type="button" class="ghost opt-goal-up" data-idx="' + idx + '" ' + (idx === 0 ? 'disabled style="opacity:0.3;cursor:default;padding:1px 4px;font-size:11px;"' : 'style="padding:1px 4px;font-size:11px;"') + ' title="우선순위 올려 1순위로 추진">▲</button>';
+      var downBtn = '<button type="button" class="ghost opt-goal-down" data-idx="' + idx + '" ' + (idx === optGoalBuildings.length - 1 ? 'disabled style="opacity:0.3;cursor:default;padding:1px 4px;font-size:11px;"' : 'style="padding:1px 4px;font-size:11px;"') + ' title="우선순위 내리기">▼</button>';
+
+      // 타이핑 중인 칸은 클램프된 값 대신 입력 중인 원본 값을 그대로 보여준다.
+      var curDisplayVal = (curInputId === activeId) ? activeVal : curLv;
+      var tgtDisplayVal = (tgtInputId === activeId) ? activeVal : tgtLv;
+
+      tbodyHtml += '<tr data-b="' + bName + '" class="' + (isChecked ? 'active' : '') + '">';
+      tbodyHtml += '<td style="text-align:center;"><input type="checkbox" id="' + chkInputId + '" class="opt-goal-check" data-b="' + bName + '" ' + (isChecked ? 'checked' : '') + '></td>';
+      tbodyHtml += '<td style="text-align:center; white-space:nowrap;"><b style="color:var(--ink-2); margin-right:4px;">' + (idx + 1) + '</b>' + upBtn + ' ' + downBtn + '</td>';
+      tbodyHtml += '<td class="bname" data-tip="' + tipFor(baseName) + '"><b>' + bName + '</b></td>';
+      tbodyHtml += '<td><input type="number" id="' + curInputId + '" class="opt-goal-cur" data-b="' + bName + '" value="' + curDisplayVal + '" min="0" max="' + maxLv + '" style="width:55px; padding:3px 5px; font-weight:bold;"> / ' + maxLv + '</td>';
+      tbodyHtml += '<td><input type="number" id="' + tgtInputId + '" class="opt-goal-tgt" data-b="' + bName + '" value="' + tgtDisplayVal + '" min="' + curLv + '" max="' + maxLv + '" style="width:55px; padding:3px 5px; font-weight:bold;"> / ' + maxLv + '</td>';
+      tbodyHtml += '<td data-opt-c="w" style="color:var(--wood);">' + (isChecked && c.w > 0 ? fmt(c.w) : '0') + '</td>';
+      tbodyHtml += '<td data-opt-c="i" style="color:var(--iron);">' + (isChecked && c.i > 0 ? fmt(c.i) : '0') + '</td>';
+      tbodyHtml += '<td data-opt-c="s" style="color:var(--stone);">' + (isChecked && c.s > 0 ? fmt(c.s) : '0') + '</td>';
+      tbodyHtml += '<td data-opt-c="tot"><b>' + (isChecked ? fmt(costTot) : '0') + '</b></td>';
+      tbodyHtml += '<td style="text-align:center;">' + (isDefault ? '—' : '<button type="button" class="ghost opt-goal-del" data-b="' + bName + '" style="padding:2px 6px; font-size:11px;" title="대상에서 삭제">✕</button>') + '</td>';
+      tbodyHtml += '</tr>';
+    });
+
+    if ($("opt_goal_chk_all")) $("opt_goal_chk_all").checked = allChecked;
+    $("optGoalBuildingTableBody").innerHTML = tbodyHtml;
+
+    if (activeId) {
+      var newActive = $(activeId);
+      if (newActive) { newActive.focus(); restoreCaretToEnd(newActive); }
+    }
+  }
+
+  function simGoalUpgradePath(buildingOrderList, startRate, bBuffPct) {
+    var curRate = { w: startRate.w || 0, i: startRate.i || 0, s: startRate.s || 0, f: startRate.f || 0 };
+    var initRate = { w: curRate.w, i: curRate.i, s: curRate.s, f: curRate.f };
+    var totalHours = 0;
+    var totalCost = { w: 0, i: 0, s: 0 };
+    var selectedList = [];
+
+    buildingOrderList.forEach(function (bName) {
+      var chk = $("opt_goal_chk_" + bName);
+      var isChecked = chk ? chk.checked : (optGoalChkData[bName] !== undefined ? optGoalChkData[bName] : true);
+      if (!isChecked) return;
+
+      var curLv = getCurLv(bName);
+      var baseName = getBaseBuildingName(bName);
+      var maxLv = bMax(baseName);
+      var tgtLv = Math.max(curLv, Math.min(maxLv, val("opt_goal_tgt_" + bName) || optGoalTgtData[bName] || maxLv));
+
+      if (tgtLv <= curLv) {
+        selectedList.push(bName + " (Lv." + curLv + " 달성됨)");
+        return;
+      }
+
+      selectedList.push(bName + " (Lv." + curLv + "→" + tgtLv + ")");
+
+      var c = costRange(baseName, curLv, tgtLv);
+      totalCost.w += c.w;
+      totalCost.i += c.i;
+      totalCost.s += c.s;
+
+      for (var L = curLv + 1; L <= tgtLv; L++) {
+        var stepCost = costRange(baseName, L - 1, L);
+        var hW = (stepCost.w > 0 && curRate.w > 0) ? (stepCost.w / curRate.w) : 0;
+        var hI = (stepCost.i > 0 && curRate.i > 0) ? (stepCost.i / curRate.i) : 0;
+        var hS = (stepCost.s > 0 && curRate.s > 0) ? (stepCost.s / curRate.s) : 0;
+        var hStep = Math.max(hW, hI, hS);
+        totalHours += isFinite(hStep) ? hStep : 0;
+      }
+    });
+
+    return {
+      totalHours: totalHours,
+      totalCost: totalCost,
+      selectedList: selectedList,
+      initRate: initRate,
+      endRate: curRate
+    };
+  }
+
+  // 자원 건물 8인스턴스 레벨 맵 -> 시간당 생산량(성내 건물 + 내성/외성 영지 + 성지·동맹·기타 전부 합산).
+  // renderOptStrategy()가 예전에 매번 인라인으로 조립하던 로직을 재사용 가능하게 뺀 것.
+  function rateFromResBuildingLevels(levels, bBuffPct, lBuffPct) {
+    var buildOnly = {
+      w: effAt("목공소", levels["목공소 #1"], "add_wood_production") + effAt("목공소", levels["목공소 #2"], "add_wood_production"),
+      i: effAt("제련소", levels["제련소 #1"], "add_iron_production") + effAt("제련소", levels["제련소 #2"], "add_iron_production"),
+      s: effAt("석공소", levels["석공소 #1"], "add_stone_production") + effAt("석공소", levels["석공소 #2"], "add_stone_production"),
+      f: effAt("방앗간", levels["방앗간 #1"], "add_food_production") + effAt("방앗간", levels["방앗간 #2"], "add_food_production")
+    };
+    var buildEff = {
+      w: Math.round(buildOnly.w * (1 + bBuffPct / 100)),
+      i: Math.round(buildOnly.i * (1 + bBuffPct / 100)),
+      s: Math.round(buildOnly.s * (1 + bBuffPct / 100)),
+      f: Math.round(buildOnly.f * (1 + bBuffPct / 100))
+    };
+
+    var innerLand = calcInnerLandProduction();
+    var innerLandEff = {
+      w: Math.round(innerLand.sum.w * (1 + lBuffPct / 100)),
+      i: Math.round(innerLand.sum.i * (1 + lBuffPct / 100)),
+      s: Math.round(innerLand.sum.s * (1 + lBuffPct / 100)),
+      f: Math.round(innerLand.sum.f * (1 + lBuffPct / 100))
+    };
+
+    var castleTotal = {
+      w: buildEff.w + innerLandEff.w,
+      i: buildEff.i + innerLandEff.i,
+      s: buildEff.s + innerLandEff.s,
+      f: buildEff.f + innerLandEff.f
+    };
+
+    var outerLand = calcLandProduction();
+    var sacred = { w: Math.max(0, val("sacred_w")), i: Math.max(0, val("sacred_i")), s: Math.max(0, val("sacred_s")), f: Math.max(0, val("sacred_f")) };
+    var ally = { w: Math.max(0, val("ally_w")), i: Math.max(0, val("ally_i")), s: Math.max(0, val("ally_s")), f: Math.max(0, val("ally_f")) };
+    var etc = { w: Math.max(0, val("etc_w")), i: Math.max(0, val("etc_i")), s: Math.max(0, val("etc_s")), f: Math.max(0, val("etc_f")) };
+
+    return {
+      w: outerLand.sum.w + castleTotal.w + sacred.w + ally.w + etc.w,
+      i: outerLand.sum.i + castleTotal.i + sacred.i + ally.i + etc.i,
+      s: outerLand.sum.s + castleTotal.s + sacred.s + ally.s + etc.s,
+      f: outerLand.sum.f + castleTotal.f + sacred.f + ally.f + etc.f
+    };
+  }
+
+  // 자원 건물 8인스턴스를 1레벨씩 순서대로 시뮬레이션한다(레벨업이 끝날 때마다 생산량을 갱신).
+  // mode "target": targetLevels까지만 진행. 매 스텝 "지금 가장 빨리 살 수 있는 스텝"부터 그리디로 커밋한다.
+  //   simGoalUpgradePath를 호출하지 않아 가벼우며, 입력할 때마다 라이브로 돌려도 된다.
+  // mode "optimal": targetLevels 없이, 다음 한 스텝이 "누적 선투자시간 + 그 스텝 + 목표건물 총 소요시간"의
+  //   합(그랜드 토탈)을 더 줄이는 동안 계속 진행하고, 어떤 다음 스텝도 그랜드 토탈을 줄이지 못하면 멈춘다.
+  function simulatePreinvestSteps(startLevels, targetLevels, mode, startRate, goalBuildingList, bBuffPct, lBuffPct) {
+    var EPS = 0.05;
+    var levels = {};
+    OPT_RES_BUILDINGS.forEach(function (b) { levels[b] = startLevels[b]; });
+
+    var rate = { w: startRate.w || 0, i: startRate.i || 0, s: startRate.s || 0, f: startRate.f || 0 };
+    var steps = [];
+    var elapsed = 0;
+
+    while (true) {
+      var candidates = OPT_RES_BUILDINGS.filter(function (b) {
+        var maxLv = bMax(getBaseBuildingName(b));
+        var cap = mode === "target" ? Math.min(maxLv, targetLevels[b] !== undefined ? targetLevels[b] : levels[b]) : maxLv;
+        return levels[b] < cap;
+      });
+      if (!candidates.length) break;
+
+      var evals = candidates.map(function (b) {
+        var baseName = getBaseBuildingName(b);
+        var lv = levels[b];
+        var stepCost = costRange(baseName, lv, lv + 1);
+        var hStep = Math.max(
+          (stepCost.w > 0 && rate.w > 0) ? stepCost.w / rate.w : 0,
+          (stepCost.i > 0 && rate.i > 0) ? stepCost.i / rate.i : 0,
+          (stepCost.s > 0 && rate.s > 0) ? stepCost.s / rate.s : 0
+        );
+        return { b: b, lv: lv, stepCost: stepCost, hStep: hStep };
+      });
+
+      var chosen;
+      if (mode === "target") {
+        chosen = evals.reduce(function (a, c) { return c.hStep < a.hStep ? c : a; });
+      } else {
+        var stopTotal = elapsed + simGoalUpgradePath(goalBuildingList, rate, bBuffPct).totalHours;
+        var best = null;
+        evals.forEach(function (c) {
+          var newLevels = {};
+          OPT_RES_BUILDINGS.forEach(function (b2) { newLevels[b2] = levels[b2]; });
+          newLevels[c.b] = c.lv + 1;
+          var newRate = rateFromResBuildingLevels(newLevels, bBuffPct, lBuffPct);
+          var newGoalHours = simGoalUpgradePath(goalBuildingList, newRate, bBuffPct).totalHours;
+          var grandTotal = (elapsed + c.hStep) + newGoalHours;
+          if (!best || grandTotal < best.grandTotal) {
+            best = { b: c.b, lv: c.lv, stepCost: c.stepCost, hStep: c.hStep, newLevels: newLevels, newRate: newRate, grandTotal: grandTotal };
+          }
+        });
+        if (best.grandTotal >= stopTotal - EPS) break;
+        chosen = best;
+      }
+
+      levels[chosen.b] = chosen.lv + 1;
+      rate = mode === "target" ? rateFromResBuildingLevels(levels, bBuffPct, lBuffPct) : chosen.newRate;
+      elapsed += chosen.hStep;
+      steps.push({ bName: chosen.b, fromLv: chosen.lv, toLv: chosen.lv + 1, stepCost: chosen.stepCost, hStep: chosen.hStep, cumHours: elapsed, rateAfter: rate });
+    }
+
+    return { steps: steps, finalLevels: levels, finalRate: rate, preinvestHours: elapsed };
+  }
+
+  function renderOptStrategy() {
+    if (!($("optStrategyVerdict"))) return;
+    initOptData();
+
+    var pCur = calcProduction();
+    var curRate = pCur.total;
+
+    var useBuff = $("roi_use_buff") ? $("roi_use_buff").checked : true;
+    var bBuffUse = ($("use_inner_b_buff") && $("use_inner_b_buff").checked);
+    var bBuffPct = (useBuff && bBuffUse) ? Math.max(0, val("inner_b_buff")) : 0;
+    var lBuffUse = ($("use_inner_l_buff") && $("use_inner_l_buff").checked);
+    var lBuffPct = (useBuff && lBuffUse) ? Math.max(0, val("inner_l_buff")) : 0;
+
+    var simA = simGoalUpgradePath(optGoalBuildings, curRate, bBuffPct);
+
+    if (simA.selectedList.length === 0) {
+      $("optStrategyVerdict").innerHTML = '<p class="hint">선택된 최종 목표 건물이 없습니다. 2번 표에서 비교할 건물의 체크박스를 선택해 주세요.</p>';
+      if ($("optDetailWrap")) $("optDetailWrap").innerHTML = '';
+      return;
+    }
+
+    var targetCostA = simA.totalCost;
+    var hDirectMax = simA.totalHours;
+
+    var resBuildingCost = { w: 0, i: 0, s: 0 };
+    var tempProdB = {
+      w1: val("opt_res_tgt_목공소 #1") || optResTgtData["목공소 #1"] || 20,
+      w2: val("opt_res_tgt_목공소 #2") || optResTgtData["목공소 #2"] || 20,
+      i1: val("opt_res_tgt_제련소 #1") || optResTgtData["제련소 #1"] || 20,
+      i2: val("opt_res_tgt_제련소 #2") || optResTgtData["제련소 #2"] || 20,
+      s1: val("opt_res_tgt_석공소 #1") || optResTgtData["석공소 #1"] || 20,
+      s2: val("opt_res_tgt_석공소 #2") || optResTgtData["석공소 #2"] || 20,
+      f1: val("opt_res_tgt_방앗간 #1") || optResTgtData["방앗간 #1"] || 20,
+      f2: val("opt_res_tgt_방앗간 #2") || optResTgtData["방앗간 #2"] || 20
+    };
+
+    var resKeyMap = {
+      "목공소 #1": "w1", "목공소 #2": "w2",
+      "제련소 #1": "i1", "제련소 #2": "i2",
+      "석공소 #1": "s1", "석공소 #2": "s2",
+      "방앗간 #1": "f1", "방앗간 #2": "f2"
+    };
+
+    var resUpgrades = [];
+    OPT_RES_BUILDINGS.forEach(function (bName) {
+      var curLv = getCurLv(bName);
+      var baseName = getBaseBuildingName(bName);
+      var targetVal = tempProdB[resKeyMap[bName]] !== undefined ? tempProdB[resKeyMap[bName]] : curLv;
+      var tgtLv = Math.max(curLv, targetVal);
+      if (tgtLv > curLv) {
+        var c = costRange(baseName, curLv, tgtLv);
+        resBuildingCost.w += c.w;
+        resBuildingCost.i += c.i;
+        resBuildingCost.s += c.s;
+        resUpgrades.push(bName + " (Lv." + curLv + "→" + tgtLv + ")");
+      }
+    });
+
+    // 자원 건물이 선투자 도중 레벨업할 때마다 생산량이 오르는 것을 반영한 정밀 계산
+    // (예전에는 resBuildingCost.r / curRate.r 로 뭉텅이 계산해 실제보다 느리게 나왔음).
+    var curLevels = {};
+    OPT_RES_BUILDINGS.forEach(function (bName) { curLevels[bName] = getCurLv(bName); });
+    var targetLevels = {};
+    OPT_RES_BUILDINGS.forEach(function (bName) {
+      var targetVal = tempProdB[resKeyMap[bName]] !== undefined ? tempProdB[resKeyMap[bName]] : curLevels[bName];
+      targetLevels[bName] = Math.max(curLevels[bName], targetVal);
+    });
+
+    var preinvestSim = simulatePreinvestSteps(curLevels, targetLevels, "target", curRate, optGoalBuildings, bBuffPct, lBuffPct);
+    var hResUpMax = preinvestSim.preinvestHours;
+    var newRateB = preinvestSim.finalRate;
+
+    var simB = simGoalUpgradePath(optGoalBuildings, newRateB, bBuffPct);
+    var hTargetAfterMax = simB.totalHours;
+
+    var hRoiTotal = hResUpMax + hTargetAfterMax;
+    var diffHours = hDirectMax - hRoiTotal;
+    var isRoiBetter = diffHours > 0.05;
+
+    // Break-even Payback Calculation for Group 1 Resource Buildings Pre-investment
+    var deltaRate = {
+      w: Math.max(0, newRateB.w - curRate.w),
+      i: Math.max(0, newRateB.i - curRate.i),
+      s: Math.max(0, newRateB.s - curRate.s)
+    };
+
+    var paybackW = resBuildingCost.w > 0 ? (deltaRate.w > 0 ? resBuildingCost.w / deltaRate.w : Infinity) : 0;
+    var paybackI = resBuildingCost.i > 0 ? (deltaRate.i > 0 ? resBuildingCost.i / deltaRate.i : Infinity) : 0;
+    var paybackS = resBuildingCost.s > 0 ? (deltaRate.s > 0 ? resBuildingCost.s / deltaRate.s : Infinity) : 0;
+
+    var validPaybacks = [];
+    if (resBuildingCost.w > 0 && isFinite(paybackW)) validPaybacks.push(paybackW);
+    if (resBuildingCost.i > 0 && isFinite(paybackI)) validPaybacks.push(paybackI);
+    if (resBuildingCost.s > 0 && isFinite(paybackS)) validPaybacks.push(paybackS);
+
+    var maxPaybackHours = validPaybacks.length > 0 ? Math.max.apply(null, validPaybacks) : 0;
+
+    // Verdict HTML
+    var html = '';
+    html += '<div style="display:grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap:16px;">';
+
+    // Option A Card
+    html += '<div style="background:var(--paper); border:1px solid var(--line); padding:16px; border-radius:3px;">';
+    html += '<h3 style="margin:0 0 8px 0; font-size:15px; color:var(--ink);">🏰 옵션 A: 자원 건물 선투자 없이 즉시 목표 건물만 올리기</h3>';
+    html += '<div style="font-size:12.5px; color:var(--ink-2); line-height:1.7;">';
+    html += '<div>• 대상 건물: <b>' + simA.selectedList.join(', ') + '</b></div>';
+    html += '<div>• 총 소요 자원: 목 ' + fmt(targetCostA.w) + ' / 철 ' + fmt(targetCostA.i) + ' / 석 ' + fmt(targetCostA.s) + '</div>';
+    html += '<div>• 현재 시간당 생산량: 목 ' + fmt(curRate.w) + ' / 철 ' + fmt(curRate.i) + ' / 석 ' + fmt(curRate.s) + '/h</div>';
+    html += '<div style="margin-top:12px; font-size:16px; font-weight:700; color:var(--ink);">⏱️ 총 달성 소요 시간: <span style="color:' + (isRoiBetter ? "var(--neg)" : "var(--wood)") + ';">' + fmtHours(hDirectMax) + '</span></div>';
+    html += '</div></div>';
+
+    // Option B Card
+    html += '<div style="background:var(--paper); border:1px solid ' + (isRoiBetter ? "var(--accent)" : "var(--line)") + '; padding:16px; border-radius:3px;">';
+    html += '<h3 style="margin:0 0 8px 0; font-size:15px; color:' + (isRoiBetter ? "var(--accent)" : "var(--ink)") + ';">⚡ 옵션 B: 자원 건물 8개 먼저 선투자 후 목표 건물 올리기 ' + (isRoiBetter ? '(강력 추천)' : '') + '</h3>';
+    html += '<div style="font-size:12.5px; color:var(--ink-2); line-height:1.7;">';
+    html += '<div>• 1단계 자원 건물 선투자: ' + (resUpgrades.length ? resUpgrades.join(', ') : '선투자 필요 없음') + ' (소요: ' + fmtHours(hResUpMax) + ')</div>';
+    html += '<div>• 선투자 후 신규 생산량: 목 ' + fmt(newRateB.w) + ' (+ ' + fmt(newRateB.w - curRate.w) + ') / 철 ' + fmt(newRateB.i) + ' (+ ' + fmt(newRateB.i - curRate.i) + ') / 석 ' + fmt(newRateB.s) + ' (+ ' + fmt(newRateB.s - curRate.s) + ')/h</div>';
+    html += '<div>• 2단계 최종 목표 건물 달성 소요: ' + fmtHours(hTargetAfterMax) + '</div>';
+    html += '<div style="margin-top:12px; font-size:16px; font-weight:700; color:' + (isRoiBetter ? "var(--accent)" : "var(--ink)") + ';">⏱️ 총 달성 소요 시간: <span style="color:' + (isRoiBetter ? "var(--accent)" : "var(--ink)") + ';">' + fmtHours(hRoiTotal) + ' (선투자 ' + fmtHours(hResUpMax) + ' + 목표 ' + fmtHours(hTargetAfterMax) + ')</span></div>';
+    html += '</div></div>';
+
+    html += '</div>';
+
+    // Banner
+    var verdictBg = isRoiBetter ? "var(--accent)" : "var(--wood)";
+    var verdictText = isRoiBetter ?
+      '🏆 <b>최적화 전략 추천</b>: 1번 표의 자원 건물 8개를 설정된 레벨까지 먼저 올려 생산량을 확충한 뒤 목표 건물을 추진하는 것이 총 <b style="color:var(--accent); font-size:15px;">' + fmtHours(diffHours) + ' 더 빠르게</b> 목표 건물 MAX에 도달합니다!' :
+      '🏰 <b>최적화 전략 추천</b>: 현재 생산량이 충분하여 자원 건물 선투자 없이 <b style="color:var(--wood); font-size:15px;">2번 표의 목표 건물을 즉시 바로 올리는 것이 ' + fmtHours(-diffHours) + ' 더 빠릅니다!</b>';
+
+    html += '<div style="margin-top:16px; background:var(--sunk); padding:14px 16px; border-radius:3px; border-left:5px solid ' + verdictBg + '; font-size:14px; line-height:1.6;">' + verdictText + '</div>';
+
+    // Break-even Payback Section (요청된 손익분기점 문구 및 자원별 상세 표)
+    html += '<div style="margin-top:14px; background:var(--paper); border:1px solid var(--line); padding:14px 16px; border-radius:3px;">';
+    html += '<div style="font-size:14px; font-weight:700; color:var(--ink); margin-bottom:8px; display:flex; align-items:center; gap:6px;">📈 자원 건물 선투자 본전 회수 (손익분기점) 분석</div>';
+    
+    var paybackSummaryText = (resBuildingCost.w === 0 && resBuildingCost.i === 0 && resBuildingCost.s === 0)
+      ? '💡 <b>1번 표 자원 건물 선투자가 필요하지 않은 상태입니다.</b>'
+      : '💡 <b>선투자를 한다면 <span style="color:var(--accent); font-size:15px; font-weight:800;">' + fmtFullTime(maxPaybackHours) + '</span> 뒤에는 본전을 회수(손익분기점)할 수 있습니다.</b>';
+
+    html += '<div style="font-size:13.5px; color:var(--ink); line-height:1.6; margin-bottom:12px; background:var(--sunk); padding:10px 12px; border-radius:3px;">' + paybackSummaryText + '</div>';
+
+    html += '<div class="tablewrap">';
+    html += '<table class="compact-table" style="font-size:12.5px;"><thead><tr><th>자원 종류</th><th>1번 표 선투자 소모 자원</th><th>선투자 후 생산 증가량</th><th>자원별 본전 회수 소요시간 (손익분기점)</th><th>회수 완료 예정 시각</th></tr></thead><tbody>';
+    html += '<tr><td><i class="swatch" style="background:var(--wood)"></i>목재</td><td style="color:var(--wood); font-weight:bold;">' + fmt(resBuildingCost.w) + '</td><td style="color:var(--wood); font-weight:bold;">' + (deltaRate.w > 0 ? '+' + fmt(deltaRate.w) + '/h' : '—') + '</td><td><b style="color:' + (isFinite(paybackW) && paybackW > 0 ? 'var(--accent)' : 'var(--ink)') + '">' + fmtFullTime(paybackW) + '</b></td><td>' + (paybackW > 0 && isFinite(paybackW) ? endTime(paybackW) : '—') + '</td></tr>';
+    html += '<tr><td><i class="swatch" style="background:var(--iron)"></i>철광</td><td style="color:var(--iron); font-weight:bold;">' + fmt(resBuildingCost.i) + '</td><td style="color:var(--iron); font-weight:bold;">' + (deltaRate.i > 0 ? '+' + fmt(deltaRate.i) + '/h' : '—') + '</td><td><b style="color:' + (isFinite(paybackI) && paybackI > 0 ? 'var(--accent)' : 'var(--ink)') + '">' + fmtFullTime(paybackI) + '</b></td><td>' + (paybackI > 0 && isFinite(paybackI) ? endTime(paybackI) : '—') + '</td></tr>';
+    html += '<tr><td><i class="swatch" style="background:var(--stone)"></i>석재</td><td style="color:var(--stone); font-weight:bold;">' + fmt(resBuildingCost.s) + '</td><td style="color:var(--stone); font-weight:bold;">' + (deltaRate.s > 0 ? '+' + fmt(deltaRate.s) + '/h' : '—') + '</td><td><b style="color:' + (isFinite(paybackS) && paybackS > 0 ? 'var(--accent)' : 'var(--ink)') + '">' + fmtFullTime(paybackS) + '</b></td><td>' + (paybackS > 0 && isFinite(paybackS) ? endTime(paybackS) : '—') + '</td></tr>';
+    html += '</tbody></table></div>';
+    html += '</div>';
+
+    // 둔전 배율 보너스 비교 (선투자 전 vs 후) — 자원 건물 #1·#2가 20레벨에 도달하면
+    // 둔전(하루 최대 6회, 자원 몰수급) 1회당 획득량이 채당 +25%(최대 +50%)로 늘어난다.
+    var dtLv = Math.max(0, Math.round(val("dt_lv")));
+    var dtUse = $("use_dt") && $("use_dt").checked;
+    var dtN = dtUse ? Math.max(0, Math.round(val("dt_n"))) : 0;
+
+    if (dtLv > 0) {
+      var dtBase = dtLv * 10000;
+      var dtRows = RES.map(function (r) {
+        var baseName = DT_BUILDING[r];
+        var cur1 = getCurLv(baseName + " #1"), cur2 = getCurLv(baseName + " #2");
+        var new1 = tempProdB[r + "1"], new2 = tempProdB[r + "2"];
+        var curPct = (cur1 >= 20 ? 25 : 0) + (cur2 >= 20 ? 25 : 0);
+        var newPct = (new1 >= 20 ? 25 : 0) + (new2 >= 20 ? 25 : 0);
+        var curY = Math.round(dtBase * (1 + curPct / 100));
+        var newY = Math.round(dtBase * (1 + newPct / 100));
+        return { r: r, curPct: curPct, newPct: newPct, curY: curY, newY: newY, deltaPer: newY - curY };
+      });
+
+      var dtImproved = dtRows.some(function (row) { return row.deltaPer > 0; });
+
+      if (dtImproved) {
+        html += '<div style="margin-top:14px; background:var(--paper); border:1px solid var(--line); padding:14px 16px; border-radius:3px;">';
+        html += '<div style="font-size:14px; font-weight:700; color:var(--ink); margin-bottom:4px; display:flex; align-items:center; gap:6px;">🌾 선투자 시 둔전 배율 보너스 변화</div>';
+        html += '<p class="hint" style="margin:0 0 10px 0;">자원 생산 건물은 #1·#2가 각각 20레벨에 도달할 때마다 둔전(개간지) 1회 획득량이 +25%씩(최대 +50%) 늘어납니다. 좌측 콘솔의 개간지 레벨(Lv ' + dtLv + ') 기준으로, 선투자를 완료하면 둔전 1회당 획득량이 아래처럼 바뀝니다.</p>';
+        html += '<div class="tablewrap"><table class="compact-table" style="font-size:12.5px;"><thead><tr><th>자원</th><th>현재 배율</th><th>선투자 후 배율</th><th>둔전 1회당 획득량 (현재 → 이후)</th>' + (dtN > 0 ? '<th>설정한 둔전 ' + dtN + '회 전부를 이 자원에 쓴다면</th>' : '') + '</tr></thead><tbody>';
+        dtRows.forEach(function (row) {
+          if (row.deltaPer <= 0 && row.curPct === row.newPct) return;
+          html += '<tr><td style="color:' + RVAR[row.r] + '; font-weight:bold;">' + RNAME[row.r] + '</td>';
+          html += '<td>+' + row.curPct + '%</td>';
+          html += '<td style="font-weight:bold; color:' + (row.newPct > row.curPct ? 'var(--accent)' : 'var(--ink)') + ';">+' + row.newPct + '%</td>';
+          html += '<td>' + fmt(row.curY) + ' → <b>' + fmt(row.newY) + '</b>' + (row.deltaPer > 0 ? ' (+' + fmt(row.deltaPer) + ')' : '') + '</td>';
+          if (dtN > 0) html += '<td><b style="color:var(--accent);">' + (row.deltaPer > 0 ? '+' + fmt(row.deltaPer * dtN) : '—') + '</b></td>';
+          html += '</tr>';
+        });
+        html += '</tbody></table></div>';
+        html += '<p class="hint" style="margin:8px 0 0 0;">※ 이 이득은 위 소요 시간 비교(⏱️)에는 포함되어 있지 않은 별도 보너스입니다 — 둔전은 연속 생산량이 아니라 개별 사용 시점에 몰아서 받는 자원이기 때문입니다.</p>';
+        html += '</div>';
+      }
+    }
+
+    $("optStrategyVerdict").innerHTML = html;
+
+    // Detailed Table HTML
+    var dHtml = '<table><thead><tr><th>자원 종류</th><th>필요 총 자원</th><th>옵션 A (자원 건물 선투자 없이 즉시 달성)</th><th>옵션 B (자원 건물 선투자 소요 + 목표 달성 소요)</th><th>옵션 B 총 시간</th><th>전략적 시간 단축 효과</th></tr></thead><tbody>';
+    dHtml += '<tr><td><i class="swatch" style="background:var(--wood)"></i>목재</td><td>' + fmt(targetCostA.w) + '</td><td>' + fmtHours(hDirectMax) + '</td><td>' + fmtHours(hResUpMax) + ' + ' + fmtHours(hTargetAfterMax) + '</td><td>' + fmtHours(hRoiTotal) + '</td><td class="pos">' + (hDirectMax > hRoiTotal ? '-' + fmtHours(hDirectMax - hRoiTotal) + ' 단축' : '—') + '</td></tr>';
+    dHtml += '<tr><td><i class="swatch" style="background:var(--iron)"></i>철광</td><td>' + fmt(targetCostA.i) + '</td><td>' + fmtHours(hDirectMax) + '</td><td>' + fmtHours(hResUpMax) + ' + ' + fmtHours(hTargetAfterMax) + '</td><td>' + fmtHours(hRoiTotal) + '</td><td class="pos">' + (hDirectMax > hRoiTotal ? '-' + fmtHours(hDirectMax - hRoiTotal) + ' 단축' : '—') + '</td></tr>';
+    dHtml += '<tr><td><i class="swatch" style="background:var(--stone)"></i>석재</td><td>' + fmt(targetCostA.s) + '</td><td>' + fmtHours(hDirectMax) + '</td><td>' + fmtHours(hResUpMax) + ' + ' + fmtHours(hTargetAfterMax) + '</td><td>' + fmtHours(hRoiTotal) + '</td><td class="pos">' + (hDirectMax > hRoiTotal ? '-' + fmtHours(hDirectMax - hRoiTotal) + ' 단축' : '—') + '</td></tr>';
+    dHtml += '</tbody></table>';
+
+    if ($("optDetailWrap")) $("optDetailWrap").innerHTML = dHtml;
+
+    // "⚡ 최적 선투자 계획 자동 계산" 결과(있다면) — 탭3과 동일한 lastOptimalPlan을 공유한다.
+    if ($("optPreinvestOrderWrap")) {
+      if (!lastOptimalPlan || lastOptimalPlan.empty) {
+        $("optPreinvestOrderWrap").innerHTML = '';
+      } else {
+        var orderStale = lastOptimalPlan.signature !== planSignature();
+        var orderHtml = '<div style="border-top:1px dashed var(--line); padding-top:10px;">';
+        orderHtml += '<div style="font-size:13px; font-weight:700; color:var(--ink); margin-bottom:6px;">⚡ 자동 계산된 최적 선투자 순서</div>';
+        if (orderStale) {
+          orderHtml += '<p class="hint" style="color:var(--accent); font-weight:600;">⚠️ 계산 이후 설정이 바뀌었습니다 — 다시 계산해 주세요. (아래는 마지막 계산 결과)</p>';
+        }
+        orderHtml += '<div class="tablewrap">' + preinvestStepsTableHtml(lastOptimalPlan.steps) + '</div>';
+        orderHtml += '</div>';
+        $("optPreinvestOrderWrap").innerHTML = orderHtml;
+      }
+    }
+  }
+
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest ? e.target.closest("button") : null;
+    if (!t) return;
+
+    if (t.classList.contains("tab-btn")) {
+      switchTab(t.dataset.tab);
+      return;
+    }
+
+    if (t.id === "btnApplyProd") {
+      var p = calcProduction();
+      $("rate_w").value = p.total.w;
+      $("rate_i").value = p.total.i;
+      $("rate_s").value = p.total.s;
+      switchTab("target");
+      render();
+      return;
+    }
+
+    if (t.id === "btnApplyRoi") {
+      applyRoiToProduction();
+      return;
+    }
+
+    if (t.id === "btnCalcOptimalRoi" || t.id === "btnOptCalcOptimal") {
+      runOptimalPreinvestSearch();
+      return;
+    }
+
+    if (t.classList.contains("opt-res-preset-btn")) {
+      var targetLv = parseInt(t.dataset.lv, 10) || 20;
+      OPT_RES_BUILDINGS.forEach(function (bName) {
+        var baseName = getBaseBuildingName(bName);
+        optResTgtData[bName] = Math.min(targetLv, bMax(baseName));
+      });
+      renderOptResTable();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+
+    if (t.id === "btnOptImportResPage2") {
+      OPT_RES_BUILDINGS.forEach(function (bName) {
+        var curLv = getCurLv(bName);
+        optResTgtData[bName] = Math.max(curLv, optResTgtData[bName] || 20);
+      });
+      renderOptResTable();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+
+    if (t.id === "btnOptImportPage1") {
+      optGoalBuildings.forEach(function (bName) {
+        var baseName = getBaseBuildingName(bName);
+        var tLv = tgt[bName] !== undefined ? tgt[bName] : (tgt[baseName] !== undefined ? tgt[baseName] : bMax(baseName));
+        optGoalTgtData[bName] = tLv;
+        if (tLv > getCurLv(bName)) optGoalChkData[bName] = true;
+      });
+      renderOptGoalTable();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+
+    if (t.id === "btnOptExportPage1") {
+      optGoalBuildings.forEach(function (bName) {
+        if (optGoalChkData[bName]) {
+          var targetVal = optGoalTgtData[bName] || bMax(getBaseBuildingName(bName));
+          var baseName = getBaseBuildingName(bName);
+          tgt[bName] = targetVal;
+          tgt[baseName] = Math.max(tgt[baseName] || 0, targetVal);
+        }
+      });
+      renderRoster();
+      render();
+      renderOptGoalTable();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+
+    if (t.id === "btnOptAddBuilding") {
+      var sel = $("optAddBuildingSelect");
+      if (sel && sel.value) {
+        var bName = sel.value;
+        if (optGoalBuildings.indexOf(bName) < 0) {
+          optGoalBuildings.push(bName);
+          optGoalChkData[bName] = true;
+          optGoalTgtData[bName] = bMax(getBaseBuildingName(bName));
+        }
+        renderOptGoalTable();
+        renderOptStrategy();
+        saveState();
+      }
+      return;
+    }
+
+    if (t.classList.contains("opt-goal-up")) {
+      var idx = parseInt(t.dataset.idx, 10);
+      if (isFinite(idx) && idx > 0 && idx < optGoalBuildings.length) {
+        var temp = optGoalBuildings[idx];
+        optGoalBuildings[idx] = optGoalBuildings[idx - 1];
+        optGoalBuildings[idx - 1] = temp;
+        renderOptGoalTable();
+        renderOptStrategy();
+        saveState();
+      }
+      return;
+    }
+
+    if (t.classList.contains("opt-goal-down")) {
+      var idx = parseInt(t.dataset.idx, 10);
+      if (isFinite(idx) && idx >= 0 && idx < optGoalBuildings.length - 1) {
+        var temp = optGoalBuildings[idx];
+        optGoalBuildings[idx] = optGoalBuildings[idx + 1];
+        optGoalBuildings[idx + 1] = temp;
+        renderOptGoalTable();
+        renderOptStrategy();
+        saveState();
+      }
+      return;
+    }
+
+    if (t.classList.contains("opt-goal-del")) {
+      var bName = t.dataset.b;
+      var idx = optGoalBuildings.indexOf(bName);
+      if (idx >= 0) {
+        optGoalBuildings.splice(idx, 1);
+        delete optGoalChkData[bName];
+        delete optGoalTgtData[bName];
+        renderOptGoalTable();
+        renderOptStrategy();
+        saveState();
+      }
+      return;
+    }
+
+    if (t.classList.contains("opt-preset-btn")) {
+      var preset = t.dataset.preset;
+      DEFAULT_OPT_GOAL_BUILDINGS.forEach(function (bName) {
+        if (optGoalBuildings.indexOf(bName) < 0) optGoalBuildings.push(bName);
+      });
+      optGoalBuildings.forEach(function (bName) {
+        var maxLv = bMax(getBaseBuildingName(bName));
+        var baseName = getBaseBuildingName(bName);
+        if (preset === "all") {
+          optGoalChkData[bName] = true;
+          optGoalTgtData[bName] = maxLv;
+        } else if (preset === "palace") {
+          var isTarget = (baseName === "군왕전" || baseName === "창고");
+          optGoalChkData[bName] = isTarget;
+          optGoalTgtData[bName] = isTarget ? 20 : maxLv;
+        } else if (preset === "military") {
+          var isTarget = (baseName === "징병소" || baseName === "병영" || baseName === "군왕전");
+          optGoalChkData[bName] = isTarget;
+          optGoalTgtData[bName] = (baseName === "징병소" || baseName === "병영") ? 10 : (baseName === "군왕전" ? 10 : maxLv);
+        } else if (preset === "storage") {
+          var isTarget = (baseName === "창고");
+          optGoalChkData[bName] = isTarget;
+          optGoalTgtData[bName] = isTarget ? 20 : maxLv;
+        }
+      });
+      renderOptGoalTable();
+      renderOptStrategy();
+      saveState();
+      return;
+    }
+
+    if (t.dataset.gd) { gdRes = t.dataset.gd; render(); return; }
+
+    if (!t.dataset.act) return;
+    var a = t.dataset.act;
+    if (a === "wipe") {
+      try { localStorage.removeItem(LS_KEY); } catch (e) {}
+      location.reload();
+    }
+  });
+
+  // 숫자 칸 위에 마우스를 올린 채 휠을 굴리면 값이 바뀐다. 클릭해서 고를 필요는 없다.
+  document.addEventListener("wheel", function (e) {
+    var el = e.target;
+    if (!el || el.tagName !== "INPUT" || el.type !== "number") return;
+    e.preventDefault();
+    var step = (parseFloat(el.step) || 1) * (e.shiftKey ? 10 : 1);
+    var min = el.min === "" ? -Infinity : parseFloat(el.min);
+    var max = el.max === "" ? Infinity : parseFloat(el.max);
+    var next = (parseFloat(el.value) || 0) + (e.deltaY < 0 ? step : -step);
+    el.value = Math.min(max, Math.max(min, next));
+    el.dispatchEvent(new Event("input", { bubbles: true }));
+  }, { passive: false });
+
+  document.addEventListener("focusin", function (e) {
+    if (e.target.tagName === "INPUT" && e.target.type === "number") e.target.select();
+  });
+
+  // 칸을 벗어나면 표시값을 실제 저장값으로 되돌린다 (현재보다 낮게 친 목표 등).
+  document.addEventListener("focusout", function (e) {
+    if (e.target.tagName !== "INPUT" || e.target.type !== "number") return;
+    var cls = e.target.classList;
+    if (cls.contains("opt-res-cur") || cls.contains("opt-res-tgt")) { renderOptResTable(); renderOptStrategy(); return; }
+    if (cls.contains("opt-goal-cur") || cls.contains("opt-goal-tgt")) { renderOptGoalTable(); renderOptStrategy(); return; }
+    render();
+  });
+
+  var tip = $("tip");
+  document.addEventListener("mouseover", function (e) {
+    var row = e.target.closest ? e.target.closest("[data-tip]") : null;
+    if (!row) { tip.style.opacity = "0"; return; }
+    tip.textContent = row.dataset.tip;
+    tip.style.opacity = "1";
+  });
+  document.addEventListener("mousemove", function (e) {
+    if (tip.style.opacity !== "1") return;
+    var x = e.clientX + 14, y = e.clientY + 16, r = tip.getBoundingClientRect();
+    if (x + r.width > window.innerWidth - 8) x = e.clientX - r.width - 12;
+    if (y + r.height > window.innerHeight - 8) y = e.clientY - r.height - 12;
+    tip.style.left = x + "px";
+    tip.style.top = y + "px";
+  });
+  document.addEventListener("mouseout", function (e) {
+    if (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest("[data-tip]")) tip.style.opacity = "0";
+  });
+
+  setup();
+
+  // 종료 시각은 현재 시각 기준이라, 1분마다 다시 그려 어긋나지 않게 한다.
+  setInterval(function () {
+    if (document.activeElement && document.activeElement.tagName === "INPUT") return;
+    render();
+  }, 60000);
+})();
+</script>
