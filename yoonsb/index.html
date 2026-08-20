@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>삼국지전략판 테크트리 체크리스트</title>
+<style>
+  :root{
+    --bg:#14161C; --dark:#0E1015; --card:#1F232C; --card2:#272C37;
+    --crimson:#B01B2E; --crimsonD:#2A1A1E; --gold:#D9A441; --goldD:#8A6A26;
+    --txt:#F1EFEA; --muted:#9AA2AE; --line:#333947;
+  }
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent}
+  body{background:var(--bg); color:var(--txt);
+    font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif;
+    min-height:100vh; font-size:15px; line-height:1.5}
+  button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit; font-size:inherit}
+  input{font-family:inherit; font-size:15px; width:100%; background:var(--card2); color:var(--txt);
+    border:1px solid var(--line); border-radius:10px; padding:12px 14px; outline:none}
+  input:focus{border-color:var(--goldD)}
+  .wrap{max-width:720px; margin:0 auto; padding:0 16px}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px}
+  .btn{display:block; width:100%; text-align:center; padding:13px; border-radius:10px; font-weight:700}
+  .btn-main{background:var(--crimson); color:var(--txt); border:1px solid var(--gold)}
+  .btn-sub{background:var(--card2); color:var(--gold); border:1px solid var(--goldD)}
+  .btn:disabled{opacity:.55; cursor:default}
+  .pill{font-size:12px; font-weight:700; padding:4px 10px; border-radius:999px; white-space:nowrap;
+    background:var(--card2); color:var(--gold); border:1px solid var(--line)}
+  .pill.now{background:var(--crimson); color:var(--txt); border-color:var(--gold)}
+  .bar{width:100%; background:var(--card2); border-radius:999px; overflow:hidden; height:8px}
+  .bar>i{display:block; height:100%; border-radius:999px; transition:width .4s;
+    background:linear-gradient(90deg,var(--crimson),var(--gold))}
+  .muted{color:var(--muted)} .gold{color:var(--gold)}
+  .err{background:var(--crimsonD); color:#F0A0A8; border:1px solid var(--crimson);
+    border-radius:10px; padding:9px 12px; font-size:13.5px; margin-bottom:12px}
+  .hdr{position:sticky; top:0; z-index:10; background:var(--dark); border-bottom:1px solid var(--line); padding:14px 0 12px}
+  label{display:block; font-size:13.5px; font-weight:700; color:var(--gold); margin:0 0 6px 2px}
+  .chk{width:24px; height:24px; border-radius:7px; flex:none; margin-top:2px;
+    background:var(--card2); border:1.5px solid var(--line);
+    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; color:transparent}
+  .chk.on{background:var(--crimson); border-color:var(--gold); color:var(--txt)}
+  .item{display:flex; gap:12px; width:100%; text-align:left; padding:12px 16px; border-top:1px solid var(--line)}
+  .item.on .nm{color:var(--muted); text-decoration:line-through}
+  .sec-h{display:flex; justify-content:space-between; align-items:center; width:100%;
+    padding:14px 16px; text-align:left; gap:10px}
+  .dot{width:12px; height:12px; border-radius:3px; background:var(--card2); border:1px solid var(--line)}
+  .dot.on{background:var(--gold)}
+  .mini{font-size:12px; padding:7px 12px; border-radius:8px; border:1px solid var(--line); color:var(--muted); font-weight:700}
+  .fade{animation:f .25s ease} @keyframes f{from{opacity:0; transform:translateY(4px)} to{opacity:1}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<!-- Firebase (compat CDN) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+/* ═══════════════════════════════════════════════
+   ① Firebase 설정 — README 안내대로 본인 값으로 교체!
+   ═══════════════════════════════════════════════ */
+const firebaseConfig = {
+  apiKey: "여기에_붙여넣기",
+  authDomain: "프로젝트ID.firebaseapp.com",
+  databaseURL: "https://프로젝트ID-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "프로젝트ID",
+  storageBucket: "프로젝트ID.appspot.com",
+  messagingSenderId: "000000000000",
+  appId: "1:000000000000:web:xxxxxxxxxxxx"
+};
+const ADMIN_CODE = "2580";           // ② 관리자 코드 — 원하는 값으로 변경
+/* ═══════════════════════════════════════════════ */
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+/* ── 테크트리 데이터 (아조씨 Ver.02 / 26.06.09) ── */
+const SECTIONS = [
+ {id:"g4", tag:"군왕전 4", title:"자원 기초", items:[
+   {id:"g4-1", name:"목 · 철 · 석 · 농", lv:"Lv.7"}]},
+ {id:"g5", tag:"군왕전 5", title:"자원 기초", items:[
+   {id:"g5-1", name:"목 · 철 · 석", lv:"Lv.10"}]},
+ {id:"g6", tag:"군왕전 6", title:"자원 기초", items:[
+   {id:"g6-1", name:"식량 · 민가", lv:"Lv.10"},
+   {id:"g6-2", name:"병사전", lv:"Lv.5", note:"Lv.5 이상 올리지 않음 · 속도 Lv.3은 개인의 선택"}]},
+ {id:"g7", tag:"군왕전 7", title:"7토 진입 준비", items:[
+   {id:"g7-1", name:"군영", lv:"Lv.3", note:"7토 먹을 정도만 (3 or 5) · 관문공성 후 7토 석/목/철 토지작"},
+   {id:"g7-2", name:"석재", lv:"Lv.20", note:"안 미끄러졌으면 석재 20부터 · 목철 부족하면 군왕전 8부터"}]},
+ {id:"g8", tag:"군왕전 8", title:"핵심 구간 — 순서대로!", items:[
+   {id:"g8-01", name:"공방", lv:"Lv.1", note:"자기 전 공방 건설 2개 눌러두기"},
+   {id:"g8-02", name:"군영", lv:"Lv.10"},
+   {id:"g8-03", name:"사령단", lv:"Lv.2", note:"19코 마황허 기준"},
+   {id:"g8-04", name:"목 · 철", lv:"Lv.20"},
+   {id:"g8-05", name:"공방", lv:"Lv.2", note:"2개 다 Lv.2로 업글"},
+   {id:"g8-06", name:"식량", lv:"Lv.20"},
+   {id:"g8-07", name:"징병소", lv:"Lv.6"},
+   {id:"g8-08", name:"협력버프", lv:"Lv.3"},
+   {id:"g8-09", name:"군영", lv:"Lv.12", note:"9토 사냥 최적화: 버프 3 + 군영 12"},
+   {id:"g8-10", name:"공방", lv:"Lv.3", note:"자기 전 3번째 건설 → 아침에 3개 전부 Lv.3"},
+   {id:"g8-11", name:"조폐", lv:"Lv.2", note:"자기 전 3개 건설 → 2.0/2.5 돌파 위해 Lv.2까지만"},
+   {id:"g8-12", name:"징병소", lv:"Lv.7"},
+   {id:"g8-13", name:"협력버프", lv:"Lv.5"},
+   {id:"g8-14", name:"군영", lv:"Lv.15", note:"10토 전우랑: 버프 5 + 군영 15 · 최봉단인 나오면 솔플 가능"},
+   {id:"g8-15", name:"징병소", lv:"Lv.8", note:"[종회] 사용 전 업글해서 예비병 채우기"},
+   {id:"g8-16", name:"군영", lv:"Lv.17"},
+   {id:"g8-17", name:"협력버프", lv:"Lv.7", note:"안전한 10토 솔플"},
+   {id:"g8-18", name:"4번째 공방", lv:"Lv.3", note:"명성 되는 대로 건설, 완료되면 바로 업글"},
+   {id:"g8-19", name:"4번째 조패", lv:"Lv.2"}]},
+ {id:"war", tag:"교전 전", title:"교전 예상 날 업글", items:[
+   {id:"w-1", name:"군버프", lv:"Lv.10", note:"쟁 시작 전 업글 · 그 전까지 Lv.7 유지"},
+   {id:"w-2", name:"무통지", lv:"Lv.10", note:"진짜 업글할 게 없을 때 · 초반 최고 무쓸모"},
+   {id:"w-3", name:"징병소", lv:"Lv.10", note:"최봉/마황허면 9렙도 초반엔 자원낭비"}]},
+ {id:"bun", tag:"분성", title:"분성 완료 후 — 순서대로", items:[
+   {id:"b-1", name:"분성 목 · 철", lv:"Lv.20"},
+   {id:"b-2", name:"분성 식량", lv:"Lv.20"},
+   {id:"b-3", name:"분성 민가", lv:"Lv.10"},
+   {id:"b-4", name:"분성 석재", lv:"Lv.20"},
+   {id:"b-5", name:"분성 민가", lv:"Lv.20", note:"자원 소비 큼, 상황 보고 · 본성 민가와 레벨 맞추기"}]},
+ {id:"h1", tag:"호상 1차", title:"1번째 호상 때", items:[
+   {id:"h1-1", name:"모든 공방", lv:"Lv.4"},
+   {id:"h1-2", name:"모든 조패", lv:"Lv.3"},
+   {id:"h1-3", name:"본/분성 식량", lv:"Lv.25", note:"이미 25라면 Lv.30까지"},
+   {id:"h1-4", name:"본/분성 목·철", lv:"Lv.22~23", note:"가능하면 Lv.25까지"}]},
+ {id:"h2", tag:"호상 2차", title:"2번째 호상 때", items:[
+   {id:"h2-1", name:"본/분성 식량·목재·철", lv:"Lv.30"},
+   {id:"h2-2", name:"석재 (여유 시)", lv:"Lv.30"},
+   {id:"h2-3", name:"민가 (아직이면)", lv:"Lv.20"}]},
+];
+const ALL = SECTIONS.flatMap(s=>s.items);
+const TOTAL = ALL.length;
+
+/* ── 상태 ── */
+let me = null;              // {nick, key}
+let checked = {};           // {itemId:1}
+let openSec = null;
+let saveTimer = null, saveState = "저장됨";
+let adminUsers = {}, adminProg = {}, adminDetail = null;
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const uKey = nick => encodeURIComponent(nick).replace(/\./g,"%2E");
+
+/* ═══════════ 로그인 ═══════════ */
+function renderLogin(msg){
+  window.scrollTo(0,0);
+  $("#app").innerHTML = `
+  <div class="wrap fade" style="padding-top:52px; padding-bottom:40px; max-width:440px">
+    <div style="text-align:center; margin-bottom:30px">
+      <div style="width:80px;height:80px;border-radius:50%;background:var(--crimson);
+        border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+        <span style="font-size:38px;font-weight:700;color:var(--gold);font-family:serif">技</span></div>
+      <div class="gold" style="font-size:13px;font-weight:700;letter-spacing:4px">삼국지전략판</div>
+      <h1 style="font-size:27px;margin-top:4px">테크트리 체크리스트</h1>
+      <div class="muted" style="font-size:13px;margin-top:6px">아조씨 테크트리 Ver.02 · 총 ${TOTAL}단계</div>
+    </div>
+    <div class="card" style="padding:22px">
+      <label>게임 닉네임</label>
+      <input id="in-nick" placeholder="예) 붉은춘배" autocomplete="off">
+      <div style="height:14px"></div>
+      <label>계정번호</label>
+      <input id="in-acct" placeholder="본인 계정번호 (간단한 비밀번호 역할)" autocomplete="off">
+      <div class="muted" style="font-size:12px;margin:6px 2px 16px">처음 입력하면 자동 등록됩니다. 다음부터는 같은 조합으로 접속하세요.</div>
+      <div id="login-err">${msg?`<div class="err">${esc(msg)}</div>`:""}</div>
+      <button class="btn btn-main" id="btn-login">내 테크트리 시작하기</button>
+    </div>
+    <div class="card" style="padding:14px; margin-top:14px; display:flex; gap:8px">
+      <input id="in-admin" type="password" placeholder="관리자 코드" style="padding:9px 12px; font-size:14px">
+      <button class="btn btn-sub" id="btn-admin" style="width:auto; white-space:nowrap; padding:9px 16px; font-size:13.5px">관리자 모드</button>
+    </div>
+  </div>`;
+  $("#btn-login").onclick = login;
+  $("#in-acct").onkeydown = e=>{ if(e.key==="Enter") login(); };
+  $("#btn-admin").onclick = ()=>{
+    if($("#in-admin").value.trim() !== ADMIN_CODE){
+      $("#login-err").innerHTML = `<div class="err">관리자 코드가 올바르지 않습니다.</div>`; return;
+    }
+    renderAdmin(); loadAdmin();
+  };
+}
+
+async function login(){
+  const nick = $("#in-nick").value.trim(), acct = $("#in-acct").value.trim();
+  if(!nick || !acct){ $("#login-err").innerHTML = `<div class="err">닉네임과 계정번호를 모두 입력해 주세요.</div>`; return; }
+  const btn = $("#btn-login"); btn.disabled = true; btn.textContent = "불러오는 중...";
+  try{
+    const key = uKey(nick);
+    const snap = await db.ref("users/"+key).get();
+    const u = snap.val();
+    if(u && u.acct !== acct){
+      renderLogin("이미 등록된 닉네임인데 계정번호가 다릅니다. 처음 입력한 계정번호를 쓰세요."); return;
+    }
+    if(!u) await db.ref("users/"+key).set({nick, acct, ts: Date.now()});
+    const p = (await db.ref("prog/"+key).get()).val();
+    me = {nick, key};
+    checked = (p && p.c) || {};
+    const first = SECTIONS.find(s=>s.items.some(i=>!checked[i.id]));
+    openSec = first ? first.id : SECTIONS[0].id;
+    renderTodo();
+  }catch(e){
+    console.error(e);
+    renderLogin("서버 연결에 실패했습니다. 잠시 후 다시 시도해 주세요. ("+e.message+")");
+  }
+}
+
+/* ═══════════ 개인 투두 ═══════════ */
+function scheduleSave(){
+  saveState = "저장 중..."; updateHead();
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{
+      const done = Object.keys(checked).length;
+      await db.ref("prog/"+me.key).set({c: checked, done, ts: Date.now()});
+      saveState = "저장됨";
+    }catch(e){ saveState = "저장 실패 - 재시도하세요"; }
+    updateHead();
+  }, 600);
+}
+function updateHead(){
+  const done = Object.keys(checked).length, pct = Math.round(done/TOTAL*100);
+  const el = $("#head-sub"); if(el) el.textContent = `${done} / ${TOTAL} 완료 · ${saveState}`;
+  const b = $("#head-bar"); if(b) b.style.width = pct+"%";
+  const p = $("#head-pct"); if(p) p.textContent = pct+"%";
+}
+
+function renderTodo(){
+  window.scrollTo(0,0);
+  const done = Object.keys(checked).length, pct = Math.round(done/TOTAL*100);
+  const next = ALL.find(i=>!checked[i.id]);
+  const nextSec = next && SECTIONS.find(s=>s.items.some(i=>i.id===next.id));
+
+  $("#app").innerHTML = `
+  <div class="hdr"><div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px">
+      <div style="display:flex;gap:10px;align-items:center;min-width:0">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--crimson);border:2px solid var(--gold);
+          display:flex;align-items:center;justify-content:center;flex:none">
+          <span style="color:var(--gold);font-family:serif;font-weight:700">技</span></div>
+        <div style="min-width:0">
+          <div style="font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(me.nick)}</div>
+          <div class="muted" id="head-sub" style="font-size:12px">${done} / ${TOTAL} 완료 · ${saveState}</div>
+        </div>
+      </div>
+      <button class="mini" id="btn-out">나가기</button>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <div class="bar" style="flex:1"><i id="head-bar" style="width:${pct}%"></i></div>
+      <b class="gold" id="head-pct" style="width:42px;text-align:right;font-size:14px">${pct}%</b>
+    </div>
+  </div></div>
+
+  <div class="wrap fade" style="padding-top:16px; padding-bottom:60px">
+    ${next ? `
+    <div class="card" style="background:var(--crimsonD);border-color:var(--crimson);padding:14px 16px;
+      display:flex;gap:12px;align-items:center;margin-bottom:14px">
+      <span style="background:var(--crimson);font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;flex:none">다음 할 일</span>
+      <div style="min-width:0"><b class="gold">${esc(nextSec.tag)}</b>
+        <span class="muted"> › </span><b>${esc(next.name)} ${esc(next.lv)}</b></div>
+    </div>` : `
+    <div class="card" style="background:var(--crimsonD);border-color:var(--gold);padding:18px;
+      text-align:center;font-weight:700;font-size:17px;color:var(--gold);margin-bottom:14px">
+      🎉 테크트리 전 단계 완료! 수고하셨습니다.</div>`}
+    <div id="secs"></div>
+    <div class="muted" style="text-align:center;font-size:12px;margin-top:22px">
+      체크는 자동 저장됩니다 · 원문: 아조씨 테크트리 순서 Ver.02</div>
+  </div>`;
+
+  $("#btn-out").onclick = ()=>{ me=null; checked={}; renderLogin(); };
+  renderSecs();
+}
+
+function renderSecs(){
+  const next = ALL.find(i=>!checked[i.id]);
+  $("#secs").innerHTML = SECTIONS.map(sec=>{
+    const sd = sec.items.filter(i=>checked[i.id]).length, sa = sec.items.length;
+    const open = openSec===sec.id, comp = sd===sa;
+    const isNow = next && sec.items.some(i=>i.id===next.id);
+    return `
+    <div class="card" style="margin-bottom:11px;overflow:hidden;${comp?"border-color:var(--goldD)":""}">
+      <button class="sec-h" data-sec="${sec.id}">
+        <span style="display:flex;gap:10px;align-items:center;min-width:0">
+          <span class="pill ${isNow&&!comp?"now":""}">${esc(sec.tag)}</span>
+          <b style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(sec.title)}</b></span>
+        <span style="display:flex;gap:10px;align-items:center;flex:none">
+          <b style="font-size:12px;color:${comp?"var(--gold)":"var(--muted)"}">${comp?"완료":sd+"/"+sa}</b>
+          <span class="muted">${open?"▲":"▼"}</span></span>
+      </button>
+      ${open ? sec.items.map(it=>{
+        const on = !!checked[it.id];
+        return `
+        <button class="item ${on?"on":""}" data-item="${it.id}" ${on?'style="background:rgba(217,164,65,.05)"':""}>
+          <span class="chk ${on?"on":""}">✓</span>
+          <span style="min-width:0">
+            <span class="nm" style="font-weight:700">${esc(it.name)}</span>
+            <b style="font-size:13.5px;color:${on?"var(--goldD)":"var(--gold)"}"> ${esc(it.lv)}</b>
+            ${it.note?`<div class="muted" style="font-size:12px;margin-top:2px">${esc(it.note)}</div>`:""}
+          </span>
+        </button>`;
+      }).join("") : ""}
+    </div>`;
+  }).join("");
+
+  document.querySelectorAll("[data-sec]").forEach(b=>b.onclick = ()=>{
+    openSec = openSec===b.dataset.sec ? null : b.dataset.sec; renderSecs();
+  });
+  document.querySelectorAll("[data-item]").forEach(b=>b.onclick = ()=>{
+    const id = b.dataset.item;
+    if(checked[id]) delete checked[id]; else checked[id]=1;
+    scheduleSave(); renderSecs(); updateNext();
+  });
+}
+function updateNext(){ renderTodo(); } // 간단히 전체 갱신 (다음 할 일 카드 반영)
+
+/* ═══════════ 관리자 ═══════════ */
+function renderAdmin(){
+  window.scrollTo(0,0);
+  $("#app").innerHTML = `
+  <div class="hdr"><div class="wrap" style="max-width:860px;display:flex;justify-content:space-between;align-items:center">
+    <div><div class="gold" style="font-size:12px;font-weight:700;letter-spacing:3px">관리자 대시보드</div>
+      <div style="font-weight:700;font-size:18px">맹원 진행 현황</div></div>
+    <div style="display:flex;gap:8px">
+      <button class="mini" id="btn-export" style="color:var(--gold);border-color:var(--goldD)">JSON 백업</button>
+      <button class="mini" id="btn-reload" style="color:var(--gold);border-color:var(--goldD)">새로고침</button>
+      <button class="mini" id="btn-out2">나가기</button>
+    </div>
+  </div></div>
+  <div class="wrap fade" style="max-width:860px;padding-top:16px;padding-bottom:60px">
+    <div id="adm-stats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:16px"></div>
+    <div id="adm-list"><div class="card" style="padding:28px;text-align:center" class="muted">불러오는 중...</div></div>
+  </div>`;
+  $("#btn-out2").onclick = ()=>renderLogin();
+  $("#btn-reload").onclick = loadAdmin;
+  $("#btn-export").onclick = exportJSON;
+}
+
+async function loadAdmin(){
+  $("#adm-list").innerHTML = `<div class="card muted" style="padding:28px;text-align:center">불러오는 중...</div>`;
+  try{
+    const [uSnap, pSnap] = await Promise.all([db.ref("users").get(), db.ref("prog").get()]);
+    adminUsers = uSnap.val() || {};
+    adminProg = pSnap.val() || {};
+    drawAdmin();
+  }catch(e){
+    $("#adm-list").innerHTML = `<div class="err">데이터를 불러오지 못했습니다: ${esc(e.message)}</div>`;
+  }
+}
+
+function drawAdmin(){
+  const keys = Object.keys(adminUsers);
+  const prog = k => (adminProg[k] && adminProg[k].c) || {};
+  const doneOf = k => Object.keys(prog(k)).length;
+  keys.sort((a,b)=>doneOf(b)-doneOf(a));
+  const avg = keys.length ? Math.round(keys.reduce((s,k)=>s+doneOf(k),0)/keys.length/TOTAL*100) : 0;
+  const fin = keys.filter(k=>doneOf(k)===TOTAL).length;
+
+  $("#adm-stats").innerHTML = [
+    ["등록 맹원", keys.length+"명"], ["평균 진행률", avg+"%"], ["전체 완료", fin+"명"]
+  ].map(([k,v])=>`<div class="card" style="padding:16px;text-align:center">
+    <div class="gold" style="font-size:23px;font-weight:700">${v}</div>
+    <div class="muted" style="font-size:12px;margin-top:3px">${k}</div></div>`).join("");
+
+  if(!keys.length){
+    $("#adm-list").innerHTML = `<div class="card muted" style="padding:32px;text-align:center">
+      아직 등록된 맹원이 없습니다. 링크를 공유하고 각자 닉네임으로 시작하게 해주세요.</div>`;
+    return;
+  }
+
+  $("#adm-list").innerHTML = keys.map(k=>{
+    const u = adminUsers[k], c = prog(k), d = Object.keys(c).length, p = Math.round(d/TOTAL*100);
+    const next = ALL.find(i=>!c[i.id]);
+    const nSec = next && SECTIONS.find(s=>s.items.some(i=>i.id===next.id));
+    const open = adminDetail===k;
+    return `
+    <div class="card" style="margin-bottom:11px;overflow:hidden;${open?"border-color:var(--goldD)":""}">
+      <button style="width:100%;text-align:left;padding:14px 16px" data-user="${esc(k)}">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:10px">
+          <div style="display:flex;gap:8px;align-items:baseline;min-width:0">
+            <b style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(u.nick)}</b>
+            <span class="muted" style="font-size:12px;flex:none">#${esc(u.acct)}</span></div>
+          <div style="display:flex;gap:10px;align-items:center;flex:none">
+            ${next?`<span class="muted" style="font-size:12px">현재: <b class="gold">${esc(nSec.tag)}</b></span>`
+                  :`<b class="gold" style="font-size:12px">전체 완료 🎉</b>`}
+            <b class="gold" style="width:40px;text-align:right;font-size:14px">${p}%</b></div>
+        </div>
+        <div class="bar" style="height:6px"><i style="width:${p}%"></i></div>
+      </button>
+      ${open?`
+      <div style="border-top:1px solid var(--line);padding:14px 16px">
+        ${SECTIONS.map(sec=>{
+          const sd = sec.items.filter(i=>c[i.id]).length;
+          return `<div style="display:flex;gap:10px;align-items:center;margin-bottom:6px;font-size:13px">
+            <b class="gold" style="width:72px;flex:none;font-size:12px">${esc(sec.tag)}</b>
+            <div class="bar" style="flex:1;height:5px"><i style="width:${sd/sec.items.length*100}%"></i></div>
+            <span class="muted" style="width:40px;text-align:right;font-size:12px">${sd}/${sec.items.length}</span></div>`;
+        }).join("")}
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin:12px 0">
+          ${ALL.map(i=>`<span class="dot ${c[i.id]?"on":""}" title="${esc(i.name)} ${esc(i.lv)}"></span>`).join("")}
+        </div>
+        <button class="mini" data-del="${esc(k)}" style="color:#F0A0A8;border-color:var(--crimson)">이 맹원 기록 삭제</button>
+      </div>`:""}
+    </div>`;
+  }).join("");
+
+  document.querySelectorAll("[data-user]").forEach(b=>b.onclick = ()=>{
+    adminDetail = adminDetail===b.dataset.user ? null : b.dataset.user; drawAdmin();
+  });
+  document.querySelectorAll("[data-del]").forEach(b=>b.onclick = async e=>{
+    e.stopPropagation();
+    const k = b.dataset.del, nm = adminUsers[k].nick;
+    if(!confirm(`'${nm}' 맹원의 기록을 삭제할까요? 되돌릴 수 없습니다.`)) return;
+    await db.ref("users/"+k).remove(); await db.ref("prog/"+k).remove();
+    delete adminUsers[k]; delete adminProg[k];
+    if(adminDetail===k) adminDetail=null;
+    drawAdmin();
+  });
+}
+
+function exportJSON(){
+  const blob = new Blob([JSON.stringify({exportedAt:new Date().toISOString(), users:adminUsers, prog:adminProg}, null, 2)],
+    {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "테크트리_백업_" + new Date().toISOString().slice(0,10) + ".json";
+  a.click();
+}
+
+/* 시작 */
+renderLogin();
+</script>
+</body>
+</html>
