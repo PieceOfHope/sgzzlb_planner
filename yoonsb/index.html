@@ -51,6 +51,10 @@
   .dot.on{background:var(--gold)}
   .mini{font-size:12px; padding:7px 12px; border-radius:8px; border:1px solid var(--line); color:var(--muted); font-weight:700}
   .fade{animation:f .25s ease} @keyframes f{from{opacity:0; transform:translateY(4px)} to{opacity:1}}
+  .overlay{position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:100;
+    display:flex; align-items:center; justify-content:center; padding:20px}
+  .modal{background:var(--card); border:1px solid var(--crimson); border-radius:16px;
+    width:100%; max-width:380px; padding:24px; animation:f .2s ease}
 </style>
 </head>
 <body>
@@ -133,6 +137,7 @@ const SECTIONS = [
 ];
 const ALL = SECTIONS.flatMap(s=>s.items);
 const TOTAL = ALL.length;
+const COSTS = ["17코 이하","18코","19코","20코"];
 
 /* ── 상태 ── */
 let me = null;              // {nick, key}
@@ -198,6 +203,7 @@ async function login(){
     const p = (await db.ref("prog/"+key).get()).val();
     me = {nick, key};
     checked = (p && p.c) || {};
+    myCost = (p && p.cost) || null;
     const first = SECTIONS.find(s=>s.items.some(i=>!checked[i.id]));
     openSec = first ? first.id : SECTIONS[0].id;
     renderTodo();
@@ -209,6 +215,7 @@ async function login(){
 
 /* ═══════════ 개인 투두 ═══════════ */
 let undoStack = [];
+let myCost = null;
 
 function scheduleSave(){
   saveState = "저장 중..."; updateHead();
@@ -216,7 +223,7 @@ function scheduleSave(){
   saveTimer = setTimeout(async ()=>{
     try{
       const done = Object.keys(checked).length;
-      await db.ref("prog/"+me.key).set({c: checked, done, ts: Date.now()});
+      await db.ref("prog/"+me.key).set({c: checked, done, cost: myCost, ts: Date.now()});
       saveState = "저장됨";
     }catch(e){ saveState = "저장 실패 - 재시도하세요"; }
     updateHead();
@@ -274,15 +281,37 @@ function renderTodo(){
   </div></div>
 
   <div class="wrap fade" style="padding-top:16px; padding-bottom:60px">
+    <div class="card" style="padding:13px 16px;margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:9px;flex-wrap:wrap">
+        <b class="gold" style="font-size:14px">내 1군 코스트</b>
+        <span class="muted" style="font-size:11.5px">언제든 수정 가능 · 관리자 현황에 표시됩니다</span>
+      </div>
+      <div id="cost-seg" style="display:grid;grid-template-columns:repeat(4,1fr);gap:7px"></div>
+    </div>
     <div id="next-card" style="margin-bottom:14px">${nextCardHTML()}</div>
     <div id="secs"></div>
     <div class="muted" style="text-align:center;font-size:12px;margin-top:22px">
       체크는 자동 저장됩니다 · 실수로 체크했다면 ↩ 되돌리기 (PC는 Ctrl+Z)</div>
   </div>`;
 
-  $("#btn-out").onclick = ()=>{ me=null; checked={}; undoStack=[]; renderLogin(); };
+  $("#btn-out").onclick = ()=>{ me=null; checked={}; undoStack=[]; myCost=null; renderLogin(); };
   $("#btn-undo").onclick = doUndo;
+  renderCostSeg();
   renderSecs();
+}
+
+function renderCostSeg(){
+  const el = $("#cost-seg"); if(!el) return;
+  el.innerHTML = COSTS.map(c=>`
+    <button data-cost="${c}" style="padding:9px 4px;border-radius:9px;font-size:13px;font-weight:700;text-align:center;
+      ${myCost===c ? "background:var(--crimson);color:var(--txt);border:1px solid var(--gold)"
+                   : "background:var(--card2);color:var(--muted);border:1px solid var(--line)"}">${c}</button>`).join("");
+  el.querySelectorAll("[data-cost]").forEach(b=>b.onclick = ()=>{
+    if(myCost === b.dataset.cost) return;
+    myCost = b.dataset.cost;
+    scheduleSave();
+    renderCostSeg();
+  });
 }
 
 /* 화면 유지한 채 필요한 부분만 갱신 (스크롤 위치 보존) */
@@ -376,7 +405,7 @@ window.addEventListener("keydown", e=>{
 });
 
 /* ═══════════ 관리자 ═══════════ */
-let admQ = "", admBand = "all", admSec = "all", admSort = "pct-desc", admStats = false;
+let admQ = "", admBand = "all", admSort = "pct-desc", admStats = false;
 
 function renderAdmin(){
   window.scrollTo(0,0);
@@ -385,6 +414,7 @@ function renderAdmin(){
     <div><div class="gold" style="font-size:12px;font-weight:700;letter-spacing:3px">관리자 대시보드</div>
       <div style="font-weight:700;font-size:18px">맹원 진행 현황</div></div>
     <div style="display:flex;gap:7px;flex-wrap:wrap">
+      <button class="mini" id="btn-reset" style="color:#F0A0A8;border-color:var(--crimson)">진행상황 초기화</button>
       <button class="mini" id="btn-csv" style="color:var(--gold);border-color:var(--goldD)">CSV 추출</button>
       <button class="mini" id="btn-export" style="color:var(--gold);border-color:var(--goldD)">JSON 백업</button>
       <button class="mini" id="btn-reload" style="color:var(--gold);border-color:var(--goldD)">새로고침</button>
@@ -397,11 +427,6 @@ function renderAdmin(){
     <div class="card" style="padding:13px 14px;margin-bottom:14px">
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
         <input id="adm-q" placeholder="닉네임 검색 (포함 단어)" style="flex:1;min-width:170px;padding:9px 12px;font-size:14px">
-        <select id="adm-sec" style="background:var(--card2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:9px 10px;font-size:13px;font-family:inherit">
-          <option value="all">현재 챕터: 전체</option>
-          ${SECTIONS.map(s=>`<option value="${s.id}">${esc(s.tag)} 진행 중</option>`).join("")}
-          <option value="fin">전체 완료</option>
-        </select>
         <select id="adm-sort" style="background:var(--card2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:9px 10px;font-size:13px;font-family:inherit">
           <option value="pct-desc">진행률 높은순</option>
           <option value="pct-asc">진행률 낮은순</option>
@@ -425,16 +450,16 @@ function renderAdmin(){
   $("#btn-reload").onclick = loadAdmin;
   $("#btn-export").onclick = exportJSON;
   $("#btn-csv").onclick = exportCSV;
+  $("#btn-reset").onclick = showResetModal;
   $("#btn-stats").onclick = ()=>{ admStats=!admStats; drawAdmin(); };
   $("#adm-q").oninput = e=>{ admQ = e.target.value.trim().toLowerCase(); drawAdmin(); };
-  $("#adm-sec").onchange = e=>{ admSec = e.target.value; drawAdmin(); };
   $("#adm-sort").onchange = e=>{ admSort = e.target.value; drawAdmin(); };
   drawBands();
 }
 
-const BANDS = [
-  ["all","전체"], ["zero","미시작 0%"], ["low","1~49%"], ["mid","50~99%"], ["done","완료 100%"], ["idle","7일+ 미활동"]
-];
+const BANDS = [["all","전체"], ["zero","미시작"]]
+  .concat(SECTIONS.map(s=>[s.id, s.tag]))
+  .concat([["fin","전체 완료"], ["idle","7일+ 미활동"]]);
 function drawBands(){
   $("#adm-bands").innerHTML = BANDS.map(([v,l])=>
     `<button class="pill ${admBand===v?"now":""}" data-band="${v}" style="cursor:pointer">${l}</button>`).join("");
@@ -463,7 +488,8 @@ function admRows(){
     const next = ALL.find(i=>!c[i.id]);
     const nSec = next ? SECTIONS.find(s=>s.items.some(i=>i.id===next.id)) : null;
     const ts = (adminProg[k] && adminProg[k].ts) || u.ts || 0;
-    return {k, u, c, done, pct, next, nSec, ts};
+    const cost = (adminProg[k] && adminProg[k].cost) || null;
+    return {k, u, c, done, pct, next, nSec, ts, cost};
   });
 }
 const DAY = 86400000;
@@ -477,12 +503,9 @@ function admFiltered(){
   let rows = admRows();
   if(admQ) rows = rows.filter(r=>r.u.nick.toLowerCase().includes(admQ));
   if(admBand==="zero") rows = rows.filter(r=>r.done===0);
-  else if(admBand==="low") rows = rows.filter(r=>r.pct>=1 && r.pct<=49);
-  else if(admBand==="mid") rows = rows.filter(r=>r.pct>=50 && r.pct<=99);
-  else if(admBand==="done") rows = rows.filter(r=>r.pct===100);
+  else if(admBand==="fin") rows = rows.filter(r=>!r.next);
   else if(admBand==="idle") rows = rows.filter(r=>Date.now()-r.ts > 7*DAY);
-  if(admSec==="fin") rows = rows.filter(r=>!r.next);
-  else if(admSec!=="all") rows = rows.filter(r=>r.nSec && r.nSec.id===admSec);
+  else if(admBand!=="all") rows = rows.filter(r=>r.nSec && r.nSec.id===admBand); // 챕터별: 현재 진행 중인 챕터 기준
   const by = {
     "pct-desc": (a,b)=>b.done-a.done || a.u.nick.localeCompare(b.u.nick,"ko"),
     "pct-asc":  (a,b)=>a.done-b.done || a.u.nick.localeCompare(b.u.nick,"ko"),
@@ -533,7 +556,9 @@ function drawAdmin(){
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:10px">
           <div style="display:flex;gap:8px;align-items:baseline;min-width:0">
             <b style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.u.nick)}</b>
-            <span class="muted" style="font-size:12px;flex:none">#${esc(r.u.acct)}</span></div>
+            <span class="muted" style="font-size:12px;flex:none">#${esc(r.u.acct)}</span>
+            ${r.cost?`<span class="pill" style="font-size:10.5px;padding:2px 8px;flex:none">${esc(r.cost)}</span>`
+                    :`<span class="muted" style="font-size:11px;flex:none">코스트 미선택</span>`}</div>
           <div style="display:flex;gap:10px;align-items:center;flex:none">
             <span class="muted" style="font-size:11.5px">${ago(r.ts)}</span>
             ${r.next?`<span class="muted" style="font-size:12px">현재: <b class="gold">${esc(r.nSec.tag)}</b></span>`
@@ -604,9 +629,20 @@ function statsHTML(all){
       <b class="gold" style="width:46px;text-align:right;font-size:12px">${right}</b>
     </div>`;
 
+  /* 1군 코스트 분포 */
+  const costCnt = {};
+  all.forEach(r=>{ const c = r.cost || "미선택"; costCnt[c] = (costCnt[c]||0)+1; });
+  const costRows = [...COSTS, "미선택"].filter(c=>costCnt[c]);
+
   return `
   <div class="card fade" style="padding:16px;margin-bottom:14px">
     <div style="display:grid;grid-template-columns:1fr;gap:18px">
+      <div>
+        <b class="gold" style="font-size:14px">1군 코스트 분포</b>
+        <div style="margin-top:9px">
+          ${costRows.map(c=>row(c, costCnt[c]/all.length*100, costCnt[c]+"명")).join("")}
+        </div>
+      </div>
       <div>
         <b class="gold" style="font-size:14px">진행률 분포</b>
         <div style="margin-top:9px">
@@ -630,6 +666,41 @@ function statsHTML(all){
   </div>`;
 }
 
+/* ── 진행상황 전체 초기화 ── */
+function showResetModal(){
+  const ov = document.createElement("div");
+  ov.className = "overlay";
+  ov.innerHTML = `
+    <div class="modal">
+      <div style="font-size:34px;text-align:center;margin-bottom:10px">⚠️</div>
+      <div style="font-weight:700;font-size:17px;text-align:center;margin-bottom:8px">진행상황 초기화</div>
+      <div class="muted" style="font-size:14px;text-align:center;line-height:1.6;margin-bottom:20px">
+        모든 맹원들의 진행 상태를 지웁니다.<br><b style="color:var(--gold)">백업하셨습니까?</b><br>
+        <span style="font-size:12px">(맹원 명단은 유지되고, 체크 기록만 삭제됩니다)</span>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn" id="rs-cancel" style="background:var(--card2);color:var(--txt);border:1px solid var(--line)">취소</button>
+        <button class="btn" id="rs-ok" style="background:var(--crimson);color:var(--txt);border:1px solid var(--gold)">초기화</button>
+      </div>
+    </div>`;
+  document.body.appendChild(ov);
+  ov.onclick = e=>{ if(e.target===ov) ov.remove(); };
+  ov.querySelector("#rs-cancel").onclick = ()=>ov.remove();
+  ov.querySelector("#rs-ok").onclick = async ()=>{
+    const ok = ov.querySelector("#rs-ok");
+    ok.disabled = true; ok.textContent = "초기화 중...";
+    try{
+      await db.ref("prog").remove();
+      adminProg = {}; adminDetail = null;
+      ov.remove();
+      drawAdmin();
+    }catch(e){
+      ok.disabled = false; ok.textContent = "초기화";
+      alert("초기화에 실패했습니다: " + e.message);
+    }
+  };
+}
+
 /* ── 내보내기 ── */
 function exportJSON(){
   const blob = new Blob([JSON.stringify({exportedAt:new Date().toISOString(), users:adminUsers, prog:adminProg}, null, 2)],
@@ -641,9 +712,9 @@ function exportJSON(){
 }
 function exportCSV(){
   const rows = admFiltered(); // 현재 검색/필터가 그대로 적용된 목록을 추출
-  const head = ["닉네임","계정번호","진행률(%)","완료단계","전체단계","현재챕터","다음할일","마지막체크"];
+  const head = ["닉네임","계정번호","1군코스트","진행률(%)","완료단계","전체단계","현재챕터","다음할일","마지막체크"];
   const lines = rows.map(r=>[
-    r.u.nick, r.u.acct, r.pct, r.done, TOTAL,
+    r.u.nick, r.u.acct, r.cost||"미선택", r.pct, r.done, TOTAL,
     r.next ? r.nSec.tag : "전체완료",
     r.next ? `${r.next.name} ${r.next.lv}` : "-",
     r.ts ? new Date(r.ts).toLocaleString("ko-KR") : "-"
