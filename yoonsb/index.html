@@ -51,6 +51,11 @@
   .dot.on{background:var(--gold)}
   .mini{font-size:12px; padding:7px 12px; border-radius:8px; border:1px solid var(--line); color:var(--muted); font-weight:700}
   .fade{animation:f .25s ease} @keyframes f{from{opacity:0; transform:translateY(4px)} to{opacity:1}}
+  .selchk{width:20px; height:20px; border-radius:50%; flex:none;
+    background:var(--card2); border:1.5px solid var(--line);
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700; color:transparent}
+  .selchk.on{background:var(--crimson); border-color:var(--gold); color:var(--txt)}
   .overlay{position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:100;
     display:flex; align-items:center; justify-content:center; padding:20px}
   .modal{background:var(--card); border:1px solid var(--crimson); border-radius:16px;
@@ -406,6 +411,7 @@ window.addEventListener("keydown", e=>{
 
 /* ═══════════ 관리자 ═══════════ */
 let admQ = "", admBand = "all", admSort = "pct-desc", admStats = false;
+let selMode = false, selSet = new Set();
 
 function renderAdmin(){
   window.scrollTo(0,0);
@@ -415,6 +421,8 @@ function renderAdmin(){
       <div style="font-weight:700;font-size:18px">맹원 진행 현황</div></div>
     <div style="display:flex;gap:7px;flex-wrap:wrap">
       <button class="mini" id="btn-reset" style="color:#F0A0A8;border-color:var(--crimson)">진행상황 초기화</button>
+      <button class="mini" id="btn-delall" style="color:#F0A0A8;border-color:var(--crimson)">맹원 전체삭제</button>
+      <button class="mini" id="btn-selmode" style="color:var(--gold);border-color:var(--goldD)">선택 삭제</button>
       <button class="mini" id="btn-csv" style="color:var(--gold);border-color:var(--goldD)">CSV 추출</button>
       <button class="mini" id="btn-export" style="color:var(--gold);border-color:var(--goldD)">JSON 백업</button>
       <button class="mini" id="btn-reload" style="color:var(--gold);border-color:var(--goldD)">새로고침</button>
@@ -442,6 +450,7 @@ function renderAdmin(){
       </div>
     </div>
 
+    <div id="adm-selbar"></div>
     <div id="adm-detail-stats"></div>
     <div id="adm-list"><div class="card muted" style="padding:28px;text-align:center">불러오는 중...</div></div>
   </div>`;
@@ -451,6 +460,26 @@ function renderAdmin(){
   $("#btn-export").onclick = exportJSON;
   $("#btn-csv").onclick = exportCSV;
   $("#btn-reset").onclick = showResetModal;
+  $("#btn-delall").onclick = ()=>{
+    const n = Object.keys(adminUsers).length;
+    if(!n){ alert("등록된 맹원이 없습니다."); return; }
+    confirmModal({
+      title: "맹원 전체삭제",
+      msg: `등록된 <b style="color:var(--gold)">모든 맹원 ${n}명</b>과 진행 기록을<br>완전히 삭제합니다. <b style="color:var(--gold)">백업하셨습니까?</b>`,
+      okLabel: "전체삭제",
+      onOk: async ()=>{
+        await db.ref("users").remove();
+        await db.ref("prog").remove();
+        adminUsers = {}; adminProg = {}; adminDetail = null;
+        selSet.clear(); selMode = false;
+        drawAdmin();
+      }
+    });
+  };
+  $("#btn-selmode").onclick = ()=>{
+    selMode = !selMode; selSet.clear(); adminDetail = null; drawAdmin();
+    $("#btn-selmode").textContent = selMode ? "선택 모드 종료" : "선택 삭제";
+  };
   $("#btn-stats").onclick = ()=>{ admStats=!admStats; drawAdmin(); };
   $("#adm-q").oninput = e=>{ admQ = e.target.value.trim().toLowerCase(); drawAdmin(); };
   $("#adm-sort").onchange = e=>{ admSort = e.target.value; drawAdmin(); };
@@ -532,6 +561,7 @@ function drawAdmin(){
     <div class="muted" style="font-size:11.5px;margin-top:3px">${k}</div></div>`).join("");
 
   $("#adm-count").textContent = `${rows.length}명 표시 중 (전체 ${all.length}명)`;
+  drawSelBar();
 
   /* 통계 상세 */
   $("#adm-detail-stats").innerHTML = admStats ? statsHTML(all) : "";
@@ -549,12 +579,14 @@ function drawAdmin(){
   }
 
   $("#adm-list").innerHTML = rows.map(r=>{
-    const open = adminDetail===r.k;
+    const open = !selMode && adminDetail===r.k;
+    const sel = selMode && selSet.has(r.k);
     return `
-    <div class="card" style="margin-bottom:11px;overflow:hidden;${open?"border-color:var(--goldD)":""}">
-      <button style="width:100%;text-align:left;padding:14px 16px" data-user="${esc(r.k)}">
+    <div class="card" style="margin-bottom:11px;overflow:hidden;${sel?"border-color:var(--crimson)":(open?"border-color:var(--goldD)":"")}">
+      <button style="width:100%;text-align:left;padding:14px 16px" data-${selMode?"selrow":"user"}="${esc(r.k)}">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:10px">
-          <div style="display:flex;gap:8px;align-items:baseline;min-width:0">
+          <div style="display:flex;gap:8px;align-items:center;min-width:0">
+            ${selMode?`<span class="selchk ${sel?"on":""}">✓</span>`:""}
             <b style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.u.nick)}</b>
             <span class="muted" style="font-size:12px;flex:none">#${esc(r.u.acct)}</span>
             ${r.cost?`<span class="pill" style="font-size:10.5px;padding:2px 8px;flex:none">${esc(r.cost)}</span>`
@@ -586,6 +618,11 @@ function drawAdmin(){
 
   document.querySelectorAll("[data-user]").forEach(b=>b.onclick = ()=>{
     adminDetail = adminDetail===b.dataset.user ? null : b.dataset.user; drawAdmin();
+  });
+  document.querySelectorAll("[data-selrow]").forEach(b=>b.onclick = ()=>{
+    const k = b.dataset.selrow;
+    if(selSet.has(k)) selSet.delete(k); else selSet.add(k);
+    drawAdmin();
   });
   document.querySelectorAll("[data-del]").forEach(b=>b.onclick = async e=>{
     e.stopPropagation();
@@ -664,6 +701,74 @@ function statsHTML(all){
       </div>`:""}
     </div>
   </div>`;
+}
+
+/* ── 선택 삭제 모드 ── */
+function drawSelBar(){
+  const el = $("#adm-selbar"); if(!el) return;
+  if(!selMode){ el.innerHTML = ""; return; }
+  const shown = admFiltered();
+  const allSel = shown.length > 0 && shown.every(r=>selSet.has(r.k));
+  el.innerHTML = `
+  <div class="card" style="padding:11px 14px;margin-bottom:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-color:var(--crimson)">
+    <b style="font-size:13.5px;color:#F0A0A8">선택 삭제 모드</b>
+    <span class="muted" style="font-size:12.5px;flex:1;min-width:120px">${selSet.size}명 선택됨 · 행을 눌러 선택하세요</span>
+    <button class="mini" id="sel-all" style="color:var(--gold);border-color:var(--goldD)">${allSel?"전체 해제":"표시된 전체 선택"}</button>
+    <button class="mini" id="sel-del" style="color:#F0A0A8;border-color:var(--crimson)">선택한 ${selSet.size}명 삭제</button>
+    <button class="mini" id="sel-exit">취소</button>
+  </div>`;
+  $("#sel-all").onclick = ()=>{
+    if(allSel) shown.forEach(r=>selSet.delete(r.k));
+    else shown.forEach(r=>selSet.add(r.k));
+    drawAdmin();
+  };
+  $("#sel-del").onclick = ()=>{
+    if(!selSet.size){ alert("선택된 맹원이 없습니다. 행을 눌러 먼저 선택해 주세요."); return; }
+    const names = [...selSet].slice(0,3).map(k=>adminUsers[k] ? adminUsers[k].nick : "").filter(Boolean).join(", ");
+    confirmModal({
+      title: "선택 맹원 삭제",
+      msg: `선택한 <b style="color:var(--gold)">${selSet.size}명</b> (${esc(names)}${selSet.size>3?" 외":""})의<br>맹원 정보와 진행 기록을 삭제합니다.<br>되돌릴 수 없습니다.`,
+      okLabel: "삭제",
+      onOk: async ()=>{
+        const upd = {};
+        [...selSet].forEach(k=>{ upd["users/"+k] = null; upd["prog/"+k] = null; });
+        await db.ref().update(upd);
+        [...selSet].forEach(k=>{ delete adminUsers[k]; delete adminProg[k]; });
+        selSet.clear(); selMode = false; adminDetail = null;
+        drawAdmin();
+        const sm = $("#btn-selmode"); if(sm) sm.textContent = "선택 삭제";
+      }
+    });
+  };
+  $("#sel-exit").onclick = ()=>{
+    selMode = false; selSet.clear(); drawAdmin();
+    const sm = $("#btn-selmode"); if(sm) sm.textContent = "선택 삭제";
+  };
+}
+
+/* ── 공용 확인 모달 ── */
+function confirmModal({icon="⚠️", title, msg, okLabel, onOk}){
+  const ov = document.createElement("div");
+  ov.className = "overlay";
+  ov.innerHTML = `
+    <div class="modal">
+      <div style="font-size:34px;text-align:center;margin-bottom:10px">${icon}</div>
+      <div style="font-weight:700;font-size:17px;text-align:center;margin-bottom:8px">${title}</div>
+      <div class="muted" style="font-size:14px;text-align:center;line-height:1.6;margin-bottom:20px">${msg}</div>
+      <div style="display:flex;gap:10px">
+        <button class="btn" id="cm-cancel" style="background:var(--card2);color:var(--txt);border:1px solid var(--line)">취소</button>
+        <button class="btn" id="cm-ok" style="background:var(--crimson);color:var(--txt);border:1px solid var(--gold)">${okLabel}</button>
+      </div>
+    </div>`;
+  document.body.appendChild(ov);
+  ov.onclick = e=>{ if(e.target===ov) ov.remove(); };
+  ov.querySelector("#cm-cancel").onclick = ()=>ov.remove();
+  ov.querySelector("#cm-ok").onclick = async ()=>{
+    const ok = ov.querySelector("#cm-ok");
+    ok.disabled = true; ok.textContent = "처리 중...";
+    try{ await onOk(); ov.remove(); }
+    catch(e){ ok.disabled = false; ok.textContent = okLabel; alert("실패했습니다: " + e.message); }
+  };
 }
 
 /* ── 진행상황 전체 초기화 ── */
