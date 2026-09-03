@@ -10,12 +10,16 @@
     --crimson:#B01B2E; --crimsonD:#2A1A1E; --gold:#D9A441; --goldD:#8A6A26;
     --txt:#F1EFEA; --muted:#9AA2AE; --line:#333947;
   }
-  *{box-sizing:border-box; margin:0; padding:0}
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent}
   body{background:var(--bg); color:var(--txt);
     font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif;
     min-height:100vh; line-height:1.5}
+  button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit; font-size:inherit}
+  input{font-family:inherit; font-size:15px; width:100%; background:var(--card2); color:var(--txt);
+    border:1px solid var(--line); border-radius:10px; padding:12px 14px; outline:none}
+  input:focus{border-color:var(--goldD)}
   .wrap{max-width:760px; margin:0 auto; padding:56px 20px 60px}
-  .brand{text-align:center; margin-bottom:44px}
+  .brand{text-align:center; margin-bottom:38px}
   .brand .badge{width:72px; height:72px; border-radius:50%; background:var(--crimson);
     border:3px solid var(--gold); display:flex; align-items:center; justify-content:center;
     margin:0 auto 14px; font-family:serif; font-size:34px; font-weight:700; color:var(--gold)}
@@ -35,8 +39,24 @@
   .card .meta{margin-top:12px; display:flex; gap:8px; flex-wrap:wrap}
   .card .meta span{font-size:11.5px; color:var(--muted); background:var(--dark);
     border:1px solid var(--line); border-radius:8px; padding:3px 8px}
+  .login-card{background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:22px; max-width:440px; margin:0 auto}
+  label{display:block; font-size:13.5px; font-weight:700; color:var(--gold); margin:0 0 6px 2px}
+  .hint{color:var(--muted); font-size:12px; margin:6px 2px 16px}
+  .btn-main{display:block; width:100%; text-align:center; padding:13px; border-radius:10px;
+    font-weight:700; background:var(--crimson); color:var(--txt); border:1px solid var(--gold)}
+  .btn-main:disabled{opacity:.55; cursor:default}
+  .err{background:var(--crimsonD); color:#F0A0A8; border:1px solid var(--crimson);
+    border-radius:10px; padding:9px 12px; font-size:13.5px; margin-bottom:12px}
+  .who{display:flex; justify-content:space-between; align-items:center; gap:10px;
+    background:var(--card); border:1px solid var(--goldD); border-radius:12px;
+    padding:12px 16px; margin-bottom:18px}
+  .mini{font-size:12px; padding:7px 12px; border-radius:8px; border:1px solid var(--line);
+    color:var(--muted); font-weight:700; white-space:nowrap}
   .foot{text-align:center; color:var(--muted); font-size:12px; margin-top:40px}
   .foot a{color:var(--gold); text-decoration:none}
+  .hidden{display:none}
+  .fade{animation:f .25s ease} @keyframes f{from{opacity:0; transform:translateY(4px)} to{opacity:1}}
 </style>
 </head>
 <body>
@@ -48,35 +68,146 @@
       <p>목표를 세우고(자원 계산기) · 순서대로 체크한다(테크트리 체크리스트)</p>
     </div>
 
-    <div class="cards">
-      <a class="card" href="resource-planner.html">
-        <div class="row">
-          <span class="tag">RESOURCE PLANNER</span>
-          <span class="go">열기 →</span>
-        </div>
-        <h2>자원 계산기</h2>
-        <p>목표 건물 레벨을 정하면 필요 자원과 완료 시각을 계산하고, 보유 자원을 어디에 먼저 쓸지 알려줍니다.</p>
-        <div class="meta">
-          <span>혼자 쓰는 계산 도구</span>
-          <span>브라우저 로컬 저장</span>
-          <span>서버 없이 동작</span>
-        </div>
-      </a>
+    <!-- ① 로그인 게이트 -->
+    <div id="gate" class="login-card fade hidden">
+      <label>게임 닉네임</label>
+      <input id="in-nick" placeholder="예) 붉은춘배" autocomplete="off">
+      <div style="height:14px"></div>
+      <label>계정번호</label>
+      <input id="in-acct" placeholder="본인 계정번호 (간단한 비밀번호 역할)" autocomplete="off">
+      <div class="hint">처음 입력하면 자동 등록됩니다. 다음부터는 같은 조합으로 접속하세요.</div>
+      <div id="login-err"></div>
+      <button class="btn-main" id="btn-login">접속하기</button>
+    </div>
 
-      <a class="card" href="yoonsb/index.html">
-        <div class="row">
-          <span class="tag">TECH TREE CHECKLIST</span>
-          <span class="go">열기 →</span>
+    <!-- ② 메뉴 (로그인 후 표시) -->
+    <div id="menu" class="fade hidden">
+      <div class="who">
+        <div style="min-width:0">
+          <b id="who-nick" style="color:var(--gold)"></b>
+          <span style="color:var(--muted);font-size:13px"> 님, 환영합니다</span>
         </div>
-        <h2>테크트리 체크리스트</h2>
-        <p>정해진 업그레이드 순서를 맹원들과 함께 체크해 나가는 공유형 진행 관리표입니다.</p>
-        <div class="meta">
-          <span>동맹원 공유</span>
-          <span>Firebase 실시간 저장</span>
-          <span>관리자 현황판 포함</span>
-        </div>
-      </a>
+        <button class="mini" id="btn-logout">다른 계정으로 접속</button>
+      </div>
+
+      <div class="cards">
+        <a class="card" href="resource-planner.html">
+          <div class="row">
+            <span class="tag">RESOURCE PLANNER</span>
+            <span class="go">열기 →</span>
+          </div>
+          <h2>자원 계산기</h2>
+          <p>목표 건물 레벨을 정하면 필요 자원과 완료 시각을 계산하고, 보유 자원을 어디에 먼저 쓸지 알려줍니다.</p>
+          <div class="meta">
+            <span>혼자 쓰는 계산 도구</span>
+            <span>브라우저 로컬 저장</span>
+            <span>서버 없이 동작</span>
+          </div>
+        </a>
+
+        <a class="card" href="yoonsb/index.html">
+          <div class="row">
+            <span class="tag">TECH TREE CHECKLIST</span>
+            <span class="go">열기 →</span>
+          </div>
+          <h2>테크트리 체크리스트</h2>
+          <p>정해진 업그레이드 순서를 맹원들과 함께 체크해 나가는 공유형 진행 관리표입니다.</p>
+          <div class="meta">
+            <span>동맹원 공유</span>
+            <span>Firebase 실시간 저장</span>
+            <span>관리자 현황판 포함</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="foot">
+      <a href="yoonsb/index.html?admin=1">관리자 접속</a>
     </div>
   </div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+/* yoonsb/index.html 과 동일한 Firebase 프로젝트를 사용 */
+const firebaseConfig = {
+  apiKey: "AIzaSyCY7n6cNXs5YOb7D3I8H7S_Xn7vmHgeSyY",
+  authDomain: "sgzzlb-planner.firebaseapp.com",
+  databaseURL: "https://sgzzlb-planner-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "sgzzlb-planner",
+  storageBucket: "sgzzlb-planner.firebasestorage.app",
+  messagingSenderId: "938190414450",
+  appId: "1:938190414450:web:851480ae23f62b02bfd8eb"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+const AUTH_KEY = "sgz_auth"; // 세션 공유 키 (메인 ↔ 하위 앱)
+const $ = s => document.querySelector(s);
+const uKey = nick => encodeURIComponent(nick).replace(/\./g, "%2E");
+
+/* 접속 통계 기록: visits/{key} 누적 + visitsDaily/{날짜}/{key} */
+async function recordVisit(key, nick){
+  try{
+    const ref = db.ref("visits/"+key);
+    const cur = (await ref.get()).val() || {};
+    await ref.set({nick, count:(cur.count||0)+1, first: cur.first||Date.now(), last: Date.now()});
+    const d = new Date();
+    const date = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    await db.ref("visitsDaily/"+date+"/"+key).set(true);
+  }catch(e){ console.warn("접속 기록 실패:", e); }
+}
+
+function showMenu(nick){
+  $("#gate").classList.add("hidden");
+  $("#menu").classList.remove("hidden");
+  $("#who-nick").textContent = nick;
+}
+function showGate(msg){
+  $("#menu").classList.add("hidden");
+  $("#gate").classList.remove("hidden");
+  $("#login-err").innerHTML = msg ? `<div class="err">${msg}</div>` : "";
+}
+
+async function login(){
+  const nick = $("#in-nick").value.trim(), acct = $("#in-acct").value.trim();
+  if(!nick || !acct){ $("#login-err").innerHTML = `<div class="err">닉네임과 계정번호를 모두 입력해 주세요.</div>`; return; }
+  const btn = $("#btn-login"); btn.disabled = true; btn.textContent = "확인 중...";
+  try{
+    const key = uKey(nick);
+    const u = (await db.ref("users/"+key).get()).val();
+    if(u && u.acct !== acct){
+      btn.disabled = false; btn.textContent = "접속하기";
+      $("#login-err").innerHTML = `<div class="err">이미 등록된 닉네임인데 계정번호가 다릅니다. 처음 입력한 계정번호를 쓰세요.</div>`;
+      return;
+    }
+    if(!u) await db.ref("users/"+key).set({nick, acct, ts: Date.now()});
+    sessionStorage.setItem(AUTH_KEY, JSON.stringify({nick, acct}));
+    await recordVisit(key, nick);   /* ← 실제 접속 통계 */
+    showMenu(nick);
+  }catch(e){
+    console.error(e);
+    btn.disabled = false; btn.textContent = "접속하기";
+    $("#login-err").innerHTML = `<div class="err">서버 연결에 실패했습니다. 잠시 후 다시 시도해 주세요. (${e.message})</div>`;
+  }
+}
+
+$("#btn-login").onclick = login;
+$("#in-acct").addEventListener("keydown", e=>{ if(e.key==="Enter") login(); });
+$("#btn-logout").onclick = ()=>{
+  sessionStorage.removeItem(AUTH_KEY);
+  $("#in-nick").value = ""; $("#in-acct").value = "";
+  showGate();
+};
+
+/* 시작: 세션이 살아있으면 로그인 생략하고 메뉴 표시 (접속 수는 중복 기록하지 않음) */
+(function init(){
+  try{
+    const saved = JSON.parse(sessionStorage.getItem(AUTH_KEY) || "null");
+    if(saved && saved.nick){ showMenu(saved.nick); return; }
+  }catch(e){}
+  showGate();
+})();
+</script>
 </body>
 </html>
