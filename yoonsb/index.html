@@ -150,6 +150,7 @@ let checked = {};           // {itemId:1}
 let openSec = null;
 let saveTimer = null, saveState = "저장됨";
 let adminUsers = {}, adminProg = {}, adminDetail = null;
+let adminVisits = {}, adminDaily = {};
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -193,25 +194,49 @@ function renderLogin(msg){
   };
 }
 
+const AUTH_KEY = "sgz_auth"; // 메인 페이지와 공유하는 세션 키
+
+/* 접속 통계 기록: visits/{key} 누적 + visitsDaily/{날짜}/{key} (메인 index.html과 동일 규격) */
+async function recordVisit(key, nick){
+  try{
+    const ref = db.ref("visits/"+key);
+    const cur = (await ref.get()).val() || {};
+    await ref.set({nick, count:(cur.count||0)+1, first: cur.first||Date.now(), last: Date.now()});
+    const d = new Date();
+    const date = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    await db.ref("visitsDaily/"+date+"/"+key).set(true);
+  }catch(e){ console.warn("접속 기록 실패:", e); }
+}
+
+/* 로그인 핵심 로직 (수동 로그인 + 메인에서 넘어온 자동 로그인이 공용으로 사용) */
+async function doLogin(nick, acct, opts){
+  opts = opts || {};
+  const key = uKey(nick);
+  const snap = await db.ref("users/"+key).get();
+  const u = snap.val();
+  if(u && u.acct !== acct){
+    return {ok:false, msg:"이미 등록된 닉네임인데 계정번호가 다릅니다. 처음 입력한 계정번호를 쓰세요."};
+  }
+  if(!u) await db.ref("users/"+key).set({nick, acct, ts: Date.now()});
+  const p = (await db.ref("prog/"+key).get()).val();
+  me = {nick, key};
+  checked = (p && p.c) || {};
+  myCost = (p && p.cost) || null;
+  const first = SECTIONS.find(s=>s.items.some(i=>!checked[i.id]));
+  openSec = first ? first.id : SECTIONS[0].id;
+  try{ sessionStorage.setItem(AUTH_KEY, JSON.stringify({nick, acct})); }catch(e){}
+  if(opts.record) await recordVisit(key, nick); // 이 페이지에서 직접 로그인한 경우만 접속 1회 기록
+  renderTodo();
+  return {ok:true};
+}
+
 async function login(){
   const nick = $("#in-nick").value.trim(), acct = $("#in-acct").value.trim();
   if(!nick || !acct){ $("#login-err").innerHTML = `<div class="err">닉네임과 계정번호를 모두 입력해 주세요.</div>`; return; }
   const btn = $("#btn-login"); btn.disabled = true; btn.textContent = "불러오는 중...";
   try{
-    const key = uKey(nick);
-    const snap = await db.ref("users/"+key).get();
-    const u = snap.val();
-    if(u && u.acct !== acct){
-      renderLogin("이미 등록된 닉네임인데 계정번호가 다릅니다. 처음 입력한 계정번호를 쓰세요."); return;
-    }
-    if(!u) await db.ref("users/"+key).set({nick, acct, ts: Date.now()});
-    const p = (await db.ref("prog/"+key).get()).val();
-    me = {nick, key};
-    checked = (p && p.c) || {};
-    myCost = (p && p.cost) || null;
-    const first = SECTIONS.find(s=>s.items.some(i=>!checked[i.id]));
-    openSec = first ? first.id : SECTIONS[0].id;
-    renderTodo();
+    const r = await doLogin(nick, acct, {record:true});
+    if(!r.ok) renderLogin(r.msg);
   }catch(e){
     console.error(e);
     renderLogin("서버 연결에 실패했습니다. 잠시 후 다시 시도해 주세요. ("+e.message+")");
@@ -299,7 +324,11 @@ function renderTodo(){
       체크는 자동 저장됩니다 · 실수로 체크했다면 ↩ 되돌리기 (PC는 Ctrl+Z)</div>
   </div>`;
 
-  $("#btn-out").onclick = ()=>{ me=null; checked={}; undoStack=[]; myCost=null; renderLogin(); };
+  $("#btn-out").onclick = ()=>{
+    me=null; checked={}; undoStack=[]; myCost=null;
+    try{ sessionStorage.removeItem(AUTH_KEY); }catch(e){}
+    location.href = "../index.html"; // 메인 허브로 복귀
+  };
   $("#btn-undo").onclick = doUndo;
   renderCostSeg();
   renderSecs();
@@ -430,7 +459,7 @@ function renderAdmin(){
     </div>
   </div></div>
   <div class="wrap fade" style="max-width:860px;padding-top:16px;padding-bottom:60px">
-    <div id="adm-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px"></div>
+    <div id="adm-stats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin-bottom:14px"></div>
 
     <div class="card" style="padding:13px 14px;margin-bottom:14px">
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
@@ -468,8 +497,11 @@ function renderAdmin(){
       msg: `등록된 <b style="color:var(--gold)">모든 맹원 ${n}명</b>과 진행 기록을<br>완전히 삭제합니다. <b style="color:var(--gold)">백업하셨습니까?</b>`,
       okLabel: "전체삭제",
       onOk: async ()=>{
-        await db.ref("users").remove();
-        await db.ref("prog").remove();
+        // 보안 규칙이 맹원 단위($uid)로 검사하므로 노드 통째 삭제 대신 맹원별 일괄 삭제
+        const upd = {};
+        Object.keys(adminUsers).forEach(k=>{ upd["users/"+k] = null; upd["prog/"+k] = null; });
+        Object.keys(adminProg).forEach(k=>{ upd["prog/"+k] = null; });
+        await db.ref().update(upd);
         adminUsers = {}; adminProg = {}; adminDetail = null;
         selSet.clear(); selMode = false;
         drawAdmin();
@@ -498,9 +530,14 @@ function drawBands(){
 async function loadAdmin(){
   $("#adm-list").innerHTML = `<div class="card muted" style="padding:28px;text-align:center">불러오는 중...</div>`;
   try{
-    const [uSnap, pSnap] = await Promise.all([db.ref("users").get(), db.ref("prog").get()]);
+    const [uSnap, pSnap, vSnap, dSnap] = await Promise.all([
+      db.ref("users").get(), db.ref("prog").get(),
+      db.ref("visits").get(), db.ref("visitsDaily").get()
+    ]);
     adminUsers = uSnap.val() || {};
     adminProg = pSnap.val() || {};
+    adminVisits = vSnap.val() || {};
+    adminDaily = dSnap.val() || {};
     drawAdmin();
   }catch(e){
     $("#adm-list").innerHTML = `<div class="err">데이터를 불러오지 못했습니다: ${esc(e.message)}</div>`;
@@ -553,9 +590,19 @@ function drawAdmin(){
   const avg = all.length ? Math.round(all.reduce((s,r)=>s+r.done,0)/all.length/TOTAL*100) : 0;
   const fin = all.filter(r=>r.pct===100).length;
   const idle = all.filter(r=>Date.now()-r.ts > 7*DAY).length;
+  /* 접속 통계 (메인 페이지 로그인 기준) */
+  const todayStr = (()=>{ const d=new Date();
+    return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); })();
+  const todayVisit = Object.keys(adminDaily[todayStr] || {}).length;
+  const week = new Set();
+  Object.keys(adminDaily).forEach(date=>{
+    const dt = new Date(date+"T00:00:00");
+    if(Date.now() - dt.getTime() < 7*DAY) Object.keys(adminDaily[date]).forEach(k=>week.add(k));
+  });
   $("#adm-stats").innerHTML = [
     ["등록 맹원", all.length+"명"], ["평균 진행률", avg+"%"],
-    ["전체 완료", fin+"명"], ["7일+ 미활동", idle+"명"]
+    ["전체 완료", fin+"명"], ["7일+ 미활동", idle+"명"],
+    ["오늘 접속", todayVisit+"명"], ["7일 내 접속", week.size+"명"]
   ].map(([k,v])=>`<div class="card" style="padding:14px 8px;text-align:center">
     <div class="gold" style="font-size:21px;font-weight:700">${v}</div>
     <div class="muted" style="font-size:11.5px;margin-top:3px">${k}</div></div>`).join("");
@@ -601,6 +648,9 @@ function drawAdmin(){
       </button>
       ${open?`
       <div style="border-top:1px solid var(--line);padding:14px 16px">
+        <div class="muted" style="font-size:12px;margin-bottom:10px">
+          접속 ${adminVisits[r.k] ? adminVisits[r.k].count+"회 · 마지막 접속 "+ago(adminVisits[r.k].last) : "기록 없음 (메인 페이지 로그인 기준)"}
+        </div>
         ${SECTIONS.map(sec=>{
           const sd = sec.items.filter(i=>r.c[i.id]).length;
           return `<div style="display:flex;gap:10px;align-items:center;margin-bottom:6px;font-size:13px">
@@ -817,12 +867,14 @@ function exportJSON(){
 }
 function exportCSV(){
   const rows = admFiltered(); // 현재 검색/필터가 그대로 적용된 목록을 추출
-  const head = ["닉네임","계정번호","1군코스트","진행률(%)","완료단계","전체단계","현재챕터","다음할일","마지막체크"];
+  const head = ["닉네임","계정번호","1군코스트","진행률(%)","완료단계","전체단계","현재챕터","다음할일","마지막체크","접속횟수","마지막접속"];
   const lines = rows.map(r=>[
     r.u.nick, r.u.acct, r.cost||"미선택", r.pct, r.done, TOTAL,
     r.next ? r.nSec.tag : "전체완료",
     r.next ? `${r.next.name} ${r.next.lv}` : "-",
-    r.ts ? new Date(r.ts).toLocaleString("ko-KR") : "-"
+    r.ts ? new Date(r.ts).toLocaleString("ko-KR") : "-",
+    adminVisits[r.k] ? adminVisits[r.k].count : 0,
+    adminVisits[r.k] ? new Date(adminVisits[r.k].last).toLocaleString("ko-KR") : "-"
   ].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(","));
   const csv = "\uFEFF" + head.join(",") + "\n" + lines.join("\n");
   const a = document.createElement("a");
@@ -831,8 +883,23 @@ function exportCSV(){
   a.click();
 }
 
-/* 시작 */
-renderLogin();
+/* 시작: 메인(../index.html)에서 로그인한 세션이 있으면 자동 접속.
+   ?admin=1 로 들어오면 자동 로그인을 건너뛰고 로그인 화면(관리자 코드 입력 포함)을 보여준다. */
+(async function init(){
+  const isAdminEntry = new URLSearchParams(location.search).get("admin") === "1";
+  if(!isAdminEntry){
+    try{
+      const saved = JSON.parse(sessionStorage.getItem(AUTH_KEY) || "null");
+      if(saved && saved.nick && saved.acct){
+        const r = await doLogin(saved.nick, saved.acct, {record:false}); // 메인에서 이미 기록했으므로 중복 기록 안 함
+        if(r.ok) return;
+        try{ sessionStorage.removeItem(AUTH_KEY); }catch(e){}
+        renderLogin(r.msg); return;
+      }
+    }catch(e){ console.warn("자동 로그인 실패:", e); }
+  }
+  renderLogin();
+})();
 </script>
 </body>
 </html>
