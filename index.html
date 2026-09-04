@@ -26,6 +26,7 @@
   .brand .k{font-size:12.5px; font-weight:700; letter-spacing:4px; color:var(--gold)}
   .brand h1{font-size:26px; margin-top:6px}
   .brand p{color:var(--muted); font-size:13.5px; margin-top:8px}
+  .brand p a{color:var(--gold); text-decoration:none}
   .cards{display:grid; gap:16px}
   a.card{display:block; background:var(--card); border:1px solid var(--line); border-radius:16px;
     padding:22px 24px; text-decoration:none; color:inherit; transition:border-color .15s, transform .15s}
@@ -64,8 +65,9 @@
     <div class="brand">
       <div class="badge">技</div>
       <div class="k">삼국지 전략판</div>
-      <h1>춘배와 그놈이 만들어가는 삼국지 전산판</h1>
-      <p>목표를 세우고(자원 계산기) · 순서대로 체크한다(테크트리 체크리스트)</p>
+      <h1>춘배와 "그놈"이 만들어가는 삼국지 전산판</h1>
+      <p>목표를 세우고(자원 계산기) · 순서대로 체크한다(테크트리 체크리스트)<br>
+      문의사항 : <a href="https://open.kakao.com/o/s0Q12QLi" target="_blank" rel="noopener">https://open.kakao.com/o/s0Q12QLi</a></p>
     </div>
 
     <!-- ① 로그인 게이트 -->
@@ -91,7 +93,20 @@
       </div>
 
       <div class="cards">
-        <a class="card" href="resource-planner.html">
+        <a class="card" href="simulator/index.html" target="_blank" rel="noopener">
+          <div class="row">
+            <span class="tag">PIONEER INFO</span>
+            <span class="go">열기 →</span>
+          </div>
+          <h2>개척 정보</h2>
+          <p>개척덱 승률 매트릭스 / 폭탄덱 정보 (평균 처치수/개별 전투 분산) — 실측 데이터 기반 시뮬레이션 결과 모음.</p>
+          <div class="meta">
+            <span>이것만 따라하면 당신도 개척 고수</span>
+            <span>믿지마라. 시뮬이다</span>
+          </div>
+        </a>
+
+        <a class="card" href="resource-planner.html" target="_blank" rel="noopener">
           <div class="row">
             <span class="tag">RESOURCE PLANNER</span>
             <span class="go">열기 →</span>
@@ -105,7 +120,7 @@
           </div>
         </a>
 
-        <a class="card" href="yoonsb/index.html">
+        <a class="card" href="yoonsb/index.html" target="_blank" rel="noopener">
           <div class="row">
             <span class="tag">TECH TREE CHECKLIST</span>
             <span class="go">열기 →</span>
@@ -142,7 +157,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-const AUTH_KEY = "sgz_auth"; // 세션 공유 키 (메인 ↔ 하위 앱)
+const AUTH_KEY = "sgz_auth"; // 로그인 유지 키 (메인 ↔ 하위 앱, 브라우저 닫아도 유지)
 const $ = s => document.querySelector(s);
 const uKey = nick => encodeURIComponent(nick).replace(/\./g, "%2E");
 
@@ -182,7 +197,7 @@ async function login(){
       return;
     }
     if(!u) await db.ref("users/"+key).set({nick, acct, ts: Date.now()});
-    sessionStorage.setItem(AUTH_KEY, JSON.stringify({nick, acct}));
+    localStorage.setItem(AUTH_KEY, JSON.stringify({nick, acct}));
     await recordVisit(key, nick);   /* ← 실제 접속 통계 */
     showMenu(nick);
   }catch(e){
@@ -195,7 +210,7 @@ async function login(){
 $("#btn-login").onclick = login;
 $("#in-acct").addEventListener("keydown", e=>{ if(e.key==="Enter") login(); });
 $("#btn-logout").onclick = ()=>{
-  sessionStorage.removeItem(AUTH_KEY);
+  localStorage.removeItem(AUTH_KEY);
   $("#in-nick").value = ""; $("#in-acct").value = "";
   showGate();
 };
@@ -203,7 +218,7 @@ $("#btn-logout").onclick = ()=>{
 /* 시작: 세션이 살아있으면 로그인 생략하고 메뉴 표시 (접속 수는 중복 기록하지 않음) */
 (function init(){
   try{
-    const saved = JSON.parse(sessionStorage.getItem(AUTH_KEY) || "null");
+    const saved = JSON.parse(localStorage.getItem(AUTH_KEY) || "null");
     if(saved && saved.nick){ showMenu(saved.nick); return; }
   }catch(e){}
   showGate();

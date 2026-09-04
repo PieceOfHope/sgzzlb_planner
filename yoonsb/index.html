@@ -60,9 +60,14 @@
     display:flex; align-items:center; justify-content:center; padding:20px}
   .modal{background:var(--card); border:1px solid var(--crimson); border-radius:16px;
     width:100%; max-width:380px; padding:24px; animation:f .2s ease}
+  .home-link{position:fixed; top:14px; left:14px; z-index:50; font-size:12.5px; font-weight:700;
+    color:var(--muted); text-decoration:none; border:1px solid var(--line); border-radius:999px;
+    padding:5px 12px; background:var(--dark)}
+  .home-link:hover{color:var(--gold); border-color:var(--goldD)}
 </style>
 </head>
 <body>
+<a class="home-link" href="../index.html">← Home</a>
 <div id="app"></div>
 
 <!-- Firebase (compat CDN) -->
@@ -224,7 +229,7 @@ async function doLogin(nick, acct, opts){
   myCost = (p && p.cost) || null;
   const first = SECTIONS.find(s=>s.items.some(i=>!checked[i.id]));
   openSec = first ? first.id : SECTIONS[0].id;
-  try{ sessionStorage.setItem(AUTH_KEY, JSON.stringify({nick, acct})); }catch(e){}
+  try{ localStorage.setItem(AUTH_KEY, JSON.stringify({nick, acct})); }catch(e){}
   if(opts.record) await recordVisit(key, nick); // 이 페이지에서 직접 로그인한 경우만 접속 1회 기록
   renderTodo();
   return {ok:true};
@@ -326,7 +331,7 @@ function renderTodo(){
 
   $("#btn-out").onclick = ()=>{
     me=null; checked={}; undoStack=[]; myCost=null;
-    try{ sessionStorage.removeItem(AUTH_KEY); }catch(e){}
+    try{ localStorage.removeItem(AUTH_KEY); }catch(e){}
     location.href = "../index.html"; // 메인 허브로 복귀
   };
   $("#btn-undo").onclick = doUndo;
@@ -889,11 +894,11 @@ function exportCSV(){
   const isAdminEntry = new URLSearchParams(location.search).get("admin") === "1";
   if(!isAdminEntry){
     try{
-      const saved = JSON.parse(sessionStorage.getItem(AUTH_KEY) || "null");
+      const saved = JSON.parse(localStorage.getItem(AUTH_KEY) || "null");
       if(saved && saved.nick && saved.acct){
         const r = await doLogin(saved.nick, saved.acct, {record:false}); // 메인에서 이미 기록했으므로 중복 기록 안 함
         if(r.ok) return;
-        try{ sessionStorage.removeItem(AUTH_KEY); }catch(e){}
+        try{ localStorage.removeItem(AUTH_KEY); }catch(e){}
         renderLogin(r.msg); return;
       }
     }catch(e){ console.warn("자동 로그인 실패:", e); }
