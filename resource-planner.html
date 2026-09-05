@@ -929,6 +929,28 @@
         <div id="chulsaSummary"></div>
       </section>
 
+      <section class="card">
+        <h3 class="grp">기타 소득 <span style="font-weight:500;letter-spacing:0;text-transform:none">수동 입력, 보유 자원에 합산</span></h3>
+        <div class="grid4">
+          <div class="field">
+            <label><i class="swatch" style="background:var(--wood)"></i>목재</label>
+            <input type="number" class="cap-input" data-max="9999999" max="9999999" id="etc_w" value="0" min="0" step="100">
+          </div>
+          <div class="field">
+            <label><i class="swatch" style="background:var(--iron)"></i>철광</label>
+            <input type="number" class="cap-input" data-max="9999999" max="9999999" id="etc_i" value="0" min="0" step="100">
+          </div>
+          <div class="field">
+            <label><i class="swatch" style="background:var(--stone)"></i>석재</label>
+            <input type="number" class="cap-input" data-max="9999999" max="9999999" id="etc_s" value="0" min="0" step="100">
+          </div>
+          <div class="field">
+            <label><i class="swatch" style="background:var(--food)"></i>식량</label>
+            <input type="number" class="cap-input" data-max="9999999" max="9999999" id="etc_f" value="0" min="0" step="100">
+          </div>
+        </div>
+      </section>
+
       <!-- 군둔/자원상자/영지 전환: 삼국지 전략판 실제 규칙으로 다음 단계에서 새로 설계 예정. -->
       <section class="card" style="display:none">
         <div class="grid2">
@@ -1411,7 +1433,10 @@
 
   function state() {
     return {
-      have: { w: val("have_w"), i: val("have_i"), s: val("have_s"), f: val("have_f") },
+      have: {
+        w: val("have_w") + val("etc_w"), i: val("have_i") + val("etc_i"),
+        s: val("have_s") + val("etc_s"), f: val("have_f") + val("etc_f")
+      },
       rate: { w: Math.max(0, val("rate_w")), i: Math.max(0, val("rate_i")), s: Math.max(0, val("rate_s")), f: Math.max(0, val("rate_f")) }
     };
   }
@@ -3576,6 +3601,7 @@
         sacredLetters: SACRED_LEVELS.reduce(function (o, lv) { o[lv] = val("sacred_" + lv); return o; }, {}),
         chulsaN: val("chulsa_n"),
         have: { w: val("have_w"), i: val("have_i"), s: val("have_s"), f: val("have_f") },
+        etc: { w: val("etc_w"), i: val("etc_i"), s: val("etc_s"), f: val("etc_f") },
         rate: { w: val("rate_w"), i: val("rate_i"), s: val("rate_s"), f: val("rate_f") },
         dt: { lv: val("dt_lv"), n: val("dt_n") },
         gd: { amt: val("gd_amt"), res: gdRes },
@@ -3640,6 +3666,7 @@
     });
     RES.forEach(function (r) {
       if (d.have && isFinite(d.have[r])) $("have_" + r).value = Math.max(0, d.have[r]);
+      if (d.etc && isFinite(d.etc[r])) $("etc_" + r).value = Math.max(0, d.etc[r]);
       if (d.rate && isFinite(d.rate[r])) $("rate_" + r).value = Math.max(0, d.rate[r]);
       if (d.manual && isFinite(d.manual[r])) manual[r] = Math.max(0, d.manual[r]);
     });
